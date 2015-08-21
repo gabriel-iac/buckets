@@ -1,2 +1,4 @@
-function ();
+
+
+post('/',function(req,res))
 
