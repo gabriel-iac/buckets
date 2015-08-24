@@ -9,12 +9,6 @@ function getAllLocations(req, res){
 
 }
 
-
-// function getNewLocation(req, res){
-//   var 
-
-// }
-
 function createLocation(req, res){
   //create new location object
   //save the location
@@ -35,11 +29,26 @@ function getLocation(req, res){
     res.json(location)
 
   })
+}
+
+
+function updateLocation(req, res){
+  Location.findByIdAndUpdate(req.params.id, req.body,function(err, location){
+    if(err)
+      res.send(err)
+   res.json({'message': 'location update' })
+  })
+}
+
+function editLocation(req, res){
+
 
 }
+
 
 module.exports = {
   getAllLocations: getAllLocations,
   createLocation: createLocation,
-  getLocation: getLocation
+  getLocation: getLocation,
+  updateLocation: updateLocation
 }
