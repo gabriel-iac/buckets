@@ -1,12 +1,32 @@
 var express = require('express');
-var userRouter = express.Router();
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+
 var usersController = require('../controllers/users');
+var locationController = require('../controllers/locations');
 
+var router = express.Router();
 
-userRouter.route('/users')
+router.route('/users')
   .get(usersController.home);
 
+router.route('/locations')
+  .get(locationController.getAllLocations)
+  
+router.route('/locations/:id')
+  .get(locationController.getLocation)
 
-module.exports = userRouter
+// locationRouter.route('/locations/new')
+//   .get(locationController.getNewLocation)
+
+router.route('/locations')
+  .post(locationController.createLocation)
+
+// module.exports = {
+//   locationRouter: locationRouter, 
+//   userRouter: userRouter
+// }
+
+
+module.exports = router;
+
