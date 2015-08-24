@@ -3,9 +3,19 @@ var userRouter = express.Router();
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var usersController = require('../controllers/users');
-
+var locationRouter = express.Router();
 
 userRouter.route('/users')
   .get(usersController.home);
 
-  module.exports = userRouter
+
+locationRouter.route('/locations')
+  .get(locationController.getAllLocations)
+  
+  locationRouter.route('/locations/new')
+    .get(locationController.getNewLocation)
+
+  module.exports = {
+    locationRouter: locationRouter,
+    userRouter: userRouter
+  }
