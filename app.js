@@ -14,6 +14,7 @@ mongoose.connect('mongodb://localhost/buckets');
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // app.use(methodOverride(function(req, res){
 //   if (req.body && typeof req.body === 'object' && '_method' in req.body) {

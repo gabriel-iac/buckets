@@ -12,6 +12,7 @@ res.send("Locations here");
 // }
 
 function createLocation(req, res){
+  console.log(req.body);
   //create new location object
   //save the location
   //add to db
@@ -31,7 +32,7 @@ function createLocation(req, res){
   //       }
 
   //   })
-res.render('hello world')
+res.json({ message:"Lcoation created" })
 
 }
 
