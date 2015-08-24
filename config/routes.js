@@ -4,31 +4,41 @@ var methodOverride = require('method-override');
 
 var usersController = require('../controllers/users');
 var locationController = require('../controllers/locations');
-
 var router = express.Router();
 
-router.route('/users')
-  .get(usersController.home)
+
+
 
 router.route('/locations')
   .get(locationController.getAllLocations)
-  .post(locationController.createLocation)
+  
 
 router.route('/locations/new')
   .get(locationController.getNewLocation)
 
+router.route('/users')
+.get(usersController.getAllUsers);
+
+  
+router.route('/users/:id')
+  .put(usersController.updateUser)
+
+router.route('/users/:id')
+  .get(usersController.showUser)
+
+
 router.route('/locations/:id')
-  .get(locationController.getLocation)
-
-// locationRouter.route('/locations/new')
-//   .get(locationController.getNewLocation)
+.get(locationController.getLocation);
 
 
+router.route('/locations/:id')
+.put(locationController.updateLocation);
 
-// module.exports = {
-//   locationRouter: locationRouter, 
-//   userRouter: userRouter
-// }
+
+router.route('/locations')
+.post(locationController.createLocation)
+
+
 
 
 module.exports = router;
