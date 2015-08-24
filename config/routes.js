@@ -16,8 +16,8 @@ router.route('/locations')
 // locationRouter.route('/locations/new')
 //   .get(locationController.getNewLocation)
 
-// locationRouter.route('/locations')
-//   .post(locationController.createLocation)
+router.route('/locations')
+  .post(locationController.createLocation)
 
 // module.exports = {
 //   locationRouter: locationRouter, 
