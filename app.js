@@ -26,3 +26,26 @@ app.use(methodOverride(function(req, res){
 app.set('layout', 'layout');
 app.set("views", "./views");
 app.set("view engine", "ejs");
+app.use('/users', userRouter);
+app.use('/locations', locationRouter);
+app.use('/', router);
+
+
+app.get('/', function(req, res){
+  res.render('layout');
+
+})
+
+
+
+
+
+
+
+
+
+
+
+app.listen(port, function(){
+  console.log('listening on port 3000')
+})
