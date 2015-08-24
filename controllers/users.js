@@ -8,28 +8,25 @@ function getAllUsers(req, res){
   }) 
 }
 
-function createUser(req, res){
-  //create new location object
-  //save the location
-  //add to db
-  // render the object to json
-  console.log(req.body);
-  var newUser = new User(req.body);
-    newUser.save(function(err){
-      if(err){console.log(err)}
-        else{
-          res.json(newUser);
-        }
-    })
+
+function updateUser(req, res){
+  User.findByIdAndUpdate(req.params.id, req.body, function(err, users){
+   if(err)
+     res.send(err)
+   res.json({'message': 'User update'})
+ })
 }
 
-function home(req, res){
 
-  res.render('users/index')
-} 
+function showUser(req, res){
+  User.findById(req.params.id, function(err, user){
+    res.json(user)
+  })
+}
 
 
 module.exports = {
   getAllUsers: getAllUsers,
-  createUser: createUser
+  showUser: showUser,
+  updateUser: updateUser
 }

@@ -10,17 +10,27 @@ var router = express.Router();
 router.route('/users')
 .get(usersController.getAllUsers);
 
-router.route('/users')
-.post(usersController.createUser);
+
+  
+router.route('/users/:id')
+  .put(usersController.updateUser)
+
+router.route('/users/:id')
+  .get(usersController.showUser)
+
+
 
 router.route('/locations')
-.get(locationController.getAllLocations)
+.get(locationController.getAllLocations);
 
 router.route('/locations/:id')
-.get(locationController.getLocation)
+.get(locationController.getLocation);
 
 router.route('/locations/:id')
-.put(locationController.updateLocation)
+.put(locationController.updateLocation);
+
+
+
 
 // locationRouter.route('/locations/new')
 //   .get(locationController.getNewLocation)
