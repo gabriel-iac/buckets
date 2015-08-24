@@ -13,11 +13,14 @@ router.route('/users')
 router.route('/locations')
   .get(locationController.getAllLocations)
   
+router.route('/locations/:id')
+  .get(locationController.getLocation)
+
 // locationRouter.route('/locations/new')
 //   .get(locationController.getNewLocation)
 
-// locationRouter.route('/locations')
-//   .post(locationController.createLocation)
+router.route('/locations')
+  .post(locationController.createLocation)
 
 // module.exports = {
 //   locationRouter: locationRouter, 
