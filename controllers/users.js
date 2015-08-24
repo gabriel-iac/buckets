@@ -1,5 +1,7 @@
-var express = require('express');
-var router = express.Router();
-var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
 var mongoose = require('mongoose');
+var userRouter = express.Router();
+
+userRouter.get('/', function(req, res){
+
+  res.render('users/index')
+}) 
