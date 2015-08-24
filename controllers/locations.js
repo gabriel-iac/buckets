@@ -9,14 +9,8 @@ function getAllLocations(req, res){
 };
 
 function getNewLocation(req,res){
-  console.log('hello')
   res.render('locations/new');
 };
-
-
-function getLocation(req, res){
-res.render('users/index')
-}
 
 
 
@@ -41,12 +35,31 @@ function createLocation(req, res){
 function getLocation(req, res){
    Location.findById(req.params.id, function(err, location){
     res.json(location)
+
   });
 };
+
+
+
+function updateLocation(req, res){
+  Location.findByIdAndUpdate(req.params.id, req.body,function(err, location){
+    if(err)
+      res.send(err)
+   res.json({'message': 'location update' })
+  })
+}
+
+
+function editLocation(req, res){
+
+
+}
+
 
 module.exports = {
   getAllLocations: getAllLocations,
   createLocation: createLocation,
   getLocation: getLocation,
-  getNewLocation: getNewLocation
+  getNewLocation: getNewLocation,
+  updateLocation: updateLocation
 }

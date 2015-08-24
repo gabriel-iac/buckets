@@ -31,7 +31,9 @@ app.use(methodOverride(function(req, res){
   }
 }))
 
-app.set('layout', 'layout');
+
+app.set('layout', 'layout.ejs');
+
 app.set("views", "./views");
 app.set("view engine", "ejs");
 
