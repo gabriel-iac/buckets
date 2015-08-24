@@ -29,7 +29,7 @@ app.set("view engine", "ejs");
 app.use('/users', userRouter);
 app.use('/locations', locationRouter);
 app.use('/', router);
-
+app.use(require('./controllers'));
 
 app.get('/', function(req, res){
   res.render('layout');
