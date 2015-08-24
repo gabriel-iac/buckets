@@ -10,6 +10,8 @@ var expressLayouts = require('express-ejs-layouts');
 var router = express.Router();
 var userRouter = express.Router();
 var locationRouter = express.Router();
+var passport = require('passport');
+var authController = require('./controllers/auth');
 mongoose.connect('mongodb://localhost/buckets');
 
 app.use(express.static(__dirname + '/public'));
@@ -17,6 +19,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(expressLayouts)
 
+// Use the passport package in our application
+app.use(passport.initialize());
 
 app.use(methodOverride(function(req, res){
   if (req.body && typeof req.body === 'object' && '_method' in req.body) {
@@ -27,12 +31,7 @@ app.use(methodOverride(function(req, res){
   }
 }))
 
-<<<<<<< HEAD
-app.set('layout', 'layout.ejs');
-=======
-
 app.set('layout', 'layout');
->>>>>>> 960dee5e9553ad657de922952da6f307ef4dd6da
 app.set("views", "./views");
 app.set("view engine", "ejs");
 

@@ -1,12 +1,20 @@
-var mongoose  = require('mongoose');
+var mongoose   = require('mongoose');
+var bcrypt = require('bcrypt-nodejs');
 var Schema    = mongoose.Schema;
 
 var userSchema = new mongoose.Schema({
   first_name  : String,
   last_name   : String,
   image       : String,
-  email       : String,
-  password    : String,
+  email: {
+    type: String,
+    unique: true,
+    required: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
   locations   : [{ type: Schema.Types.ObjectId, ref: 'Location' }],
   fb: {
     id: String,
@@ -16,6 +24,13 @@ var userSchema = new mongoose.Schema({
     email: String
   }
 })
+
+userSchema.methods.verifyPassword = function(password, callback) {
+  bcrypt.compare(password, this.password, function(err, isMatch) {
+    if (err) return callback(err);
+    callback(null, isMatch);
+  });
+};
 
 var User = mongoose.model('User', userSchema);
 module.exports = User; 
