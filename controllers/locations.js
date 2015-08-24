@@ -21,9 +21,11 @@ res.render('users/index')
 
 
 function createLocation(req, res){
+  console.log(req.body);
   //create new location object
   //save the location
   //add to db
+
   // render the object to json
   console.log(req.body);
   var newlocation = new Location(req.body);
@@ -34,6 +36,7 @@ function createLocation(req, res){
         };
     });
 };
+
 
 function getLocation(req, res){
    Location.findById(req.params.id, function(err, location){
