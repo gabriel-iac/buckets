@@ -2,7 +2,10 @@ var Location = require('../models/location');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 function getAllLocations(req, res){
-res.send("Locations here");
+  var locations = Location.find({} , function(err, locations){
+    res.json(locations);
+
+  }) 
 
 }
 
@@ -27,12 +30,16 @@ function createLocation(req, res){
     })
 }
 
-function getlocation(req, res){
+function getLocation(req, res){
+   Location.findById(req.params.id, function(err, location){
+    res.json(location)
 
+  })
 
 }
 
 module.exports = {
   getAllLocations: getAllLocations,
-  createLocation: createLocation
+  createLocation: createLocation,
+  getLocation: getLocation
 }
