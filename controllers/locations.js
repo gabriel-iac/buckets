@@ -1,7 +1,11 @@
-var Location = require('../models/location')
-
+var Location = require('../models/location');
+var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
 function getAllLocations(req, res){
-res.send("Locations here");
+  var locations = Location.find({} , function(err, locations){
+    res.json(locations);
+
+  }) 
 
 }
 
@@ -11,6 +15,7 @@ res.send("Locations here");
 
 // }
 
+<<<<<<< HEAD
 // function createLocation(req, res){
 //   create new location object
 //   save the location
@@ -37,12 +42,33 @@ res.send("Locations here");
 
 function getLocation(req, res){
 res.render('users/index')
+=======
+function createLocation(req, res){
+  //create new location object
+  //save the location
+  //add to db
+  // render the object to json
+  console.log(req.body);
+  var newlocation = new Location(req.body);
+    newlocation.save(function(err){
+      if(err){console.log(err)}
+        else{
+          res.json(newlocation);
+        }
+    })
+}
+
+function getLocation(req, res){
+   Location.findById(req.params.id, function(err, location){
+    res.json(location)
+
+  })
 
 }
 
 
 module.exports = {
   getAllLocations: getAllLocations,
-  // createLocation: createLocation
-
+  createLocation: createLocation,
+  getLocation: getLocation
 }
