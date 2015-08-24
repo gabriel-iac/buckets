@@ -6,7 +6,7 @@ var userSchema = new mongoose.Schema({
   image       : String,
   email       : String,
   password    : String,
-  locations   : [{ type: Schema.Types.ObjectId, ref: 'Location' }],
+  // locations   : [{ type: Schema.Types.ObjectId, ref: 'Location' }],
   fb: {
     id: String,
     access_token: String,
