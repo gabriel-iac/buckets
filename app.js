@@ -15,6 +15,7 @@ mongoose.connect('mongodb://localhost/buckets');
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(expressLayouts)
 
 app.use(methodOverride(function(req, res){
   if (req.body && typeof req.body === 'object' && '_method' in req.body) {
@@ -25,14 +26,13 @@ app.use(methodOverride(function(req, res){
   }
 }))
 
-app.set('layout', 'layout');
+app.set('layout', 'layout.ejs');
 app.set("views", "./views");
 app.set("view engine", "ejs");
 
 
 app.get('/', function(req, res){
-  res.render('layout');
-
+  res.render('./users/index');
 })
 
 
