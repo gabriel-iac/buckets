@@ -10,11 +10,15 @@ var expressLayouts = require('express-ejs-layouts');
 var router = express.Router();
 var userRouter = express.Router();
 var locationRouter = express.Router();
+var passport = require('passport');
+var authController = require('./controllers/auth');
 mongoose.connect('mongodb://localhost/buckets');
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+// Use the passport package in our application
+app.use(passport.initialize());
 
 
 app.use(methodOverride(function(req, res){
