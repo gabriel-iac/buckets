@@ -26,6 +26,15 @@ router.route('/locations')
 router.route('/locations/:id')
 .get(locationController.getLocation);
 
+
+router.route('/locations')
+  .get(locationController.getAllLocations)
+  .post(locationController.createLocation)
+
+router.route('/locations/new')
+  .get(locationController.getNewLocation)
+
+
 router.route('/locations/:id')
 .put(locationController.updateLocation);
 
@@ -35,12 +44,17 @@ router.route('/locations/:id')
 // locationRouter.route('/locations/new')
 //   .get(locationController.getNewLocation)
 
+
 router.route('/locations')
 .post(locationController.createLocation)
+
 
 // module.exports = {
 //   locationRouter: locationRouter, 
 //   userRouter: userRouter
 // }
 
+
 module.exports = router;
+
+
