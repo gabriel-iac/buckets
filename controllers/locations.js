@@ -9,7 +9,6 @@ function getAllLocations(req, res){
 };
 
 function getNewLocation(req,res){
-  console.log('hello')
   res.render('locations/new');
 };
 
@@ -36,10 +35,9 @@ function createLocation(req, res){
 function getLocation(req, res){
    Location.findById(req.params.id, function(err, location){
     res.json(location)
+  });
+};
 
-
-  })
-}
 
 
 function updateLocation(req, res){
@@ -63,4 +61,5 @@ module.exports = {
   getLocation: getLocation,
   updateLocation: updateLocation,
   getNewLocation: getNewLocation
+
 }

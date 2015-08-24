@@ -26,12 +26,9 @@ function showUser(req, res){
 
 
 module.exports = {
-<<<<<<< HEAD
+
   getAllUsers: getAllUsers,
   showUser: showUser,
   updateUser: updateUser
 }
-=======
-  home: home
-}
->>>>>>> 34a6c2d5bf95ebe19977502f05bef9eb5fd0e095
+

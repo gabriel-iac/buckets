@@ -6,10 +6,15 @@ var usersController = require('../controllers/users');
 var locationController = require('../controllers/locations');
 var router = express.Router();
 
+router.route('/locations')
+  .get(locationController.getAllLocations)
+  
+
+router.route('/locations/new')
+  .get(locationController.getNewLocation)
 
 router.route('/users')
 .get(usersController.getAllUsers);
-
 
   
 router.route('/users/:id')
@@ -19,17 +24,9 @@ router.route('/users/:id')
   .get(usersController.showUser)
 
 
-
-router.route('/locations')
-.get(locationController.getAllLocations);
-
 router.route('/locations/:id')
 .get(locationController.getLocation);
 
-
-router.route('/locations')
-  .get(locationController.getAllLocations)
-  .post(locationController.createLocation)
 
 router.route('/locations/new')
   .get(locationController.getNewLocation)
@@ -40,19 +37,8 @@ router.route('/locations/:id')
 
 
 
-
-// locationRouter.route('/locations/new')
-//   .get(locationController.getNewLocation)
-
-
 router.route('/locations')
 .post(locationController.createLocation)
-
-
-// module.exports = {
-//   locationRouter: locationRouter, 
-//   userRouter: userRouter
-// }
 
 
 module.exports = router;
