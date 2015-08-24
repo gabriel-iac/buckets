@@ -1,8 +1,7 @@
 var Location = require('../models/location')
 
 function getAllLocations(req, res){
-  var locations = Location.find({});
-  return locations;
+res.send("Locations here");
 
 }
 
@@ -41,7 +40,9 @@ res.render('users/index')
 
 }
 
+
 module.exports = {
-  
-  getAllLocations: getAllLocations
+  getAllLocations: getAllLocations,
+  // createLocation: createLocation
+
 }
