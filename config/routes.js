@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
-
+var passport = require('passport');
 var usersController = require('../controllers/users');
 var locationController = require('../controllers/locations');
 var sportController = require('../controllers/sports');
@@ -19,6 +19,7 @@ router.route('/users/:id')
 
 router.route('/users/:id')
 .get(usersController.showUser)
+
 
 
 //LOCATIONS

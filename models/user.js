@@ -9,11 +9,11 @@ var userSchema = new mongoose.Schema({
   email: {
     type: String,
     unique: true,
-    required: true
+    required: false
   },
   password: {
     type: String,
-    required: true
+    required: false
   },
   locations   : [{ type: Schema.Types.ObjectId, ref: 'Location' }],
   fb: {

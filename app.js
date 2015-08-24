@@ -10,17 +10,21 @@ var expressLayouts = require('express-ejs-layouts');
 var router = express.Router();
 var userRouter = express.Router();
 var locationRouter = express.Router();
+var FacebookStrategy = require('passport-facebook').Strategy
 var passport = require('passport');
-var authController = require('./controllers/auth');
 mongoose.connect('mongodb://localhost/buckets');
+require('./config/passport')(passport, FacebookStrategy);
+
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(expressLayouts)
 
+
 // Use the passport package in our application
 app.use(passport.initialize());
+app.use(passport.session())
 
 app.use(methodOverride(function(req, res){
   if (req.body && typeof req.body === 'object' && '_method' in req.body) {
@@ -38,8 +42,25 @@ app.set("views", "./views");
 app.set("view engine", "ejs");
 
 app.get('/', function(req, res){
-  res.render('./users/index');
+  res.render('./users/index', {user: req.user});
 })
+
+app.get("/", function(req, res){
+ res.render('layout', {user:req.user});
+})
+
+app.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }));
+
+app.get('/auth/facebook/callback', passport.authenticate('facebook', {
+ successRedirect: '/',
+ failureRedirect: '/'
+}));
+
+app.get('/logout', function(req, res){
+ req.logout();
+ res.redirect('/');
+})
+
 
 var routes = require('./config/routes');
 app.use("/", routes);

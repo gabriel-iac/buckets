@@ -1,6 +1,10 @@
 var User = require('../models/user');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+var passport = require('passport');
+var FacebookStrategy = require('passport-facebook').Strategy;
+
+
 
 function getAllUsers(req, res){
   var users = User.find({} , function(err, users){
@@ -24,11 +28,19 @@ function showUser(req, res){
   })
 }
 
+function logout(req, res){
+  req.logout();
+  res.redirect('/')
+}
+
+
+
 
 module.exports = {
 
   getAllUsers: getAllUsers,
   showUser: showUser,
-  updateUser: updateUser
+  updateUser: updateUser,
+  logout: logout,
 }
 
