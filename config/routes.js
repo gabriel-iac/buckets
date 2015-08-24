@@ -17,9 +17,9 @@ userRouter.route('/users')
   //   .get(locationController.getNewLocation)
 
 locationRouter.route('/locations')
+  .get(locationController.getLocation)
   .post(locationController.createLocation)
 
-  module.exports = {
-    locationRouter: locationRouter,
-    userRouter: userRouter
-  }
+  module.exports = locationRouter
+    // userRouter: userRouter
+ 
