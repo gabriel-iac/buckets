@@ -17,6 +17,46 @@ var expressJWT = require('express-jwt');
 router.route('/users')
   .post(usersController.postSignup)
 
+router.route('/logout')
+  .get(usersController.logout)
+
+// route to authenticate a user (POST http://localhost:8080/api/authenticate)
+router.post('/authenticate', function(req, res) {
+  console.log(req.body.email);
+  // find the user
+  User.findOne({
+    email: req.body.email
+  }, function(err, user) {
+
+    if (err) throw err;
+
+    if (!user) {
+      res.json({ success: false, message: 'Authentication failed. User not found.' });
+    } else if (user) {
+
+      // check if password matches
+      if (user.password != req.body.password) {
+        res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+      } else {
+
+        // if user is found and password is right
+        // create a token
+        var token = jwt.sign(user, "iloveextremesport", {
+          expiresInMinutes: 1440 // expires in 24 hours
+        });
+
+        //send back the token to the front-end to store in a cookie
+        res.status(200).send({ 
+          message: "Thanks for authenticating",
+          token: token
+        });
+      }   
+
+    }
+
+  });
+});
+
 router.use('/api', expressJWT({secret: "iloveextremesport"}));
 
 router.use(function(req, res, next) {
@@ -48,44 +88,6 @@ router.use(function(req, res, next) {
       message: 'No token provided.' 
     });
   }
-});
-
-// route to authenticate a user (POST http://localhost:8080/api/authenticate)
-router.post('/authenticate', function(req, res) {
-  console.log(req.body.email);
-  // find the user
-  User.findOne({
-    email: req.body.email
-  }, function(err, user) {
-
-    if (err) throw err;
-
-    if (!user) {
-      res.json({ success: false, message: 'Authentication failed. User not found.' });
-    } else if (user) {
-
-      // check if password matches
-      if (user.password != req.body.password) {
-        res.json({ success: false, message: 'Authentication failed. Wrong password.' });
-      } else {
-
-        // if user is found and password is right
-        // create a token
-        var token = jwt.sign(user, "iloveextremesport", {
-          expiresInMinutes: 1440 // expires in 24 hours
-        });
-
-        // return the information including token as JSON
-        res.json({
-          success: true,
-          message: 'Enjoy your token!',
-          token: token
-        });
-      }   
-
-    }
-
-  });
 });
 
 //USERS
