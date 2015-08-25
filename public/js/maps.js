@@ -28,25 +28,6 @@ var mapCanvas = document.getElementById('map');
 var map = new google.maps.Map(mapCanvas, mapOptions);
 
 
-// Fetch the places using ajax and put them on the map
-// fetchplaces() - FUNCTION THAT WE CALL LATER
-
-
- //  var marker = new google.maps.Marker({
- //   position: new google.maps.LatLng(lat, long),
- //   map: map,
- //   title:"This is the place."
-
- // })
-
-
-
-
- //  google.maps.event.addListener(marker, 'click', function() {
- //    infowindow.open(map,marker);
- //  });
-
-
 $("#submitLocation").on('click',function(){
   event.preventDefault()
   var loc = $("#location").val();
