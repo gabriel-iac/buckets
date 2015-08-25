@@ -42,7 +42,7 @@ module.exports = function(passport){
 
 
           newUser.save(function(err) {
-            console.log(err);
+            console.log(newUser);
             if (err) throw err;
             return done(null, newUser);
           });
