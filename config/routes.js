@@ -10,6 +10,9 @@ var router = express.Router();
 var User = require('../models/user');
 var jwt = require('jsonwebtoken');
 
+router.route('/users')
+.post(usersController.createUser)
+
 // route to authenticate a user (POST http://localhost:8080/api/authenticate)
 router.post('/authenticate', function(req, res) {
 console.log(req.body.email);
@@ -82,7 +85,7 @@ router.use(function(req, res, next) {
 //USERS
 router.route('/users')
 .get(usersController.getAllUsers)
-.post(usersController.createUser)
+
 
 router.route('/users/:id')
 .put(usersController.updateUser)

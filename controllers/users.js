@@ -32,7 +32,7 @@ function updateUser(req, res){
 function showUser(req, res){
   User.findById(req.params.id, function(err, user){
     res.json(user)
-  })
+  }).select('-password -_id -__v')
 }
 
 function logout(req, res){
