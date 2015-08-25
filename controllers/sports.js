@@ -12,7 +12,13 @@ function createSport(req, res){
     });
 };
 
-module.exports = {
-createSport: createSport
+function getSports(req, res){
+  var sports = Sport.find({} , function(err, sports){
+    res.json(sports);
+  }); 
+};
 
+module.exports = {
+  createSport: createSport,
+  getSports: getSports
 }

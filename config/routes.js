@@ -11,14 +11,18 @@ var User = require('../models/user');
 var jwt = require('jsonwebtoken');
 var expressJWT = require('express-jwt');
 
-router.use('/api', expressJWT({secret: "iloveextremesport"}));
+// router.route('/users')
+//   .post(usersController.createUser)
 
 router.route('/users')
-.post(usersController.createUser)
+  .post(usersController.postSignup)
+
+router.route('/logout')
+  .get(usersController.logout)
 
 // route to authenticate a user (POST http://localhost:8080/api/authenticate)
 router.post('/authenticate', function(req, res) {
-console.log(req.body.email);
+  console.log(req.body.email);
   // find the user
   User.findOne({
     email: req.body.email
@@ -41,10 +45,9 @@ console.log(req.body.email);
           expiresInMinutes: 1440 // expires in 24 hours
         });
 
-        // return the information including token as JSON
-        res.json({
-          success: true,
-          message: 'Enjoy your token!',
+        //send back the token to the front-end to store in a cookie
+        res.status(200).send({ 
+          message: "Thanks for authenticating",
           token: token
         });
       }   
@@ -54,7 +57,11 @@ console.log(req.body.email);
   });
 });
 
+router.use('/api', expressJWT({secret: "iloveextremesport"}));
+
 router.use(function(req, res, next) {
+  console.log("Checking the token");
+
   // check header or url parameters or post parameters for token
   var token = req.body.token || req.query.token || req.headers['x-access-token'];
 
@@ -77,10 +84,9 @@ router.use(function(req, res, next) {
     // if there is no token
     // return an error
     return res.status(403).send({ 
-        success: false, 
-        message: 'No token provided.' 
+      success: false, 
+      message: 'No token provided.' 
     });
-    
   }
 });
 
@@ -95,13 +101,10 @@ router.route('/users/:id')
 router.route('/users/:id')
 .get(usersController.showUser)
 
-router.route('/users')
-  .post(usersController.postSignup)
 
-router.route('/users')
-  .post(usersController.postLogin)
+// router.route('/users')
+//   .post(usersController.postLogin)
 
-// API routes
 
 // route to show a random message (GET http://localhost:8080/api/)
 router.get('/', function(req, res) {
@@ -133,12 +136,13 @@ router.route('/locations')
 //SPORT
 
 router.route('/sports')
-  .post(sportController.createSport)
+.get(sportController.getSports)
+.post(sportController.createSport)
 
 //Country
 
 router.route('/countries')
-  .post(countryController.createCountry)
+.post(countryController.createCountry)
 
 
 

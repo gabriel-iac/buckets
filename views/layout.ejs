@@ -3,18 +3,19 @@
 <head>
 
   <title>Main page</title>
+   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
    <link rel="stylesheet" type="text/css" href="/css/style.css">
      <script type="text/javascript"
      src="//maps.googleapis.com/maps/api/js?sensor=false&key=<%= process.env.GOOGLE_API_KEY %>">
    </script>
-   <script type="text/javascript" src="/js/maps.js"></script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-   <script> google.maps.event.addDomListener(window, 'load', initialize);</script>
    <script src="./js/models/user.js"></script>
    <script src="./js/models/location.js"></script>
    <script src="./js/models/sport.js"></script>
    <script src="./js/models/country.js"></script>
    <script src="./js/main.js"></script>
+   <script type="text/javascript" src="/js/maps.js"></script>
+   <script> google.maps.event.addDomListener(window, 'load', initialize);</script>
 </head>
 <body>
   
@@ -23,26 +24,26 @@
 <form class="form-horizontal">
   <fieldset>
 
-    <legend>Add Your Place</legend>
+    <legend>Search For Your Location</legend>
 
-      <label class="control-label">Location</label>
       <div class="controls">
         <input id="location" name="location" type="text" placeholder="Enter location">
       </div>
-  
 
-      <label class="control-label"></label>
       <div class="controls">
-        <input type="submit" id="submitLocation" name="locationBtn" class="btn btn-primary" value="Add Location">
+        <input type="submit" id="submitLocation" name="locationBtn" class="btn btn-primary" value="Search Location">
       </div>
 
   </fieldset>
 </form>
 
-  <div id="users"></div>
+  <div id="users"><h1>Users</h1></div>
   <hr>
-  <div id="locations"></div>
+  <div id="locations"><h1>Locations</h1></div>
+  <hr>
+  <div id="sports"><h1>Sports</h1></div>
 
   <%- body %>
+
 </body>
 </html>

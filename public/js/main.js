@@ -5,31 +5,63 @@ function MainController(){
   this.country  = new Country();
 }
 
-MainController.prototype.init = function(){ 
-  //if user is logged in get token
-  this.userToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI1NWRjMzcyNWI0M2IyMmI4NGI4MDY5ZmQiLCJmaXJzdF9uYW1lIjoiR2FicmllbGUiLCJsYXN0X25hbWUiOiJJYWNvcGV0dGkiLCJpbWFnZSI6ImltYWdlIiwiZW1haWwiOiJnYWJAZ2FiLmNvbSIsInBhc3N3b3JkIjoicGFzc3dvcmQiLCJfX3YiOjAsImxvY2F0aW9ucyI6W119.T61ZwiumFk6LYeknJ8f7FqqZlPRQQgrOjIugiS70BlA";
+MainController.prototype.init = function(){
+  window.mainController.getUsers();
+  window.mainController.getLocations();
+  window.mainController.getSports();
+}
+
+MainController.prototype.bake = function(name, value, days){
+  var expires;
+  if (days) {
+    var date = new Date();
+    date.setTime(date.getTime()+(days*24*60*60*1000));
+    expires = "; expires="+date.toGMTString();
+  } else {
+    expires = "";
+  }
+  document.cookie = name+"="+value+expires+"; path=/";
+}
+
+MainController.prototype.eat = function(name){
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(';');
+  for(var i=0;i < ca.length;i++) {
+    var c = ca[i];
+    while (c.charAt(0) === ' ') {
+      c = c.substring(1,c.length);
+    }
+    if (c.indexOf(nameEQ) === 0) {
+      var cookie = c.substring(nameEQ.length, c.length);
+      console.log(cookie);
+      return cookie;
+    }
+  }
+  return null;
 }
 
 MainController.prototype.getUsers = function(){
-  return this.user.getUsers(this.userToken);
+  var access_token = this.eat("access_token");
+  if (access_token) return this.user.getUsers(access_token);
 }
 
 MainController.prototype.getLocations = function(){
-  return this.loc.getLocations(this.userToken);
+  var access_token = this.eat("access_token");
+  if (access_token) return this.loc.getLocations(access_token);
 }
 
 MainController.prototype.getSports = function(){
-  return this.sport.getSports(this.userToken);
+  var access_token = this.eat("access_token");
+  if (access_token) return this.sport.getSports(access_token);
 }
+
+// MainController.prototype.createLocation = function(){
+//   return this.loc.createLocation(this.userToken);
+// }
 
 
 $(function(){
-  var mainController = mainController || new MainController();
-  
-  mainController.init();
-  mainController.getUsers();
-  mainController.getLocations();
-  mainController.getSports();
-
-
+  window.mainController = window.mainController || new MainController();
+  window.mainController.init();
+  window.mainController.user.bindEvents();
 });

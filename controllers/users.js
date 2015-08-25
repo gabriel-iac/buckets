@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
+var jwt = require('jsonwebtoken');
 
 
 function getAllUsers(req, res){
@@ -36,29 +37,52 @@ function showUser(req, res){
 }
 
 // POST /login 
-function postLogin(request, response) {
+function postLogin(req, res) {
+  var loginStrategy = passport.authenticate('local-login',function(err, user, info) {
+if (err) return next(err)
+     
+   if (!user) {
+     return res.status(401).send({ error: 'Something went wrong...' });
+   }
 
-  var loginStrategy = passport.authenticate('local-login', {
-    successRedirect : "/",
-    failureRedirect : "/",
-    failureFlash : true
-  });
-  return loginStrategy(request, response);
+   //user has authenticated correctly thus we create a JWT token 
+   var tokenSecret = process.env.EXTREMEADVISOR_SECRET || "iloveextremesport";
+   var token = jwt.sign({ user: user._id }, tokenSecret);
 
+   //send back the token to the front-end to store in a cookie
+   res.status(200).send({ 
+     message: "Thank you for authenticating",
+     token: token
+   });
+  })(req, res, next);
 }
 
+
 function logout(req, res){
+  console.log(req);
   req.logout();
   res.redirect('/')
 }
 
-function postSignup(request, response) {
-  var signupStrategy = passport.authenticate('local-signup', {
-    successRedirect : "/",
-    failureRedirect : "/",
-    failureFlash : true
-  });
-  return signupStrategy(request, response);
+function postSignup(req, res, next) {
+  passport.authenticate('local-signup', function(err, user, info) {
+    if (err) return next(err)
+      
+    if (!user) {
+      return res.status(401).send({ error: 'Something went wrong...' });
+    }
+
+    //user has authenticated correctly thus we create a JWT token 
+    var tokenSecret = process.env.EXTREMEADVISOR_SECRET || "iloveextremesport";
+    var token = jwt.sign({ user: user._id }, tokenSecret);
+
+    //send back the token to the front-end to store in a cookie
+    res.status(200).send({ 
+      message: "Thank you for authenticating",
+      token: token
+    });
+
+  })(req, res, next);
 }
 
 
