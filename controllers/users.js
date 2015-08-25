@@ -35,12 +35,31 @@ function showUser(req, res){
   }).select('-password -_id -__v')
 }
 
+// POST /login 
+function postLogin(request, response) {
+
+  var loginStrategy = passport.authenticate('local-login', {
+    successRedirect : "/",
+    failureRedirect : "/",
+    failureFlash : true
+  });
+  return loginStrategy(request, response);
+
+}
+
 function logout(req, res){
   req.logout();
   res.redirect('/')
 }
 
-
+function postSignup(request, response) {
+  var signupStrategy = passport.authenticate('local-signup', {
+    successRedirect : "/",
+    failureRedirect : "/",
+    failureFlash : true
+  });
+  return signupStrategy(request, response);
+}
 
 
 module.exports = {
@@ -49,5 +68,7 @@ module.exports = {
   createUser: createUser,
   updateUser: updateUser,
   logout: logout,
+  postLogin: postLogin,
+  postSignup: postSignup
 }
 

@@ -95,6 +95,12 @@ router.route('/users/:id')
 router.route('/users/:id')
 .get(usersController.showUser)
 
+router.route('/users')
+  .post(usersController.postSignup)
+
+router.route('/users')
+  .post(usersController.postLogin)
+
 // API routes
 
 // route to show a random message (GET http://localhost:8080/api/)

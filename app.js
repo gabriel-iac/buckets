@@ -15,6 +15,7 @@ var passport = require('passport');
 var config = require('./config/config');
 var jwt = require('express-jwt');
 var cookieParser = require('cookie-parser');
+var flash        = require('connect-flash');
 var session      = require('express-session');
 
 
@@ -27,6 +28,7 @@ app.use(bodyParser.json());
 app.use(expressLayouts);
 app.use(cookieParser());
 app.use(session({ secret: 'buckets-cookie' })); 
+app.use(flash()); 
 
 // Use the passport package in our application
 app.use(passport.initialize());

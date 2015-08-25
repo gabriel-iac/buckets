@@ -17,15 +17,8 @@
      <a href="/auth/facebook">Login with Facebook</a>
    <% }%>
  </div>
-
- <h2>Login</h2>
-
- <% if (message.length > 0) { %>
-   <div class="alert alert-danger"><%= message %></div>
- <% } %>
-
-
- <form method="post" action="/login">
+<h1>signUP</h1>
+ <form method="post" action="/api/users">
    <div class="form-group">
      <label for="email">Email</label>
      <input class="form-control" type="text" name="email" id="email">
