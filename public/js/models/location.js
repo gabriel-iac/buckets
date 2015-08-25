@@ -1,7 +1,7 @@
 function Location(){
   
   this.getLocations = function(userToken, sport_id){
-    console.log("Getting users");
+    console.log("Getting lcoations");
 
     //ajax call to get users 
      $.ajax({
@@ -19,7 +19,7 @@ function Location(){
         //return a list of locations
         console.log(data);
         for(var i=0; i<data.length; i++){
-          $("#users").append("<li>" + data[i].name + "</li>");
+          $("#locations").append("<li>" + data[i].name + "</li>");
         } 
       }
      });

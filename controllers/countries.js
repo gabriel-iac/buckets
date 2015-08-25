@@ -12,13 +12,7 @@ function createCountry(req, res){
     });
 };
 
-function getCountries(req, res){
-  var countries = Country.find({} , function(err, locations){
-    res.json(countries);
-  }); 
-}
 
 module.exports = {
- createCountry: createCountry,
- getCountries: getCountries
+ createCountry: createCountry
 }

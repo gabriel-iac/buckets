@@ -14,6 +14,14 @@ MainController.prototype.getUsers = function(){
   return this.user.getUsers(this.userToken);
 }
 
+MainController.prototype.getLocations = function(){
+  return this.loc.getLocations(this.userToken);
+}
+
+MainController.prototype.getSports = function(){
+  return this.sport.getSports(this.userToken);
+}
+
 
 $(function(){
   var mainController = mainController || new MainController();
