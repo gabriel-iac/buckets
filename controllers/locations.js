@@ -5,14 +5,12 @@ var methodOverride = require('method-override');
 function getAllLocations(req, res){
   var locations = Location.find({} , function(err, locations){
     res.json(locations);
-  }); 
+  }).select('-_id -__v'); 
 };
 
 function getNewLocation(req,res){
   res.render('locations/new');
 };
-
-
 
 function createLocation(req, res){
   console.log(req.body);
@@ -35,7 +33,7 @@ function createLocation(req, res){
 function getLocation(req, res){
    Location.findById(req.params.id, function(err, location){
     res.json(location)
-  });
+  }).select('-_id -__v');
 };
 
 

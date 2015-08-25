@@ -9,6 +9,12 @@ var countryController = require('../controllers/countries');
 var router = express.Router();
 var User = require('../models/user');
 var jwt = require('jsonwebtoken');
+var expressJWT = require('express-jwt');
+
+router.use('/api', expressJWT({secret: "iloveextremesport"}));
+
+router.route('/users')
+.post(usersController.createUser)
 
 // route to authenticate a user (POST http://localhost:8080/api/authenticate)
 router.post('/authenticate', function(req, res) {
@@ -49,7 +55,6 @@ console.log(req.body.email);
 });
 
 router.use(function(req, res, next) {
-
   // check header or url parameters or post parameters for token
   var token = req.body.token || req.query.token || req.headers['x-access-token'];
 
@@ -82,7 +87,7 @@ router.use(function(req, res, next) {
 //USERS
 router.route('/users')
 .get(usersController.getAllUsers)
-.post(usersController.createUser)
+
 
 router.route('/users/:id')
 .put(usersController.updateUser)
@@ -90,6 +95,16 @@ router.route('/users/:id')
 router.route('/users/:id')
 .get(usersController.showUser)
 
+<<<<<<< HEAD
+=======
+router.route('/users')
+  .post(usersController.postSignup)
+
+router.route('/users')
+  .post(usersController.postLogin)
+
+// API routes
+>>>>>>> 60cadfa043d948366848bc06490242b174ed6dc6
 
 // route to show a random message (GET http://localhost:8080/api/)
 router.get('/', function(req, res) {
@@ -128,6 +143,7 @@ router.route('/sports')
 
 router.route('/countries')
   .post(countryController.createCountry)
+
 
 
 module.exports = router;

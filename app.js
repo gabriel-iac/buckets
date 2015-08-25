@@ -13,15 +13,22 @@ var locationRouter = express.Router();
 var FacebookStrategy = require('passport-facebook').Strategy
 var passport = require('passport');
 var config = require('./config/config');
-mongoose.connect('mongodb://localhost/buckets');
-require('./config/passport')(passport, FacebookStrategy);
+var jwt = require('express-jwt');
+var cookieParser = require('cookie-parser');
+var flash        = require('connect-flash');
+var session      = require('express-session');
 
+
+mongoose.connect('mongodb://localhost/buckets');
+require('./config/passport')(passport);
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(expressLayouts)
-
+app.use(expressLayouts);
+app.use(cookieParser());
+app.use(session({ secret: 'buckets-cookie' })); 
+app.use(flash()); 
 
 // Use the passport package in our application
 app.use(passport.initialize());

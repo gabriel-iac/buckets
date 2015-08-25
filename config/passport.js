@@ -1,5 +1,8 @@
 var User = require('../models/user');
 var FacebookStrategy = require('passport-facebook').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
+
+//FACEBOOK LOGIN
 
 module.exports = function(passport){
  passport.serializeUser(function(user, done) {
@@ -47,19 +50,62 @@ module.exports = function(passport){
             return done(null, newUser);
           });
         }
-
       });
     });
   }));
 
+//USER SIMPLE LOGIN
+
+  passport.use('local-login', new LocalStrategy({
+    usernameField :'email',
+    passwordField : 'password',
+    passReqToCallback : true
+
+  }, function(req, email, password, callback){
+    //search for a user with an email from the login form
+    User.findOne({'local.email': email}, function(err, user){
+      if(err) return callback(err);
+      //if no user has been found
+      if(!user) return callback(null, false, req.flash('loginMessage', 'oops user not found'));
+
+      //check password
+      if(!user.validPassword(password)) return callback(null, false, req.flash('loginMessage', 'oops wrong password'));
+
+      //user has been authenticates, return user.
+      return callback(null, user);
+    });
+
+  }));
 
 
+  passport.use('local-signup', new LocalStrategy({
+    usernameField :'email',
+    passwordField : 'password',
+    passReqToCallback : true
+  }, function(req, email, password, callback){
+    process.nextTick(function(){
+      //find a user with and email
+      User.findOne({'local.email':email}, function(err, user){
+        if(err) return callback(err)
 
+          //if there is already and user with this email
+        if(user){
 
+          return callback(null, false, req.flash('signupMessage', 'this email is already in use'))
+        }else{
+          //no user registred with this email
 
+          //create a new user
+          var newUser = new User();
+          newUser.local.email = email;
+          newUser.local.password = newUser.encrypt(password);
+          newUser.save(function(err){
+            if(err) throw err;
+            return callback(null, newUser);
 
-
-
-
-
+          })
+        }
+      });
+    });
+  }));
 }
