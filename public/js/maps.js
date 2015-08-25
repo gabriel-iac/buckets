@@ -3,15 +3,12 @@ var map;
 var places;
 var markers = [];
 
-
 function initialize() {
 // Create the Geocoder
 geocoder = new google.maps.Geocoder();
 
 var lat = 44.5403;
 var long = -78.5463;
-
-
 
 // Set map options
 var mapOptions = {
@@ -20,31 +17,9 @@ var mapOptions = {
   mapTypeId: google.maps.MapTypeId.ROADMAP
 }
 
-
 // Create the map ref the map canvas
 var mapCanvas = document.getElementById('map');
-
-
 var map = new google.maps.Map(mapCanvas, mapOptions);
-
-
-// Fetch the places using ajax and put them on the map
-// fetchplaces() - FUNCTION THAT WE CALL LATER
-
-
- //  var marker = new google.maps.Marker({
- //   position: new google.maps.LatLng(lat, long),
- //   map: map,
- //   title:"This is the place."
-
- // })
-
-
-
-
- //  google.maps.event.addListener(marker, 'click', function() {
- //    infowindow.open(map,marker);
- //  });
 
 
 $("#submitLocation").on('click',function(){
@@ -72,32 +47,8 @@ $("#submitLocation").on('click',function(){
         var location_name = results[0].formatted_address
         console.log(location_name);
 
-
       }})
 
-
-
-
-
-
-})
+  })
 
 }
-
-
-
-
-
-
-var fetchPlaces = function() {
-
-  var contentString = 'This is really fun for going skating';
-
-  var infowindow = new google.maps.InfoWindow({
-    content: ''
-  });
-
-}
-
-
-

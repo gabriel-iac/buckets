@@ -41,8 +41,6 @@ function logout(req, res){
 }
 
 
-
-
 module.exports = {
   getAllUsers: getAllUsers,
   showUser: showUser,

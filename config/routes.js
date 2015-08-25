@@ -90,7 +90,6 @@ router.route('/users/:id')
 router.route('/users/:id')
 .get(usersController.showUser)
 
-// API routes
 
 // route to show a random message (GET http://localhost:8080/api/)
 router.get('/', function(req, res) {
@@ -122,6 +121,7 @@ router.route('/locations')
 //SPORT
 
 router.route('/sports')
+  .get(sportController.getSports)
   .post(sportController.createSport)
 
 //Country

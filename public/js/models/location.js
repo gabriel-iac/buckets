@@ -3,7 +3,7 @@ function Location(){
   this.getLocations = function(userToken, sport_id){
     console.log("Getting lcoations");
 
-    //ajax call to get users 
+    //ajax call to get locations 
      $.ajax({
       url       : '/api/locations',
       dataType  : 'json',

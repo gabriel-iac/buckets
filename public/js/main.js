@@ -22,6 +22,10 @@ MainController.prototype.getSports = function(){
   return this.sport.getSports(this.userToken);
 }
 
+// MainController.prototype.createLocation = function(){
+//   return this.loc.createLocation(this.userToken);
+// }
+
 
 $(function(){
   var mainController = mainController || new MainController();
@@ -30,6 +34,5 @@ $(function(){
   mainController.getUsers();
   mainController.getLocations();
   mainController.getSports();
-
 
 });
