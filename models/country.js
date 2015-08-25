@@ -5,3 +5,5 @@ var countrySchema = new mongoose.Schema({
   continent : String
 });
 
+module.exports = mongoose.model('Country', countrySchema);
+
