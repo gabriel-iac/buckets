@@ -11,8 +11,8 @@ var router = express.Router();
 
 //USERS
 router.route('/users')
-.get(usersController.getAllUsers);
-
+.get(usersController.getAllUsers)
+.post(usersController.createUser)
 
 router.route('/users/:id')
 .put(usersController.updateUser)
@@ -20,7 +20,50 @@ router.route('/users/:id')
 router.route('/users/:id')
 .get(usersController.showUser)
 
+// API routes
 
+// route to show a random message (GET http://localhost:8080/api/)
+router.get('/', function(req, res) {
+  res.json({ message: 'Welcome to the coolest API on earth!' });
+});
+
+// route to authenticate a user (POST http://localhost:8080/api/authenticate)
+router.post('/authenticate', function(req, res) {
+
+  // find the user
+  User.findOne({
+    email: req.body.email
+  }, function(err, user) {
+
+    if (err) throw err;
+
+    if (!user) {
+      res.json({ success: false, message: 'Authentication failed. User not found.' });
+    } else if (user) {
+
+      // check if password matches
+      if (user.password != req.body.password) {
+        res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+      } else {
+
+        // if user is found and password is right
+        // create a token
+        var token = jwt.sign(user, app.get('superSecret'), {
+          expiresInMinutes: 1440 // expires in 24 hours
+        });
+
+        // return the information including token as JSON
+        res.json({
+          success: true,
+          message: 'Enjoy your token!',
+          token: token
+        });
+      }   
+
+    }
+
+  });
+});
 
 //LOCATIONS
 

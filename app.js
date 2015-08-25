@@ -12,6 +12,7 @@ var userRouter = express.Router();
 var locationRouter = express.Router();
 var FacebookStrategy = require('passport-facebook').Strategy
 var passport = require('passport');
+var config = require('./config/config');
 mongoose.connect('mongodb://localhost/buckets');
 require('./config/passport')(passport, FacebookStrategy);
 
@@ -35,9 +36,8 @@ app.use(methodOverride(function(req, res){
   }
 }))
 
-
 app.set('layout', 'layout.ejs');
-
+app.set('superSecret', config.secret);
 app.set("views", "./views");
 app.set("view engine", "ejs");
 
@@ -61,9 +61,8 @@ app.get('/logout', function(req, res){
  res.redirect('/');
 })
 
-
 var routes = require('./config/routes');
-app.use("/", routes);
+app.use("/api", routes);
 
 app.listen(port, function(){
   console.log('listening on port 3000')
