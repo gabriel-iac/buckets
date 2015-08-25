@@ -23,8 +23,6 @@ module.exports = function(passport){
   enableProof     : true,
   profileFields   : ['name', 'emails']
 }, function(access_token, refresh_token, profile, done) {
-  console.log('facbook please')
-
     // // Use this to see the information returned from Facebook
 
     process.nextTick(function() {
@@ -54,8 +52,7 @@ module.exports = function(passport){
     });
   }));
 
-//USER SIMPLE LOGIN
-
+  // USER SIMPLE LOGIN
   passport.use('local-login', new LocalStrategy({
     usernameField :'email',
     passwordField : 'password',
@@ -83,11 +80,10 @@ module.exports = function(passport){
     passwordField : 'password',
     passReqToCallback : true
   }, function(req, email, password, callback){
-    console.log("*******************************************")
-
+    
     process.nextTick(function(){
       //find a user with and email
-      User.findOne({'local.email':email}, function(err, user){
+      User.findOne({'local.email': req.body.email}, function(err, user){
         if(err) return callback(err)
 
           //if there is already and user with this email
@@ -99,8 +95,8 @@ module.exports = function(passport){
 
           //create a new user
           var newUser = new User();
-          newUser.local.email = email;
-          newUser.local.password = newUser.encrypt(password);
+          newUser.email = req.body.email;
+          newUser.password = newUser.encrypt(req.body.password);
           newUser.save(function(err){
             if(err) throw err;
             return callback(null, newUser);

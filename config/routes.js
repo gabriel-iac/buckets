@@ -18,6 +18,7 @@ router.route('/users')
   .post(usersController.postSignup)
 
 router.use('/api', expressJWT({secret: "iloveextremesport"}));
+
 router.use(function(req, res, next) {
   console.log("Checking the token");
 

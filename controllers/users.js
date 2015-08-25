@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
+var jwt = require('jsonwebtoken');
 
 
 function getAllUsers(req, res){
@@ -51,24 +52,25 @@ function logout(req, res){
   res.redirect('/')
 }
 
-function postSignup(req, res) {
-  // var signupStrategy = passport.authenticate('local-signup', {
-  //   successRedirect : "/",
-  //   failureRedirect : "/",
-  //   failureFlash : true
-  // });
-  // return signupStrategy(request, response);
-  res.status(200).send({ 
-    message: "Thank you for authenticating",
-    token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI1NWRjMzcyNWI0M2IyMmI4NGI4MDY5ZmQiLCJmaXJzdF9uYW1lIjoiR2FicmllbGUiLCJsYXN0X25hbWUiOiJJYWNvcGV0dGkiLCJpbWFnZSI6ImltYWdlIiwiZW1haWwiOiJnYWJAZ2FiLmNvbSIsInBhc3N3b3JkIjoicGFzc3dvcmQiLCJfX3YiOjAsImxvY2F0aW9ucyI6W119.T61ZwiumFk6LYeknJ8f7FqqZlPRQQgrOjIugiS70BlA"
-  });
-  // passport.authenticate('local-signup', function(err, user){
-  //   if (err) {
-  //     res.status(403).send({ message: err});
-  //   } else {
-  //     res.status(200).send({ message: "Here we are! "});
-  //   } 
-  // });
+function postSignup(req, res, next) {
+  passport.authenticate('local-signup', function(err, user, info) {
+    if (err) return next(err)
+      
+    if (!user) {
+      return res.status(401).send({ error: 'Something went wrong...' });
+    }
+
+    //user has authenticated correctly thus we create a JWT token 
+    var tokenSecret = process.env.EXTREMEADVISOR_SECRET || "iloveextremesport";
+    var token = jwt.sign({ user: user._id }, tokenSecret);
+
+    //send back the token to the front-end to store in a cookie
+    res.status(200).send({ 
+      message: "Thank you for authenticating",
+      token: token
+    });
+
+  })(req, res, next);
 }
 
 

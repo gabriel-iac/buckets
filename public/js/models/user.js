@@ -8,9 +8,7 @@ function User(){
       url       : '/api/users',
       dataType  : 'json',
       beforeSend: function(xhr){
-        //if(''){
-          xhr.setRequestHeader("x-access-token", userToken);
-        //}
+        xhr.setRequestHeader("x-access-token", userToken);
       },
       error: function(){
         //handle error
@@ -36,14 +34,15 @@ function User(){
         type: "post",
         url: $(this).attr("action"),
         dataType: "json",
+        data: {
+          email: $("#email").val(),
+          password: $("#password").val()
+        },
       }).done(function(data){
         console.log("The token that we're going to save to document.cookie or localStorage) is: ", data.token);
-        window.mainController.userToken = data.token;
-        window.mainController.getUsers();
-        window.mainController.getLocations();
-        window.mainController.getSports();
+        window.mainController.bake("access_token", data.token);
+        window.mainController.init();
       });
     })
   }
-
 }
