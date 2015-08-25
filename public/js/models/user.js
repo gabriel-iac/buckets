@@ -2,7 +2,7 @@ function User(){
 
   this.getUsers = function(userToken){
     console.log("Getting users");
-    console.log(userToken);
+
     //ajax call to get users 
      $.ajax({
       url       : '/api/users',

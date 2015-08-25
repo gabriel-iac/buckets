@@ -1,5 +1,8 @@
 function MainController(){
-  this.user = new User();
+  this.user     = new User();
+  this.sport    = new Sport();
+  this.loc      = new Location();
+  this.country  = new Country();
 }
 
 MainController.prototype.init = function(){ 
@@ -17,4 +20,8 @@ $(function(){
   
   mainController.init();
   mainController.getUsers();
+  mainController.getLocations();
+  mainController.getSports();
+
+
 });
