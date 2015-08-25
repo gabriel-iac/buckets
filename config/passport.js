@@ -83,16 +83,18 @@ module.exports = function(passport){
     passwordField : 'password',
     passReqToCallback : true
   }, function(req, email, password, callback){
+    console.log("*******************************************")
+
     process.nextTick(function(){
       //find a user with and email
       User.findOne({'local.email':email}, function(err, user){
         if(err) return callback(err)
 
           //if there is already and user with this email
-        if(user){
-
-          return callback(null, false, req.flash('signupMessage', 'this email is already in use'))
-        }else{
+        if (user) {
+          // return callback(null, false, req.flash('signupMessage', 'this email is already in use'))
+          console.log("ERROR");
+        } else{
           //no user registred with this email
 
           //create a new user
@@ -102,7 +104,6 @@ module.exports = function(passport){
           newUser.save(function(err){
             if(err) throw err;
             return callback(null, newUser);
-
           })
         }
       });

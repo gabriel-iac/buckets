@@ -11,14 +11,47 @@ var User = require('../models/user');
 var jwt = require('jsonwebtoken');
 var expressJWT = require('express-jwt');
 
-router.use('/api', expressJWT({secret: "iloveextremesport"}));
+// router.route('/users')
+//   .post(usersController.createUser)
 
 router.route('/users')
-.post(usersController.createUser)
+  .post(usersController.postSignup)
+
+router.use('/api', expressJWT({secret: "iloveextremesport"}));
+router.use(function(req, res, next) {
+  console.log("Checking the token");
+
+  // check header or url parameters or post parameters for token
+  var token = req.body.token || req.query.token || req.headers['x-access-token'];
+
+  // decode token
+  if (token) {
+
+    // verifies secret and checks exp
+    jwt.verify(token, "iloveextremesport", function(err, decoded) {      
+      if (err) {
+        return res.json({ success: false, message: 'Failed to authenticate token.' });    
+      } else {
+        // if everything is good, save to request for use in other routes
+        req.decoded = decoded;    
+        next();
+      }
+    });
+
+  } else {
+
+    // if there is no token
+    // return an error
+    return res.status(403).send({ 
+      success: false, 
+      message: 'No token provided.' 
+    });
+  }
+});
 
 // route to authenticate a user (POST http://localhost:8080/api/authenticate)
 router.post('/authenticate', function(req, res) {
-console.log(req.body.email);
+  console.log(req.body.email);
   // find the user
   User.findOne({
     email: req.body.email
@@ -54,36 +87,6 @@ console.log(req.body.email);
   });
 });
 
-router.use(function(req, res, next) {
-  // check header or url parameters or post parameters for token
-  var token = req.body.token || req.query.token || req.headers['x-access-token'];
-
-  // decode token
-  if (token) {
-
-    // verifies secret and checks exp
-    jwt.verify(token, "iloveextremesport", function(err, decoded) {      
-      if (err) {
-        return res.json({ success: false, message: 'Failed to authenticate token.' });    
-      } else {
-        // if everything is good, save to request for use in other routes
-        req.decoded = decoded;    
-        next();
-      }
-    });
-
-  } else {
-
-    // if there is no token
-    // return an error
-    return res.status(403).send({ 
-        success: false, 
-        message: 'No token provided.' 
-    });
-    
-  }
-});
-
 //USERS
 router.route('/users')
 .get(usersController.getAllUsers)
@@ -95,11 +98,9 @@ router.route('/users/:id')
 router.route('/users/:id')
 .get(usersController.showUser)
 
-router.route('/users')
-  .post(usersController.postSignup)
 
-router.route('/users')
-  .post(usersController.postLogin)
+// router.route('/users')
+//   .post(usersController.postLogin)
 
 
 // route to show a random message (GET http://localhost:8080/api/)
@@ -132,13 +133,13 @@ router.route('/locations')
 //SPORT
 
 router.route('/sports')
-  .get(sportController.getSports)
-  .post(sportController.createSport)
+.get(sportController.getSports)
+.post(sportController.createSport)
 
 //Country
 
 router.route('/countries')
-  .post(countryController.createCountry)
+.post(countryController.createCountry)
 
 
 

@@ -37,29 +37,38 @@ function showUser(req, res){
 
 // POST /login 
 function postLogin(request, response) {
-
   var loginStrategy = passport.authenticate('local-login', {
     successRedirect : "/",
     failureRedirect : "/",
     failureFlash : true
   });
   return loginStrategy(request, response);
-
 }
+
 
 function logout(req, res){
   req.logout();
   res.redirect('/')
 }
 
-
-function postSignup(request, response) {
-  var signupStrategy = passport.authenticate('local-signup', {
-    successRedirect : "/",
-    failureRedirect : "/",
-    failureFlash : true
+function postSignup(req, res) {
+  // var signupStrategy = passport.authenticate('local-signup', {
+  //   successRedirect : "/",
+  //   failureRedirect : "/",
+  //   failureFlash : true
+  // });
+  // return signupStrategy(request, response);
+  res.status(200).send({ 
+    message: "Thank you for authenticating",
+    token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI1NWRjMzcyNWI0M2IyMmI4NGI4MDY5ZmQiLCJmaXJzdF9uYW1lIjoiR2FicmllbGUiLCJsYXN0X25hbWUiOiJJYWNvcGV0dGkiLCJpbWFnZSI6ImltYWdlIiwiZW1haWwiOiJnYWJAZ2FiLmNvbSIsInBhc3N3b3JkIjoicGFzc3dvcmQiLCJfX3YiOjAsImxvY2F0aW9ucyI6W119.T61ZwiumFk6LYeknJ8f7FqqZlPRQQgrOjIugiS70BlA"
   });
-  return signupStrategy(request, response);
+  // passport.authenticate('local-signup', function(err, user){
+  //   if (err) {
+  //     res.status(403).send({ message: err});
+  //   } else {
+  //     res.status(200).send({ message: "Here we are! "});
+  //   } 
+  // });
 }
 
 

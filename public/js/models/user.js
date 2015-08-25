@@ -29,4 +29,21 @@ function User(){
 
   }
 
+  this.bindEvents = function(){
+    $("#signup").on("submit", function(){
+      event.preventDefault();
+      $.ajax({
+        type: "post",
+        url: $(this).attr("action"),
+        dataType: "json",
+      }).done(function(data){
+        console.log("The token that we're going to save to document.cookie or localStorage) is: ", data.token);
+        window.mainController.userToken = data.token;
+        window.mainController.getUsers();
+        window.mainController.getLocations();
+        window.mainController.getSports();
+      });
+    })
+  }
+
 }
