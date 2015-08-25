@@ -128,6 +128,7 @@ router.route('/sports')
 
 router.route('/countries')
   .post(countryController.createCountry)
+  .get(countryController.getCountries)
 
 
 module.exports = router;
