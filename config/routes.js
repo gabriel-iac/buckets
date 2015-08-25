@@ -7,6 +7,8 @@ var locationController = require('../controllers/locations');
 var sportController = require('../controllers/sports');
 var countryController = require('../controllers/countries');
 var router = express.Router();
+var User = require('../models/user');
+var jwt = require('jsonwebtoken');
 
 
 //USERS
@@ -29,7 +31,7 @@ router.get('/', function(req, res) {
 
 // route to authenticate a user (POST http://localhost:8080/api/authenticate)
 router.post('/authenticate', function(req, res) {
-
+console.log(req.body.email);
   // find the user
   User.findOne({
     email: req.body.email
@@ -48,7 +50,7 @@ router.post('/authenticate', function(req, res) {
 
         // if user is found and password is right
         // create a token
-        var token = jwt.sign(user, app.get('superSecret'), {
+        var token = jwt.sign(user, "iloveextremesport", {
           expiresInMinutes: 1440 // expires in 24 hours
         });
 
