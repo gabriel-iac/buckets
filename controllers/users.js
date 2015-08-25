@@ -8,7 +8,7 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 function getAllUsers(req, res){
   var users = User.find({} , function(err, users){
     res.json(users);
-  }) 
+  }).select('-password -_id -__v')
 }
 
 function createUser(req, res){

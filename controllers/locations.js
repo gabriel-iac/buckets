@@ -12,8 +12,6 @@ function getNewLocation(req,res){
   res.render('locations/new');
 };
 
-
-
 function createLocation(req, res){
   console.log(req.body);
   //create new location object
