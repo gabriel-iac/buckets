@@ -1,6 +1,7 @@
 var User = require('../models/user');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var LocalStrategy = require('passport-local').Strategy;
+
 //FACEBOOK LOGIN
 
 module.exports = function(passport){
@@ -52,23 +53,8 @@ module.exports = function(passport){
       });
     });
   }));
-}
-
 
 //USER SIMPLE LOGIN
-
-
-
-module.exports = function(passport){
-  passport.serializeUser(function(user, callback){
-    callback(null, user.id)
-  })
-  passport.deserializeUser(function(id, callback){
-    User.findById(id, function(err, user){
-      callback(err, user);
-    });
-  });
-
 
   passport.use('local-login', new LocalStrategy({
     usernameField :'email',

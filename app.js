@@ -14,15 +14,19 @@ var FacebookStrategy = require('passport-facebook').Strategy
 var passport = require('passport');
 var config = require('./config/config');
 var jwt = require('express-jwt');
-mongoose.connect('mongodb://localhost/buckets');
-require('./config/passport')(passport, FacebookStrategy);
+var cookieParser = require('cookie-parser');
+var session      = require('express-session');
 
+
+mongoose.connect('mongodb://localhost/buckets');
+require('./config/passport')(passport);
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(expressLayouts)
-
+app.use(expressLayouts);
+app.use(cookieParser());
+app.use(session({ secret: 'buckets-cookie' })); 
 
 // Use the passport package in our application
 app.use(passport.initialize());
