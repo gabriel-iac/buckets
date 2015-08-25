@@ -10,6 +10,7 @@ var router = express.Router();
 var User = require('../models/user');
 var jwt = require('jsonwebtoken');
 
+
 router.route('/users')
 .post(usersController.createUser)
 

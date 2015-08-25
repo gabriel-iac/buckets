@@ -13,6 +13,7 @@ var locationRouter = express.Router();
 var FacebookStrategy = require('passport-facebook').Strategy
 var passport = require('passport');
 var config = require('./config/config');
+var jwt = require('express-jwt');
 mongoose.connect('mongodb://localhost/buckets');
 require('./config/passport')(passport, FacebookStrategy);
 

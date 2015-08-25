@@ -51,14 +51,4 @@ module.exports = function(passport){
     });
   }));
 
-
-
-
-
-
-
-
-
-
-
 }
