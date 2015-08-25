@@ -56,7 +56,28 @@ $("#submitLocation").on('click',function(){
     if (status == google.maps.GeocoderStatus.OK) {
         // log out results from geocoding
         console.log(results);
-        map.setCenter(results[0].geometry.location); }})
+        map.setCenter(results[0].geometry.location);
+
+        var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+        });
+        markers.push(marker);
+
+    // .lat and lng return degrees from the google api
+        var lat = results[0].geometry.location.lat();
+        var lng = results[0].geometry.location.lng();
+        console.log(lat);
+        console.log(lng);
+        var location_name = results[0].formatted_address
+        console.log(location_name);
+
+
+      }})
+
+
+
+
 
 
 })
