@@ -8,7 +8,7 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 function getAllUsers(req, res){
   var users = User.find({} , function(err, users){
     res.json(users);
-  }) 
+  }).select('-password -_id -__v')
 }
 
 function createUser(req, res){
@@ -32,7 +32,19 @@ function updateUser(req, res){
 function showUser(req, res){
   User.findById(req.params.id, function(err, user){
     res.json(user)
-  })
+  }).select('-password -_id -__v')
+}
+
+// POST /login 
+function postLogin(request, response) {
+
+  var loginStrategy = passport.authenticate('local-login', {
+    successRedirect : "/",
+    failureRedirect : "/",
+    failureFlash : true
+  });
+  return loginStrategy(request, response);
+
 }
 
 function logout(req, res){
@@ -40,7 +52,14 @@ function logout(req, res){
   res.redirect('/')
 }
 
-
+function postSignup(request, response) {
+  var signupStrategy = passport.authenticate('local-signup', {
+    successRedirect : "/",
+    failureRedirect : "/",
+    failureFlash : true
+  });
+  return signupStrategy(request, response);
+}
 
 
 module.exports = {
@@ -49,5 +68,7 @@ module.exports = {
   createUser: createUser,
   updateUser: updateUser,
   logout: logout,
+  postLogin: postLogin,
+  postSignup: postSignup
 }
 
