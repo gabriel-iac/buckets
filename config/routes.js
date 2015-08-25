@@ -95,16 +95,12 @@ router.route('/users/:id')
 router.route('/users/:id')
 .get(usersController.showUser)
 
-<<<<<<< HEAD
-=======
 router.route('/users')
   .post(usersController.postSignup)
 
 router.route('/users')
   .post(usersController.postLogin)
 
-// API routes
->>>>>>> 60cadfa043d948366848bc06490242b174ed6dc6
 
 // route to show a random message (GET http://localhost:8080/api/)
 router.get('/', function(req, res) {
