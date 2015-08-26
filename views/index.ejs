@@ -27,8 +27,8 @@
         <a class="navbar-brand" href="#">ExtremeAdvisor</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/" id="all_locations_link">Locations</a></li>
-            <li><a href="/" id="new">New</a></li>
+            <li><a href="#" id="locations-btn">Locations</a></li>
+            <li><a href="#" id="new-btn">New</a></li>
             <li><a href="#" id="login-btn">Login</a></li>
             <li><a href="#" id="signup-btn">Sign Up</a></li>
             <li><a href="#" id="logout-btn">Logout</a></li>
@@ -38,8 +38,10 @@
     </div>
   </header>
 
+
   <main class="container">
-      <div id="map"></div>
+  <div id="new_location" class="tab" style="display: none">
+      <div id="map" ></div>
       
       <hr></hr>
       <h1>Add a Location</h1>
@@ -68,6 +70,7 @@
               </select>
           </div>
 
+
           <div class="form-group">
             <label for="image">Image</label>
             <input class="form-control" type="text" name="image" id="image">
@@ -78,8 +81,8 @@
           </div>
         </fieldset>
       </form>
-  
-    <div class="ajax-log" style="display: none">
+  </div>
+    <div id="login-div" class="tab" style="display: none">
       <h1>Login</h1>
       <form id="login" method="post" action="/api/authenticate">
         <div class="form-group">
@@ -96,7 +99,16 @@
       </form>
     </div>
 
-    <div class="ajax-sign" style="display: none">
+
+      <div id="all_locations" class="tab" style="display: none">
+        <h1>Locations</h1>
+      </div>
+
+    <div id="home" class="tab">
+      <h1>Homepage</h1>
+    </div>
+
+    <div id="signup-div" class="tab" style="display: none">
     <h1>Sign Up</h1>
      <form id="signup" method="post" action="/api/users">
        <div class="form-group">
