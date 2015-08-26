@@ -10,7 +10,13 @@ MainController.prototype.init = function(){
   if (access_token) {
     // window.mainController.getUsers();
     // window.mainController.getLocations();
-    // window.mainController.getSports();
+
+    // var sports = window.mainController.sport.getSports();
+    // for (var i = 0; i < sports.length; i++) {
+    //   $("#sports-listing").append("<li>" + sports[i].name + "</li>");
+    // };
+
+
   } else {
     console.log("clear pages...")
   }

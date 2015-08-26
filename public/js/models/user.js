@@ -99,10 +99,14 @@ function User(){
     $("#" + id).slideDown()
   }
 
+  $("body").on("click", "#home-btn", function(){
+    event.preventDefault();
+    toggleDisplays('sports-div')
+  });
+
   $("body").on("click", "#login-btn", function(){
     event.preventDefault();
     toggleDisplays('login-div')
-
   });
 
   $("body").on("click", "#signup-btn", function(){

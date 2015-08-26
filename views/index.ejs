@@ -24,7 +24,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">ExtremeAdvisor</a>
+        <a class="navbar-brand" href="#" id="home-btn">ExtremeAdvisor</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
             <li><a href="#" id="locations-btn">Locations</a></li>
@@ -119,8 +119,14 @@
 
     <div id="sports-div" class="tab" style="display: none">
       <h1>Sports</h1>
+      <div id="sports-listing">
+        <ul>
+          <% for (var i = 0; i < sports.length; i++) { %>
+           <%= sports[i].name %>
+          <% }; %>
+        </ul>
+      </div>
     </div>
-
 
     <div id="home" class="tab">
       <h1>Homepage</h1>
