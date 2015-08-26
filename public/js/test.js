@@ -33,7 +33,7 @@ LocationAjax.getLocations = function(){
   .done(function(data){
     $.each(data, function(index, item){
      var row = $("<tr>"+
-      "<td>" + item.name+"</td>"+
+      "<td>" + item.location_name+"</td>"+
       "<td>" + item.country+"</td>"+
       "<td>" + item.sport +"</td>"+
       "<td>" + item.image+"</td>"+
