@@ -18,7 +18,21 @@ function getSports(req, res){
   }); 
 };
 
+
+function populateLocations(req, res){
+  var popLocations =  Sport.findOne({ _id: req.params.id }).populate('locations').exec(function(err, sports) {
+   if (err) {
+     res.json({ err: err, message: 'Something wrong !' });
+   } else {
+     res.json(sports);
+   }
+ });
+};
+
+
+
 module.exports = {
   createSport: createSport,
-  getSports: getSports
+  getSports: getSports,
+  populateLocations :populateLocations
 }

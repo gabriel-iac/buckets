@@ -12,6 +12,8 @@ var jwt = require('jsonwebtoken');
 var expressJWT = require('express-jwt');
 
 
+router.route('/locations')
+.get(locationController.getAllLocations)
 router.route('/users')
   .post(usersController.postSignup)
 
@@ -141,6 +143,11 @@ router.route('/locations')
 router.route('/sports')
 .get(sportController.getSports)
 .post(sportController.createSport)
+
+
+//POPULATE
+router.route('/sports/populate')
+.get(sportController.populateLocations)
 
 //Country
 

@@ -6,24 +6,14 @@ function MainController(){
 }
 
 MainController.prototype.init = function(){
-  this.getUsers();
-  this.getLocations();
-  this.getSports();
-}
-
-MainController.prototype.getUsers = function(){
   var access_token = this.eat("access_token");
-  if (access_token) return this.user.getUsers(access_token);
-}
-
-MainController.prototype.getLocations = function(){
-  var access_token = this.eat("access_token");
-  if (access_token) return this.loc.getLocations(access_token);
-}
-
-MainController.prototype.getSports = function(){
-  var access_token = this.eat("access_token");
-  if (access_token) return this.sport.getSports(access_token);
+  if (access_token) {
+    window.mainController.getUsers();
+    window.mainController.getLocations();
+    window.mainController.getSports();
+  } else {
+    console.log("clear pages...")
+  }
 }
 
 MainController.prototype.bake = function(name, value, days){
@@ -36,6 +26,10 @@ MainController.prototype.bake = function(name, value, days){
     expires = "";
   }
   document.cookie = name+"="+value+expires+"; path=/";
+}
+
+MainController.prototype.unbake = function(name){
+  document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
 MainController.prototype.eat = function(name){
@@ -55,44 +49,27 @@ MainController.prototype.eat = function(name){
   return null;
 }
 
-MainController.prototype.bindEvents = function(){
-  $("#signup").on("submit", function(){
-    event.preventDefault();
-    $.ajax({
-      type: "post",
-      url: $(this).attr("action"),
-      dataType: "json",
-      data: {
-        email: $("#signup-email").val(),
-        password: $("#signup-password").val()
-      },
-    }).done(function(data){
-      console.log("The token that we're going to save to document.cookie or localStorage) is: ", data.token);
-      mainController.bake("access_token", data.token);
-      mainController.init();
-    });
-  })
-
-  $("#login").on("submit", function(){
-    event.preventDefault();
-    $.ajax({
-      type: "post",
-      url: $(this).attr("action"),
-      dataType: "json",
-      data: {
-        email: $("#login-email").val(),
-        password: $("#login-password").val()
-      },
-    }).done(function(data){
-      console.log("The token that we're going to save to document.cookie or localStorage) is: ", data.token);
-      mainController.bake("access_token", data.token);
-      mainController.init();
-    });
-  })
+MainController.prototype.getUsers = function(){
+  var access_token = this.eat("access_token");
+  if (access_token) return this.user.getUsers(access_token);
 }
 
+MainController.prototype.getLocations = function(){
+  var access_token = this.eat("access_token");
+  if (access_token) return this.loc.getLocations(access_token);
+}
+
+MainController.prototype.getSports = function(){
+  var access_token = this.eat("access_token");
+  if (access_token) return this.sport.getSports(access_token);
+}
+
+MainController.prototype.createLocation = function(){
+}
+
+
 $(function(){
-  mainController = new MainController();
-  mainController.bindEvents();
- // mainController.init();
+  window.mainController = window.mainController || new MainController();
+  window.mainController.init();
+  window.mainController.user.bindEvents();
 });

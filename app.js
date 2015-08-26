@@ -18,7 +18,6 @@ var cookieParser = require('cookie-parser');
 var flash        = require('connect-flash');
 var session      = require('express-session');
 
-
 mongoose.connect('mongodb://localhost/buckets');
 require('./config/passport')(passport);
 
