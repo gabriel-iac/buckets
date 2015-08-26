@@ -1,6 +1,6 @@
 function User(){
 
-  this.getUser = function(userToken){
+  this.getUsers = function(userToken){
    $.ajax({
     url       : '/api/users/',
     dataType  : 'json',

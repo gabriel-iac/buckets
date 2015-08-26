@@ -38,51 +38,57 @@
     </div>
   </header>
 
-  <div id="map"></div>
-
-  <form class="form-horizontal">
-    <fieldset>
-      <legend>Add  Your Location</legend>
-      <div class="controls">
-        <input id="location" name="location" type="text" placeholder="Enter location">
-      </div>
-      <div class="controls">
-        <input type="submit" id="submitLocation" name="locationBtn" class="btn btn-primary" value="Search Location">
-      </div>
-
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input class="form-control" type="text" name="name" id="name">
-      </div>
-
-      <div class="form-group">
-        <label for="country">Country</label>
-        <input class="form-control" type="text" name="country" id="country">
-      </div>
-
-      <div class="form-group">
-        <label for="sport">Sport</label>
-        <input class="form-control" type="text" name="sport" id="sport">
-      </div>
-
-      <div class="form-group">
-        <label for="long">Long</label>
-        <input class="form-control" type="text" name="long" id="long">
-      </div>
-
-      <div class="form-group">
-        <label for="lat">Lat</label>
-        <input class="form-control" type="text" name="lat" id="lat">
-      </div>
-
-      <div class="form-group">
-        <label for="image">Image</label>
-        <input class="form-control" type="text" name="image" id="image">
-      </div>
-    </fieldset>
-  </form>
-
   <main class="container">
+
+      <div id="map"></div>
+      
+      <hr></hr>
+      <h1>Add a Location</h1>
+      <form class="form-horizontal">
+        <fieldset>
+          <legend>Add  Your Location</legend>
+    
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input class="form-control" id="location" name="location" type="text" placeholder="Enter location">
+          </div>
+
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input class="form-control" type="text" name="name" id="name">
+          </div>
+
+          <div class="form-group">
+            <label for="country">Country</label>
+            <input class="form-control" type="text" name="country" id="country">
+          </div>
+
+          <div class="form-group">
+            <label for="sport">Sport</label>
+            <input class="form-control" type="text" name="sport" id="sport">
+          </div>
+
+          <div class="form-group">
+            <label for="long">Long</label>
+            <input class="form-control" type="text" name="long" id="long">
+          </div>
+
+          <div class="form-group">
+            <label for="lat">Lat</label>
+            <input class="form-control" type="text" name="lat" id="lat">
+          </div>
+
+          <div class="form-group">
+            <label for="image">Image</label>
+            <input class="form-control" type="text" name="image" id="image">
+          </div>
+
+          <div class="form-group">
+            <input type="submit" id="submitLocation" name="locationBtn" class="btn btn-primary" value="Search Location">
+          </div>
+        </fieldset>
+      </form>
+  
     <%- body %>
   </main>
 
