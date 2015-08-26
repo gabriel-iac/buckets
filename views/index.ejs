@@ -1,35 +1,119 @@
-<div class="ajax-log" style="display: none">
-  <h1>Login</h1>
-  <form id="login" method="post" action="/api/authenticate">
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input class="form-control" type="text" name="login-email" id="login-email">
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Main page</title>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <script type="text/javascript"
+  src="//maps.googleapis.com/maps/api/js?sensor=false&key=<%= process.env.GOOGLE_API_KEY %>"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="./js/models/user.js"></script>
+  <script src="./js/models/location.js"></script>
+  <script src="./js/models/sport.js"></script>
+  <script src="./js/models/country.js"></script>
+  <script src="./js/main.js"></script>
+  <script src="./js/test.js"></script>
+  <script type="text/javascript" src="/js/maps.js"></script>
+</head>
+<body>
+  <header>
+    <div class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">ExtremeAdvisor</a>
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/" id="all_locations_link">Locations</a></li>
+            <li><a href="/" id="new">New</a></li>
+            <li><a href="#" id="login-btn">Login</a></li>
+            <li><a href="#" id="signup-btn">Sign Up</a></li>
+            <li><a href="#" id="logout-btn">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+      <div id="map"></div>
+      
+      <hr></hr>
+      <h1>Add a Location</h1>
+      <form class="form-horizontal">
+        <fieldset>
+          <legend>Add  Your Location</legend>
+    
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input class="form-control" id="location" name="location" type="text" placeholder="Enter location">
+          </div>
+
+          <div class="form-group">
+            <label for="country">Country</label>
+            <input class="form-control" type="text" name="country" id="country">
+          </div>
+
+          <div class="form-group">
+            <label for="sport">Sport</label>
+            <select class="form-control" id="select1">
+            <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+            <label for="image">Image</label>
+            <input class="form-control" type="text" name="image" id="image">
+          </div>
+
+          <div class="form-group">
+            <input type="submit" id="submitLocation" name="locationBtn" class="btn btn-primary" value="Search Location">
+          </div>
+        </fieldset>
+      </form>
+  
+    <div class="ajax-log" style="display: none">
+      <h1>Login</h1>
+      <form id="login" method="post" action="/api/authenticate">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input class="form-control" type="text" name="login-email" id="login-email">
+        </div>
+
+        <div class="form-group">
+          <label for="email">Password</label>
+          <input class="form-control" type="password" name="login-password" id="login-password">
+        </div>
+
+        <input class="btn btn-default" type="submit">
+      </form>
     </div>
 
-    <div class="form-group">
-      <label for="email">Password</label>
-      <input class="form-control" type="password" name="login-password" id="login-password">
+    <div class="ajax-sign" style="display: none">
+    <h1>Sign Up</h1>
+     <form id="signup" method="post" action="/api/users">
+       <div class="form-group">
+         <label for="login-email">Email</label>
+         <input class="form-control" type="text" name="signup-email" id="signup-email">
+       </div>
+
+       <div class="form-group">
+         <label for="password">Password</label>
+         <input class="form-control" type="password" name="signup-password" id="signup-password">
+       </div>
+
+       <input class="btn btn-default" type="submit">
+     </form>
     </div>
+    
+  </main>
 
-    <input class="btn btn-default" type="submit">
-  </form>
-</div>
-
-<div class="ajax-sign" style="display: none">
-<h1>Sign Up</h1>
- <form id="signup" method="post" action="/api/users">
-   <div class="form-group">
-     <label for="login-email">Email</label>
-     <input class="form-control" type="text" name="signup-email" id="signup-email">
-   </div>
-
-   
-
-   <div class="form-group">
-     <label for="password">Password</label>
-     <input class="form-control" type="password" name="signup-password" id="signup-password">
-   </div>
-
-   <input class="btn btn-default" type="submit">
- </form>
-</div>
+</body>
+</html>
