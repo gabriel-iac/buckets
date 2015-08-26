@@ -6,7 +6,6 @@ var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
 var morgan = require('morgan');
 var mongoose = require('mongoose');
-var expressLayouts = require('express-ejs-layouts');
 var router = express.Router();
 var userRouter = express.Router();
 var locationRouter = express.Router();
@@ -24,7 +23,6 @@ require('./config/passport')(passport);
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(expressLayouts);
 app.use(cookieParser());
 app.use(session({ secret: 'buckets-cookie' })); 
 app.use(flash()); 
@@ -42,26 +40,25 @@ app.use(methodOverride(function(req, res){
   }
 }))
 
-app.set('layout', 'layout.ejs');
 app.set('superSecret', config.secret);
 app.set("views", "./views");
 app.set("view engine", "ejs");
 
+// Only used to serve the static website.
 app.get('/', function(req, res){
-  res.render('./index', {user: req.user});
+  res.render('index');
 })
 
-app.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }));
-
-app.get('/auth/facebook/callback', passport.authenticate('facebook', {
- successRedirect: '/',
- failureRedirect: '/'
-}));
-
+// app.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }));
+// app.get('/auth/facebook/callback', passport.authenticate('facebook', {
+//  successRedirect: '/',
+//  failureRedirect: '/'
+// }));
 
 var routes = require('./config/routes');
+
 app.use("/api", routes);
 
 app.listen(port, function(){
   console.log('listening on port 3000')
-})
+});

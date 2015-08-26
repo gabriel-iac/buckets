@@ -12,6 +12,16 @@ function getAllUsers(req, res){
   }).select('-password -_id -__v')
 }
 
+function getCurrentUser(req, res){
+  if (req.query.id) {
+    User.findById(req.query.id, function(err, user){
+      res.json(user);
+    }).select('-password -_id -email -__v');
+  } else {
+    res.status(404).send({ message: "There is no current user."})
+  }
+}
+
 function createUser(req, res){
   var user = new User(req.body);
   user.save(function(err){
@@ -87,6 +97,7 @@ function logout(req, res){
 
 module.exports = {
   getAllUsers: getAllUsers,
+  getCurrentUser: getCurrentUser,
   showUser: showUser,
   createUser: createUser,
   updateUser: updateUser,

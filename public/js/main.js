@@ -8,9 +8,9 @@ function MainController(){
 MainController.prototype.init = function(){
   var access_token = this.eat("access_token");
   if (access_token) {
-    window.mainController.getUsers();
-    window.mainController.getLocations();
-    window.mainController.getSports();
+    // window.mainController.getUsers();
+    // window.mainController.getLocations();
+    // window.mainController.getSports();
   } else {
     console.log("clear pages...")
   }
@@ -66,7 +66,6 @@ MainController.prototype.getSports = function(){
 
 MainController.prototype.createLocation = function(){
 }
-
 
 $(function(){
   window.mainController = window.mainController || new MainController();

@@ -19,6 +19,22 @@ function User(){
     });
  }
 
+ this.getUser = function(userToken, id, callback){
+  $.ajax({
+    url       : '/api/users/current?id='+id,
+    dataType  : 'json',
+    beforeSend: function(xhr){
+      xhr.setRequestHeader("x-access-token", userToken);
+    },
+    error: function(){
+       //handle error
+    },
+    success: function(data){
+      callback(data);
+    }
+  });
+ }
+
  this.bindEvents = function(){
   $("body").on("submit", "#signup", function(){
     event.preventDefault();
@@ -31,7 +47,10 @@ function User(){
         password: $("#password").val()
       },
     }).done(function(data){
-      console.log("The token that we're going to save to document.cookie or localStorage) is: ", data.token);
+      // console.log("The token that we're going to save to document.cookie or localStorage) is: ", data.token);
+      console.log(data);
+      console.log(this.getUser(data.token))
+
       window.mainController.bake("access_token", data.token);
       window.mainController.init();
 
@@ -40,6 +59,14 @@ function User(){
       $("#logout-btn").parent().show();
     });
   })
+
+  this.displayUser = function(data) {
+    window.mainController.user.getUser(data.token, data.user.id, function(user){
+      console.log(user.fb.firstName);      
+      localStorage.setItem("user", user);
+      $("#logout-btn").parent().prepend("<li>"+user.fb.firstName+"</li>");
+    }); 
+  }
 
   $("body").on("submit", "#login", function(){
     event.preventDefault();
@@ -52,7 +79,9 @@ function User(){
         password: $("#password").val()
       },
     }).done(function(data){
-      console.log("The token that we're going to save to document.cookie or localStorage) is: ", data.token);
+      // console.log("The token that we're going to save to document.cookie or localStorage) is: ", data.token);
+
+      window.mainController.user.displayUser(data);
       window.mainController.bake("access_token", data.token);
       window.mainController.init();
 
@@ -83,6 +112,7 @@ function User(){
     $("#login-btn, #signup-btn").parent().show();
     $("#logout-btn").parent().hide();
     window.mainController.init();
+    localStorage.removeItem("user");
   }); 
 }
 }
