@@ -43,19 +43,21 @@ function User(){
       url: $(this).attr("action"),
       dataType: "json",
       data: {
-        email: $("#email").val(),
-        password: $("#password").val()
+        email: $("#signup-email").val(),
+        password: $("#signup-password").val(),
+        first_name: $("#first_name").val(),
+        last_name: $("#last_name").val()
       },
     }).done(function(data){
       // console.log("The token that we're going to save to document.cookie or localStorage) is: ", data.token);
       console.log(data);
-      console.log(this.getUser(data.token))
-
+           
       window.mainController.bake("access_token", data.token);
       window.mainController.init();
 
       $("#login-btn, #signup-btn").parent().hide();
-      $(".ajax-log, .ajax-sign").hide();
+
+      toggleDisplays(all_locations);
       $("#logout-btn").parent().show();
     });
   })
@@ -75,8 +77,8 @@ function User(){
       url: $(this).attr("action"),
       dataType: "json",
       data: {
-        email: $("#email").val(),
-        password: $("#password").val()
+        email: $("#login-email").val(),
+        password: $("#login-password").val()
       },
     }).done(function(data){
       // console.log("The token that we're going to save to document.cookie or localStorage) is: ", data.token);
@@ -86,8 +88,9 @@ function User(){
       window.mainController.init();
 
       $("#login-btn, #signup-btn").parent().hide();
-      $(".ajax-log, .ajax-sign").hide();
+      toggleDisplays("sports-div");
       $("#logout-btn").parent().show();
+
     });
   })
 
@@ -98,9 +101,6 @@ function User(){
 
   $("body").on("click", "#login-btn", function(){
     event.preventDefault();
-    // $(".ajax-sign").hide(function(){
-    //   $(".ajax-log").fadeToggle();
-    // });
     toggleDisplays('login-div')
   });
 
