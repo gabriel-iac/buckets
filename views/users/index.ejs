@@ -1,25 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>users page</title>
-</head>
-<body>
- <h1>users page</h1>
-<h1>FACEBOOK LOGIN USING PASSPORT</h1>  
- <div>
-   <% if(user != undefined){%>
-     <h2>Below is the data sent by facebook</h2>
-     <pre>
-       <%= user.fb %>
-     </pre>
-     <a href="/logout">Logout</a>
-   <% } else {%>
-     <a href="/auth/facebook">Login with Facebook</a>
-   <% }%>
-
- </div>
- <div class="ajax-log">
- <h1>Login</h1>
+<div class="ajax-log" style="display: none">
+  <h1>Login</h1>
   <form id="login" method="post" action="/api/authenticate">
     <div class="form-group">
       <label for="email">Email</label>
@@ -33,58 +13,21 @@
 
     <input class="btn btn-default" type="submit">
   </form>
-  </div>
-
-<div class="ajax-sign">
-<h1>signUP</h1>
- <form id="signup" method="post" action="/api/users">
-   <div class="form-group">
-     <label for="email">Email</label>
-     <input class="form-control" type="text" name="email" id="email">
-   </div>
-
-   <div class="form-group">
-     <label for="email">Password</label>
-     <input class="form-control" type="password" name="password" id="password">
-   </div>
-
-   <input class="btn btn-default" type="submit">
- </form>
 </div>
- <a href="/api/logout?access_token=" id="logout">Logout</a>
 
+<div class="ajax-sign" style="display: none">
+  <h1>signUP</h1>
+  <form id="signup" method="post" action="/api/users">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input class="form-control" type="text" name="email" id="email">
+    </div>
 
+    <div class="form-group">
+      <label for="email">Password</label>
+      <input class="form-control" type="password" name="password" id="password">
+    </div>
 
-
-
- <div id="new_post" style="display: none">
-
-
-
- </div>
-
- <div id="all_locations">
-   <table class="table table-stripped table-bordered">
-     <thead>
-       <tr>
-         <th>Name</th>
-         <th>Country</th>
-         <th>Sport</th>
-         <th>Creatore</th>
-         <th>Published at</th>
-         
-       </tr>
-     </thead>
-     <tbody>
-
-     </tbody>
-   </table>
- </div>
-
-
-
-
-
-
-</body>
-</html>
+    <input class="btn btn-default" type="submit">
+  </form>
+</div>

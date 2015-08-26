@@ -6,9 +6,14 @@ function MainController(){
 }
 
 MainController.prototype.init = function(){
-  window.mainController.getUsers();
-  window.mainController.getLocations();
-  window.mainController.getSports();
+  var access_token = this.eat("access_token");
+  if (access_token) {
+    window.mainController.getUsers();
+    window.mainController.getLocations();
+    window.mainController.getSports();
+  } else {
+    console.log("clear pages...")
+  }
 }
 
 MainController.prototype.bake = function(name, value, days){
@@ -21,6 +26,10 @@ MainController.prototype.bake = function(name, value, days){
     expires = "";
   }
   document.cookie = name+"="+value+expires+"; path=/";
+}
+
+MainController.prototype.unbake = function(name){
+  document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
 MainController.prototype.eat = function(name){

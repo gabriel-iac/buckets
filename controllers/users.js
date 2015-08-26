@@ -39,7 +39,7 @@ function showUser(req, res){
 // POST /login 
 function postLogin(req, res) {
   var loginStrategy = passport.authenticate('local-login',function(err, user, info) {
-if (err) return next(err)
+  if (err) return next(err)
      
    if (!user) {
      return res.status(401).send({ error: 'Something went wrong...' });

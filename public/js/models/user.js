@@ -18,7 +18,7 @@ function User(){
         console.log(data);
 
         for(var i=0; i<data.length; i++){
-          
+
           $("#users").append("<li>" + data[i].first_name + "</li>");
         } 
       }
@@ -47,7 +47,7 @@ function User(){
   }
 
   this.bindEvents = function(){
-    $("#signup").on("submit", function(){
+    $("body").on("submit", "#signup", function(){
       event.preventDefault();
       $.ajax({
         type: "post",
@@ -61,10 +61,14 @@ function User(){
         console.log("The token that we're going to save to document.cookie or localStorage) is: ", data.token);
         window.mainController.bake("access_token", data.token);
         window.mainController.init();
+
+        $("#login-btn, #signup-btn").parent().hide();
+        $(".ajax-log, .ajax-sign").hide();
+        $("#logout-btn").parent().show();
       });
     })
 
-    $("#login").on("submit", function(){
+    $("body").on("submit", "#login", function(){
       event.preventDefault();
       $.ajax({
         type: "post",
@@ -78,7 +82,34 @@ function User(){
         console.log("The token that we're going to save to document.cookie or localStorage) is: ", data.token);
         window.mainController.bake("access_token", data.token);
         window.mainController.init();
+
+        $("#login-btn, #signup-btn").parent().hide();
+        $(".ajax-log, .ajax-sign").hide();
+        $("#logout-btn").parent().show();
       });
     })
+
+    $("body").on("click", "#login-btn", function(){
+      event.preventDefault();
+      $(".ajax-sign").hide(function(){
+        $(".ajax-log").fadeToggle();
+      });
+    });
+
+    $("body").on("click", "#signup-btn", function(){
+      event.preventDefault();
+      $(".ajax-log").hide(function(){
+        $(".ajax-sign").fadeToggle();
+      });
+    });
+
+    $("body").on("click", "#logout-btn", function(){
+      event.preventDefault();
+      window.mainController.unbake("access_token");
+
+      $("#login-btn, #signup-btn").parent().show();
+      $("#logout-btn").parent().hide();
+      window.mainController.init();
+    }); 
   }
 }

@@ -5,8 +5,8 @@ LocationAjax.fields = ["title", "description", "author", "twitter", "published_a
 LocationAjax.togglePages = function(id1){
   id2 = (id1 == "#new_location" ? "#all_locations" : "#new_location")
   $(id2).slideUp(function(){$(id1).slideDown()})
+
 }
-LocationAjax.changePage = function
 
 
 LocationAjax.locationForm = function(){
