@@ -9,7 +9,7 @@ function getAllLocations(req, res){
 };
 
 function getNewLocation(req,res){
-  res.render('locations/new');
+  res.render('/locations/new');
 };
 
 function createLocation(req, res){
