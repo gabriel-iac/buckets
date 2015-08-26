@@ -21,7 +21,7 @@ function User(){
 
  this.getUser = function(userToken, id, callback){
   $.ajax({
-    url       : '/api/users/current?id='+id,
+    url       : '/api/users/current?id='+ id,
     dataType  : 'json',
     beforeSend: function(xhr){
       xhr.setRequestHeader("x-access-token", userToken);
@@ -43,8 +43,8 @@ function User(){
       url: $(this).attr("action"),
       dataType: "json",
       data: {
-        email: $("#email").val(),
-        password: $("#password").val()
+        email: $("#signup-email").val(),
+        password: $("#signup-password").val()
       },
     }).done(function(data){
       // console.log("The token that we're going to save to document.cookie or localStorage) is: ", data.token);
@@ -61,10 +61,10 @@ function User(){
   })
 
   this.displayUser = function(data) {
-    window.mainController.user.getUser(data.token, data.user._id, function(user){
+    window.mainController.user.getUser(data.token, data.user.id, function(user){
       console.log(user.first_name);      
       localStorage.setItem("user", user);
-      $("#logout-btn").parent().prepend("<li>"+user.first_name+"</li>");
+      // $("#logout-btn").parent().prepend("<li>"+user.first_name+"</li>");
     }); 
   }
 
@@ -75,8 +75,8 @@ function User(){
       url: $(this).attr("action"),
       dataType: "json",
       data: {
-        email: $("#email").val(),
-        password: $("#password").val()
+        email: $("#login-email").val(),
+        password: $("#login-password").val()
       },
     }).done(function(data){
       // console.log("The token that we're going to save to document.cookie or localStorage) is: ", data.token);
@@ -92,8 +92,8 @@ function User(){
   })
 
   function toggleDisplays(id){
-    $('.tab').hide()
-    $("#" + id).show()
+    $('.tab').slideUp()
+    $("#" + id).slideDown()
   }
 
   $("body").on("click", "#login-btn", function(){
@@ -102,6 +102,7 @@ function User(){
     //   $(".ajax-log").fadeToggle();
     // });
     toggleDisplays('login-div')
+
   });
 
   $("body").on("click", "#signup-btn", function(){
