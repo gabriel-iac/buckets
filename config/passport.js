@@ -96,6 +96,7 @@ module.exports = function(passport){
           newUser.password = newUser.encrypt(req.body.password);
           
           newUser.save(function(err){
+            console.log('hello guys')
             if(err) throw err;
             return callback(null, newUser);
           })
