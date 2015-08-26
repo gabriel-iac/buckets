@@ -11,14 +11,18 @@ var User = require('../models/user');
 var jwt = require('jsonwebtoken');
 var expressJWT = require('express-jwt');
 
-// router.route('/users')
-//   .post(usersController.createUser)
 
 router.route('/users')
   .post(usersController.postSignup)
 
-router.route('/logout')
-  .get(usersController.logout)
+router.route("/logout").get(function (req, res, next) {
+    delete req.user;
+    
+    return res.status(200).json({
+        "message": "User has been successfully logged out"
+    });
+ 
+});
 
 // route to authenticate a user (POST http://localhost:8080/api/authenticate)
 router.post('/authenticate', function(req, res) {
