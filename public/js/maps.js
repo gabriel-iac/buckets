@@ -40,15 +40,40 @@ $("#submitLocation").on('click',function(){
         markers.push(marker);
 
     // .lat and lng return degrees from the google api
-        var lat = results[0].geometry.location.lat();
-        var lng = results[0].geometry.location.lng();
-        console.log(lat);
-        console.log(lng);
-        var location_name = results[0].formatted_address
-        console.log(location_name);
+    var lat = results[0].geometry.location.lat();
+    var lng = results[0].geometry.location.lng();
+    console.log(lat);
+    console.log(lng);
+    var location_name = results[0].formatted_address
+    console.log(location_name);
 
-      }})
+    var access_token = window.mainController.eat("access_token");
 
-  })
+    // Send the location to the server
+    $.ajax({
+      url: '/api/locations',
+      dataType: 'json',
+      type: 'POST',
+      data: {
+        name: name,
+        lat: lat,
+        lng: lng,
+        location_name: location_name
+      },
+      beforeSend: function(xhr){
+        xhr.setRequestHeader("x-access-token", access_token);
+      },
+      success: function(data, res){
+        console.log("SUCCESS")
+        console.log(data, res);
+      },
+      error: function(err){
+        console.log(err);
+      }         
+    })
+
+  }})
+
+})
 
 }
