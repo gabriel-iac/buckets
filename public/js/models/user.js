@@ -61,10 +61,10 @@ function User(){
   })
 
   this.displayUser = function(data) {
-    window.mainController.user.getUser(data.token, data.user.id, function(user){
-      console.log(user.fb.firstName);      
+    window.mainController.user.getUser(data.token, data.user._id, function(user){
+      console.log(user.first_name);      
       localStorage.setItem("user", user);
-      $("#logout-btn").parent().prepend("<li>"+user.fb.firstName+"</li>");
+      $("#logout-btn").parent().prepend("<li>"+user.first_name+"</li>");
     }); 
   }
 
@@ -91,18 +91,32 @@ function User(){
     });
   })
 
+  function toggleDisplays(id){
+    $('.tab').hide()
+    $("#" + id).show()
+  }
+
   $("body").on("click", "#login-btn", function(){
     event.preventDefault();
-    $(".ajax-sign").hide(function(){
-      $(".ajax-log").fadeToggle();
-    });
+    // $(".ajax-sign").hide(function(){
+    //   $(".ajax-log").fadeToggle();
+    // });
+    toggleDisplays('login-div')
   });
 
   $("body").on("click", "#signup-btn", function(){
     event.preventDefault();
-    $(".ajax-log").hide(function(){
-      $(".ajax-sign").fadeToggle();
-    });
+    toggleDisplays('signup-div')
+  });
+
+  $("body").on("click", "#new-btn", function(){
+    event.preventDefault();
+    toggleDisplays('new_location')
+  });
+
+  $("body").on("click", "#locations-btn", function(){
+    event.preventDefault();
+    toggleDisplays('all_locations')
   });
 
   $("body").on("click", "#logout-btn", function(){
