@@ -57,8 +57,7 @@ module.exports = function(passport){
     usernameField :'email',
     passwordField : 'password',
     passReqToCallback : true
-
-  }, function(req, email, password, callback){
+   }, function(req, email, password, callback){
     //search for a user with an email from the login form
     User.findOne({'local.email': email}, function(err, user){
       if(err) return callback(err);
@@ -79,25 +78,25 @@ module.exports = function(passport){
     usernameField :'email',
     passwordField : 'password',
     passReqToCallback : true
-  }, function(req, email, password, callback){
-    
+  }, function(req, email, password, callback){    
     process.nextTick(function(){
-      //find a user with and email
-      User.findOne({'local.email': req.body.email}, function(err, user){
+      //find a user with this email
+      User.findOne({'email': email}, function(err, user){
         if(err) return callback(err)
-
           //if there is already and user with this email
         if (user) {
           // return callback(null, false, req.flash('signupMessage', 'this email is already in use'))
-          console.log("ERROR");
+          console.log("ERROR user exists: " + user);
         } else{
+          console.log("no user registered");
           //no user registred with this email
-
           //create a new user
           var newUser = new User();
           newUser.email = req.body.email;
           newUser.password = newUser.encrypt(req.body.password);
+          
           newUser.save(function(err){
+            console.log('hello guys')
             if(err) throw err;
             return callback(null, newUser);
           })

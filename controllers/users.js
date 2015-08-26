@@ -5,7 +5,6 @@ var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var jwt = require('jsonwebtoken');
 
-
 function getAllUsers(req, res){
   var users = User.find({} , function(err, users){
     res.json(users);
@@ -57,11 +56,22 @@ function postLogin(req, res) {
   })(req, res, next);
 }
 
+<<<<<<< HEAD
 function postSignup(req, res, next) {
+=======
+
+function logout(req, res){
+  console.log(req);
+  req.logout();
+  res.redirect('/')
+}
+
+function postSignup(req, res, next) {  
+>>>>>>> e1d2ab7d98a263e2b65018493578dac47eed4178
   passport.authenticate('local-signup', function(err, user, info) {
     if (err) return next(err)
-      
-    if (!user) {
+
+    if (!user) {  
       return res.status(401).send({ error: 'Something went wrong...' });
     }
 

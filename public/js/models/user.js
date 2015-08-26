@@ -25,6 +25,7 @@ function User(){
      });
   }
 
+<<<<<<< HEAD
 
 
   this.getUser = function(userToken){
@@ -112,4 +113,6 @@ function User(){
       window.mainController.init();
     }); 
   }
+=======
+>>>>>>> e1d2ab7d98a263e2b65018493578dac47eed4178
 }
