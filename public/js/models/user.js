@@ -16,13 +16,35 @@ function User(){
       success: function(data){
         //return a list of users
         console.log(data);
+
         for(var i=0; i<data.length; i++){
+          
           $("#users").append("<li>" + data[i].first_name + "</li>");
         } 
       }
      });
   }
 
+
+
+  this.getUser = function(userToken){
+     $.ajax({
+      url       : '/api/users/',
+      dataType  : 'json',
+      beforeSend: function(xhr){
+        xhr.setRequestHeader("x-access-token", userToken);
+      },
+      error: function(){
+        //handle error
+      },
+      success: function(data){
+        //return a list of users
+    for(var i=0; i<data.length; i++){
+      $("#user").append("<li>" +  + "</li>");
+    } 
+      }
+     });
+  }
 
   this.bindEvents = function(){
     $("#signup").on("submit", function(){

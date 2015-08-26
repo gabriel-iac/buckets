@@ -57,13 +57,6 @@ if (err) return next(err)
   })(req, res, next);
 }
 
-
-function logout(req, res){
-  console.log(req);
-  req.logout();
-  res.redirect('/')
-}
-
 function postSignup(req, res, next) {
   passport.authenticate('local-signup', function(err, user, info) {
     if (err) return next(err)
@@ -85,6 +78,13 @@ function postSignup(req, res, next) {
   })(req, res, next);
 }
 
+function logout(req, res){
+  console.log(req);
+  req.logout();
+  res.redirect('/');
+}
+
+
 
 module.exports = {
   getAllUsers: getAllUsers,
@@ -92,7 +92,8 @@ module.exports = {
   createUser: createUser,
   updateUser: updateUser,
   logout: logout,
-  postLogin: postLogin,
-  postSignup: postSignup
+  postSignup: postSignup,
+  postLogin: postLogin
+  
 }
 
