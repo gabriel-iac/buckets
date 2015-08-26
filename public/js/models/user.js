@@ -57,7 +57,7 @@ function User(){
 
       $("#login-btn, #signup-btn").parent().hide();
 
-      toggleDisplays(all_locations);
+      toggleDisplays(sports-div);
       $("#logout-btn").parent().show();
     });
   })
