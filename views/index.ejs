@@ -40,7 +40,7 @@
 
 
   <main class="container">
-  <div id="new_location" class="tab" style="display: none">
+    <div id="new_location" class="tab" style="display: none">
       <div id="map" ></div>
       
       <hr></hr>
@@ -48,7 +48,7 @@
       <form class="form-horizontal">
         <fieldset>
           <legend>Add  Your Location</legend>
-    
+
           <div class="form-group">
             <label for="name">Name</label>
             <input class="form-control" id="location" name="location" type="text" placeholder="Enter location">
@@ -62,12 +62,12 @@
           <div class="form-group">
             <label for="sport">Sport</label>
             <select class="form-control" id="select1">
-            <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
           </div>
 
 
@@ -81,7 +81,7 @@
           </div>
         </fieldset>
       </form>
-  </div>
+    </div>
     <div id="login-div" class="tab" style="display: none">
       <h1>Login</h1>
       <form id="login" method="post" action="/api/authenticate">
@@ -117,13 +117,28 @@
       </div>
      
 
+    <div id="sports-div" class="tab" style="display: none">
+      <h1>Sports</h1>
+    </div>
+
+
     <div id="home" class="tab">
       <h1>Homepage</h1>
     </div>
 
     <div id="signup-div" class="tab" style="display: none">
-    <h1>Sign Up</h1>
-     <form id="signup" method="post" action="/api/users">
+      <h1>Sign Up</h1>
+      <form id="signup" method="post" action="/api/users">
+
+       <div class="form-group">
+         <label for="login-email">First Name</label>
+         <input class="form-control" type="text" name="first_name" id="first_name">
+       </div>
+
+       <div class="form-group">
+         <label for="login-email">Last Name</label>
+         <input class="form-control" type="text" name="last_name" id="last_name">
+       </div>
        <div class="form-group">
          <label for="login-email">Email</label>
          <input class="form-control" type="text" name="signup-email" id="signup-email">
@@ -136,9 +151,9 @@
 
        <input class="btn btn-default" type="submit">
      </form>
-    </div>
-    
-  </main>
+   </div>
+
+ </main>
 
 </body>
 </html>
