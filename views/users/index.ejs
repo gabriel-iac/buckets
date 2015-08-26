@@ -18,6 +18,7 @@
    <% }%>
 
  </div>
+ <div class="ajax-log">
  <h1>Login</h1>
   <form id="login" method="post" action="/api/authenticate">
     <div class="form-group">
@@ -32,7 +33,9 @@
 
     <input class="btn btn-default" type="submit">
   </form>
+  </div>
 
+<div class="ajax-sign">
 <h1>signUP</h1>
  <form id="signup" method="post" action="/api/users">
    <div class="form-group">
@@ -47,7 +50,7 @@
 
    <input class="btn btn-default" type="submit">
  </form>
-
+</div>
  <a href="/api/logout?access_token=" id="logout">Logout</a>
 
 
@@ -60,16 +63,16 @@
 
  </div>
 
- <div id="all_posts">
+ <div id="all_locations">
    <table class="table table-stripped table-bordered">
      <thead>
        <tr>
-         <th>Title</th>
-         <th>Description</th>
-         <th>Author</th>
-         <th>Twitter</th>
+         <th>Name</th>
+         <th>Country</th>
+         <th>Sport</th>
+         <th>Creatore</th>
          <th>Published at</th>
-         <th><b>Actions</b></th>
+         
        </tr>
      </thead>
      <tbody>

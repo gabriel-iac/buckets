@@ -6,6 +6,7 @@ LocationAjax.togglePages = function(id1){
   id2 = (id1 == "#new_location" ? "#all_locations" : "#new_location")
   $(id2).slideUp(function(){$(id1).slideDown()})
 }
+LocationAjax.changePage = function
 
 
 LocationAjax.locationForm = function(){
@@ -28,16 +29,16 @@ $.ajax({
 
 LocationAjax.getLocations = function(){
   $("#all_locations table tbody").html("");
-  $.get('/posts.json')
+  $.get('/api/locations')
   .done(function(data){
     $.each(data, function(index, item){
      var row = $("<tr>"+
-      "<td>" + item.title+"</td>"+
-      "<td>" + item.description+"</td>"+
-      "<td>" + item.author +"</td>"+
-      "<td><a href='http://www.twitter.com/" + item.twitter +"'>@" + item.twitter +"</a></td>"+
-      "<td>" + item.published_at+"</td>"+
-      "<td><button data-id='" + item.id+"' class='btn edit_post'>Edit</button> <button data-id='" + item.id+"' class='btn btn-danger delete_post'>Delete</button></td>"+
+      "<td>" + item.name+"</td>"+
+      "<td>" + item.country+"</td>"+
+      "<td>" + item.sport +"</td>"+
+      "<td>" + item.image+"</td>"+
+      "<td>" + item.users+"</td>"+
+      "<td>" + item.creator+"</td>"+
       "</tr>");
 
      row.appendTo("#all_locations table tbody")
