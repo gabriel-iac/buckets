@@ -23,40 +23,4 @@ function User(){
      });
   }
 
-
-  this.bindEvents = function(){
-    $("#signup").on("submit", function(){
-      event.preventDefault();
-      $.ajax({
-        type: "post",
-        url: $(this).attr("action"),
-        dataType: "json",
-        data: {
-          email: $("#email").val(),
-          password: $("#password").val()
-        },
-      }).done(function(data){
-        console.log("The token that we're going to save to document.cookie or localStorage) is: ", data.token);
-        window.mainController.bake("access_token", data.token);
-        window.mainController.init();
-      });
-    })
-
-    $("#login").on("submit", function(){
-      event.preventDefault();
-      $.ajax({
-        type: "post",
-        url: $(this).attr("action"),
-        dataType: "json",
-        data: {
-          email: $("#email").val(),
-          password: $("#password").val()
-        },
-      }).done(function(data){
-        console.log("The token that we're going to save to document.cookie or localStorage) is: ", data.token);
-        window.mainController.bake("access_token", data.token);
-        window.mainController.init();
-      });
-    })
-  }
 }

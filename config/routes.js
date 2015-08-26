@@ -26,7 +26,6 @@ router.route("/logout").get(function (req, res, next) {
 
 // route to authenticate a user (POST http://localhost:8080/api/authenticate)
 router.post('/authenticate', function(req, res) {
-  console.log(req.body.email);
   // find the user
   User.findOne({
     email: req.body.email

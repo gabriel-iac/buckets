@@ -49,11 +49,7 @@ app.set("views", "./views");
 app.set("view engine", "ejs");
 
 app.get('/', function(req, res){
-  res.render('./users/index', {user: req.user});
-})
-
-app.get("/", function(req, res){
- res.render('layout', {user:req.user});
+  res.render('./index', {user: req.user});
 })
 
 app.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }));
@@ -63,10 +59,6 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook', {
  failureRedirect: '/'
 }));
 
-app.get('/logout', function(req, res){
- req.logout();
- res.redirect('/');
-})
 
 var routes = require('./config/routes');
 app.use("/api", routes);
