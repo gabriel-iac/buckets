@@ -126,6 +126,7 @@ function User(){
 
     $("#login-btn, #signup-btn").parent().show();
     $("#logout-btn").parent().hide();
+    toggleDisplays("home");
     window.mainController.init();
     localStorage.removeItem("user");
   }); 
