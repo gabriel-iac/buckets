@@ -7,7 +7,7 @@ var country   = require('./country');
 
 var locationSchema = new mongoose.Schema({
   name  : String,
-  country: { type: Schema.Types.ObjectId, ref: 'Country' },
+  country: String,
   sport: { type: Schema.Types.ObjectId, ref: 'Sport' },
   long: String,
   lat: String,

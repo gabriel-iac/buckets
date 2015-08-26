@@ -142,6 +142,11 @@ router.route('/sports')
 .get(sportController.getSports)
 .post(sportController.createSport)
 
+
+//POPULATE
+router.route('/sports/populate')
+.get(sportController.populateLocations)
+
 //Country
 
 router.route('/countries')
