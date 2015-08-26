@@ -12,6 +12,8 @@ var jwt = require('jsonwebtoken');
 var expressJWT = require('express-jwt');
 
 
+router.route('/locations')
+.get(locationController.getAllLocations)
 router.route('/users')
   .post(usersController.postSignup)
 

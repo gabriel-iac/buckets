@@ -1,24 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>users page</title>
-</head>
-<body>
- <h1>users page</h1>
-<h1>FACEBOOK LOGIN USING PASSPORT</h1>  
- <div>
-   <% if(user != undefined){%>
-     <h2>Below is the data sent by facebook</h2>
-     <pre>
-       <%= user.fb %>
-     </pre>
-     <a href="/logout">Logout</a>
-   <% } else {%>
-     <a href="/auth/facebook">Login with Facebook</a>
-   <% }%>
-
- </div>
- <h1>Login</h1>
+<div class="ajax-log" style="display: none">
+  <h1>Login</h1>
   <form id="login" method="post" action="/api/authenticate">
     <div class="form-group">
       <label for="email">Email</label>
@@ -32,7 +13,9 @@
 
     <input class="btn btn-default" type="submit">
   </form>
+</div>
 
+<div class="ajax-sign" style="display: none">
 <h1>Sign Up</h1>
  <form id="signup" method="post" action="/api/users">
    <div class="form-group">
@@ -47,9 +30,4 @@
 
    <input class="btn btn-default" type="submit">
  </form>
-
- <a href="/api/logout?access_token=" id="logout">Logout</a>
-
-
-</body>
-</html>
+</div>

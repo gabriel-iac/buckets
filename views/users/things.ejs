@@ -1,0 +1,62 @@
+ <h1>users page</h1>
+<h1>FACEBOOK LOGIN USING PASSPORT</h1>  
+ <div>
+   <% if(user != undefined){%>
+     <h2>Below is the data sent by facebook</h2>
+     <pre>
+       <%= user.fb %>
+     </pre>
+     <a href="/logout">Logout</a>
+   <% } else {%>
+     <a href="/auth/facebook">Login with Facebook</a>
+   <% }%>
+   </div>
+
+
+
+   <div id="all_locations">
+     <table class="table table-stripped table-bordered">
+       <thead>
+         <tr>
+           <th>Name</th>
+           <th>Country</th>
+           <th>Sport</th>
+           <th>Creatore</th>
+           <th>Published at</th>
+           
+         </tr>
+       </thead>
+       <tbody>
+
+       </tbody>
+     </table>
+   </div>
+
+
+
+
+   <div id="map"></div>
+
+   <form class="form-horizontal">
+     <fieldset>
+
+       <legend>Search For Your Location</legend>
+
+       <div class="controls">
+         <input id="location" name="location" type="text" placeholder="Enter location">
+       </div>
+
+       <div class="controls">
+         <input type="submit" id="submitLocation" name="locationBtn" class="btn btn-primary" value="Search Location">
+       </div>
+
+     </fieldset>
+   </form>
+
+   <div id="users"><h1>Users</h1></div>
+   <hr>
+   <div id="user"><h1>User</h1></div>
+   <hr>
+   <div id="locations"><h1>Locations</h1></div>
+   <hr>
+   <div id="sports"><h1>Sports</h1></div>
