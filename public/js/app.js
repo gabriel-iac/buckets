@@ -95,7 +95,8 @@ Extreme.getCurrentUser = function(user){
   var user = null;
 
   Extreme.ajaxRequest(type, url, user, function(user){
-    localStorage.setItem("user", user);
+    localStorage.setItem("user_first_name", user.first_name);
+    localStorage.setItem("user_id", user._id);
     Extreme.ui.displayUser(user);
   }); 
 }
@@ -147,7 +148,7 @@ Extreme.getLocationsBySport = function(){
 }
 
 Extreme.addToMyLocations = function(){
-  alert("hello")
+  
 }
 
 Extreme.addLocation = function(){
@@ -203,6 +204,12 @@ Extreme.addLocation = function(){
       };
     });
   }
+}
+
+
+Extreme.addToMyLocations = function(){
+  console.log(localStorage.getItem("user_first_name"));
+  console.log(localStorage.getItem("user_id"));
 }
 
 Extreme.bindEvents = function(){
