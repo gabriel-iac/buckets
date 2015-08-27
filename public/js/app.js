@@ -21,6 +21,7 @@ Extreme.init = function(){
     // Decide which content to populate
     Extreme.ui.populateSelect();
     Extreme.getLocations();
+    //Extreme.getMyLocations();
     Extreme.getSports();
     Extreme.getUsers();
 
@@ -140,15 +141,14 @@ Extreme.getSports = function(){
 }
 
 Extreme.getMyLocations = function(){
+  alert("Getting my locations");
+  var type = "get";
+  var url  = "/api/users/mylocations/";
+  var data = null;
 
-}
-
-Extreme.getLocationsBySport = function(){
-
-}
-
-Extreme.addToMyLocations = function(){
-  
+  Extreme.ajaxRequest(type, url, data, function(data){
+    Extreme.ui.displayLocations(data, id);
+  });
 }
 
 Extreme.addLocation = function(){
@@ -207,10 +207,20 @@ Extreme.addLocation = function(){
   }
 }
 
-
 Extreme.addToMyLocations = function(){
-  console.log(localStorage.getItem("user_first_name"));
-  console.log(localStorage.getItem("user_id"));
+  var currentUserId = localStorage.getItem("user_id");
+  $(this).css('background-color', 'red');
+
+  var type = "post";
+  var url  = "/api/users/addlocation";
+  var data = {
+    user_id   : currentUserId,
+    locationId: this.id
+  };
+
+  Extreme.ajaxRequest(type, url, data, function(user){
+    Extreme.getMyLocations();
+  });
 }
 
 Extreme.bindEvents = function(){
@@ -297,7 +307,6 @@ Extreme.ui.toggleDisplays = function(id){
 Extreme.ui.toggleTab = function(){
   var tab = $(this).data("id");  
   Extreme.ui.toggleDisplays(tab);
-  // Might need to adjust logic
   google.maps.event.trigger(map, "resize");
 }
 
@@ -370,7 +379,7 @@ Extreme.ui.loggedOut = function(){
 
   $("[data-id='login'], [data-id='signup']").parent().show();
   $("[data-id='logout']").parent().hide();
-  $("[data-id='profile']").remove();
+  $("#profile-btn").remove();
   $("#welcome h1").text("Welcome");
   Extreme.ui.toggleDisplays("home").show();
 
