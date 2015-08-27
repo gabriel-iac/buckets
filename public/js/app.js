@@ -288,14 +288,15 @@ Extreme.ui.map = function() {
 }
 
 Extreme.ui.toggleDisplays = function(id){
-  $('.tab').slideUp();
-  $("#" + id).slideDown();
+
+  $('.tab').slideUp(1000);
+  $("#" + id).toggle(1000);
+
 }
 
 Extreme.ui.toggleTab = function(){
   var tab = $(this).data("id");  
   Extreme.ui.toggleDisplays(tab);
-
   // Might need to adjust logic
   google.maps.event.trigger(map, "resize");
 }
@@ -327,17 +328,16 @@ Extreme.ui.displayLocations = function(data, tab){
   for(var i=0; i < data.length; i++){
     console.log(data[i].image)
     $("#" + tab + "-list").append(
-      "<li class='col-md-4 locations-box'>"+
-        "<ul class='location-wrapper'>"+ 
-        "<div><img class='img-rounded' src='http://lorempixel.com/400/200'></div>"+
+      "<li class='col-md-4 locations-box '>"+
+        "<ul class='location-wrapper effect1'>"+ 
+        "<div><img class='img-rounded' src='http://lorempixel.com/400/200/city'></div>"+
         "<div class='text-container'>"+
           "<li class='title'>"+"<h4>" + data[i].location_name + "</h4>"+"</li>"+
           "<li class='creator'>" + " " +"<em>" + data[i].creator.first_name + "</em>"+"</li>"+
           "<li>"+ "Sport:" + " " + data[i].sport.name +"</li>"+
           "<li>"+ "Description:" + " " + data[i].description +"</li>"+
           "<li>"+ "Users:" + " " + data[i].users +"</li>"+
-          
-          "<li><button class='add-to-list-btn btn btn-default' id=" + data[i]._id + ">Add to list</button></li>"+
+          "<li><button class='add-to-list-btn btn btn-primary' id=" + data[i]._id + ">Add to list</button></li>"+
         "</ul>"+
         "</div>"+
       "</li>"
@@ -363,7 +363,7 @@ Extreme.ui.populateSelect = function(id){
 Extreme.ui.loggedIn = function(){
   $("[data-id='login'], [data-id='signup']").parent().hide();
   $("[data-id='logout']").parent().show();
-  Extreme.ui.toggleDisplays("welcome");
+  Extreme.ui.toggleDisplays("locations");
 }
 
 Extreme.ui.loggedOut = function(){
@@ -372,7 +372,7 @@ Extreme.ui.loggedOut = function(){
   $("[data-id='logout']").parent().hide();
   $("[data-id='profile']").remove();
   $("#welcome h1").text("Welcome");
-  Extreme.ui.toggleDisplays("home");
+  Extreme.ui.toggleDisplays("home").show();
 
 }
 

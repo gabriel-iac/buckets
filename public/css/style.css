@@ -1,5 +1,6 @@
 body{
-  font-family: 'Oswald', sans-serif;
+  f/*ont-family: 'Oswald', sans-serif;*/
+  font-family: 'Open Sans', sans-serif;
 }
 .tab {
   display: none;
@@ -156,7 +157,9 @@ location-wrapper li{
   width: auto;
   float: left;
 }
-
+.locations-box{
+  padding: 10px;
+}
 .locations-box img{
   width:100%;
   height: auto; 
@@ -182,3 +185,10 @@ margin-top: 10px;
 .text-container .btn{
   margin:10px 0 0; 
 }
+.effect1{
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+     -moz-box-shadow: 0 10px 6px -6px #777;
+          box-shadow: 0 10px 6px -6px #777;
+}
+
+
