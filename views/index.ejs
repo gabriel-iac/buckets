@@ -4,6 +4,7 @@
   <title>Extreme Advisor</title>
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <link rel="stylesheet" type="text/css" href="/css/reset.css">
   <script type="text/javascript"
   src="//maps.googleapis.com/maps/api/js?sensor=false&key=<%= process.env.GOOGLE_API_KEY %>"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -38,10 +39,8 @@
     </div>
   </header>
 
-  <header class="image-bg-fluid-height">
-        <!-- <img class="img-responsive img-center" src="http://placehold.it/200x200&text=Logo" alt=""> -->
-    </header>
-  <main class="container">
+  
+
     <div id="new_location" class="tab" style="display: none">
       <div id="map" ></div>
       
@@ -68,8 +67,6 @@
               <% sports.forEach(function(sport){ %>
               
               <option value="<%=sport.id %>" ><%= sport.name %></option>
-
-              
 
               <% }) %> 
               
@@ -133,7 +130,40 @@
     </div>
 
     <div id="home" class="tab">
-      <h1>Homepage</h1>
+  <section class="image-bg-fluid-height">
+        <!-- <img class="img-responsive img-center" src="http://placehold.it/200x200&text=Logo" alt=""> -->
+    </section>
+<div class="row featured-container">
+  <main class="container">
+    <section class="featured">
+    <div class="col-md-4">
+      <div class="circle">
+        
+      </div>
+      <h4 class="text-center">Discover new places to paraglide, ski or dive</h4>
+    </div>
+    <div class="col-md-4">
+      <div class="circle">
+      </div>
+      <h4 class="text-center">
+        Share top secret spot with  your followers</h4>
+    </div>
+    <div class="col-md-4">
+      <div class="circle">
+      </div>
+      <h4 class="text-center">Add new places to the extreme bucket list</h4>
+    </div>
+  </section>
+  </div>
+
+  <div class="col-xs-12 location-list">
+            <div class="row">
+                <div class="col-xs-6"><div class="mini-box">1</div></div>
+                <div class="col-xs-6"><div class="mini-box">2</div></div>
+                <div class="col-xs-6"><div class="mini-box">3</div></div>
+                <div class="col-xs-6"><div class="mini-box">4</div></div>
+            </div>
+        </div>
     </div>
 
     <div id="welcome-div" class="tab" style="display: none">
@@ -168,6 +198,13 @@
    </div>
 
  </main>
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+    random thing
+    </div>
+  </div>
 
+</footer>
 </body>
 </html>
