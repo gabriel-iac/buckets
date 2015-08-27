@@ -152,6 +152,8 @@ footer {
   padding: 0px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  height: 430px;
+  
 }
 location-wrapper li{
   width: auto;
@@ -172,7 +174,8 @@ location-wrapper li{
   
 }
 .text-container{
-
+  max-height: 400px;
+  overflow: hidden;
 padding: 10px;
 }
 .text-container .title{
