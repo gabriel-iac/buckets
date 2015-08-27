@@ -157,9 +157,7 @@ function authenticate(req, res) {
           user: user
         });
       }   
-
     }
-
   });
 }
 
