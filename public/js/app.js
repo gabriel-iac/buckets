@@ -95,7 +95,8 @@ Extreme.getCurrentUser = function(user){
   var user = null;
 
   Extreme.ajaxRequest(type, url, user, function(user){
-    localStorage.setItem("user", user);
+    localStorage.setItem("user_first_name", user.first_name);
+    localStorage.setItem("user_id", user._id);
     Extreme.ui.displayUser(user);
   }); 
 }
@@ -195,12 +196,19 @@ Extreme.addLocation = function(){
   }
 }
 
+
+Extreme.addToMyLocations = function(){
+  console.log(localStorage.getItem("user_first_name"));
+  console.log(localStorage.getItem("user_id"));
+}
+
 Extreme.bindEvents = function(){
   $("#signup-form").on("submit", Extreme.signup);
   $("#login-form").on("submit", Extreme.login);
   $("#logout-btn").on("click", Extreme.logout);
   $(".nav li a").on("click", Extreme.ui.toggleTab);
   $("#submitLocation").on('click', Extreme.addLocation);
+  $("body").on('click', ".add-to-list-btn", Extreme.addToMyLocations);
 }
 
 Extreme.signup = function(){
@@ -305,7 +313,6 @@ Extreme.ui.displaySports = function(data, tab){
 }
 
 Extreme.ui.displayLocations = function(data, tab){
-  console.log(data)
   for(var i=0; i < data.length; i++){
     $("#" + tab + "-list").append(
       "<li>"+
