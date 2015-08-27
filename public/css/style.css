@@ -1,6 +1,7 @@
 body{
   f/*ont-family: 'Oswald', sans-serif;*/
   font-family: 'Open Sans', sans-serif;
+  background-image: url("https://s-media-cache-ak0.pinimg.com/736x/76/e7/67/76e767dbeaad4e6eb37a23698170e006.jpg");
 }
 .tab {
   display: none;
