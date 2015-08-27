@@ -199,8 +199,8 @@ Extreme.addLocation = function(){
 
         Extreme.ajaxRequest(type, url, data, function(data){
           console.log("Marker added.")
-          Extreme.getLocations();
-          Extreme.ui.toggleDisplays('locations');
+          // Extreme.getLocations();
+          // Extreme.ui.toggleDisplays('locations');
         });
       };
     });
