@@ -209,7 +209,8 @@ Extreme.addLocation = function(){
 
 Extreme.addToMyLocations = function(){
   var currentUserId = localStorage.getItem("user_id");
-  
+  $(this).css('background-color', 'red');
+
   var type = "post";
   var url  = "/api/users/addlocation";
   var data = {
