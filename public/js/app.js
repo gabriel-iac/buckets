@@ -174,11 +174,11 @@ Extreme.addLocation = function(){
         var lng = results[0].geometry.location.lng();
         var sport = $('#sport-select option:selected').val();
         var image = $('#image').val();
+        var description = $('#description').val();
+
         var creator = localStorage.getItem('user_id')
       
-        console.log(sport)
-        console.log(lat);
-        console.log(lng);
+        console.log(description);
 
         var location_name = results[0].formatted_address
         console.log(location_name);
@@ -193,13 +193,14 @@ Extreme.addLocation = function(){
           location_name: location_name,
           sport: sport,
           image:image,
+          description: description,
           creator: creator
-
-
         };
 
         Extreme.ajaxRequest(type, url, data, function(data){
           console.log("Marker added.")
+          Extreme.getLocations();
+          Extreme.ui.toggleDisplays('locations');
         });
       };
     });
@@ -330,10 +331,10 @@ Extreme.ui.displayLocations = function(data, tab){
         "<ul>"+
           "<li><img class='img-rounded' src='" + data[i].image +"'></li>"+
           "<li>" + data[i].location_name +"</li>"+
-          "<li>" + data[i].sport +"</li>"+
-          "<img src=" + data[i].image + "> "+
+          "<li>" + data[i].sport.name +"</li>"+
+          "<li>" + data[i].description +"</li>"+
           "<li>" + data[i].users +"</li>"+
-          "<li>" + data[i].creator +"</li>"+
+          "<li>" + data[i].creator.first_name +"</li>"+
           "<li><button class='add-to-list-btn' id=" + data[i]._id + ">Add to list</button></li>"+
         "</ul>"+
       "</li>"
