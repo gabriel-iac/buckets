@@ -6,13 +6,13 @@
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="/css/style.css">
   <link rel="stylesheet" type="text/css" href="/css/style.css">
-  <link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+  <!-- <link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'> -->
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,800italic,800,700italic,700' rel='stylesheet' type='text/css'>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false&key=<%= process.env.GOOGLE_API_KEY %>"></script>
   <script type="text/javascript" src="./js/app.js"></script>
 </head>
 <body>
-
   <header>
     <div class="navbar navbar-default navbar-static-top">
       <div class="container">
@@ -21,7 +21,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#" data-id="home">ExtremeAdvisor</a>
+        <a class="navbar-brand" href="#"  >ExtremeAdvisor</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
             <li><a href="#" data-id="locations">Locations</a>
@@ -46,7 +46,7 @@
     </div>
   </header>
 
-  <div id="home" class="tab">
+  <div id="home" data-id="home" class="tab">
     <section class="image-bg-fixed-height">
       <div class="container home-img-txt">
         <div class="row">
@@ -71,9 +71,9 @@
               <image class="img-responsive img-center " src="../img/share.png" />
             </div>
             <h4 class="text-center">
-           Share top secret spot with  your followers</h4>
-          </div>
-          <div class="col-md-4">
+             Share top secret spot with  your followers</h4>
+           </div>
+           <div class="col-md-4">
             <div class="circle">
               <image class="img-responsive img-center " src="../img/add.png" />
             </div>
@@ -107,7 +107,7 @@
             <div class="mini-box">
               <h2 class="text-left">Free Climbing</h2>
             </div>
-            <image class="img-responsive img-center " src="../img/free-cli.jpg" />
+            <image class="img-responsive img-center img-rounded " src="../img/free-cli.jpg" />
           </div>
           <div class="col-xs-6 sports-home">
             <div class="mini-box">
@@ -128,9 +128,8 @@
   <main class="container">
     <div id="new-location" class="tab">
       <div id="map"></div>
-
-      <hr></hr>
       <h1>Add a Location</h1>
+      <hr></hr>
       <form class="form-horizontal">
         <div class="form-group">
           <label for="name">Name</label>
@@ -168,11 +167,14 @@
         <input class="btn btn-default" type="submit">
       </form>
     </div>
+    <div id="locations" class="tab container">
+      <div class="row">
+        <em><h1 class="text-center">Locations</h1></em>
 
-    <div id="locations" class="tab">
-      <h1>Locations</h1>
-      <ul id="locations-list">
-      </ul>
+        <ul id="locations-list">
+          <hr>
+        </ul>
+      </div>
     </div>
 
     <div id="my-locations" class="tab">
@@ -182,39 +184,26 @@
     </div>
 
     <div id="sports" class="tab">
-      <h1>Sports</h1>
+      <em><h1 class="text-center">Sports</h1></em>
+      <hr>
       <ul id="sports-list">
       </ul>
     </div>
 
     <div id="users" class="tab">
-      <h1>Users</h1>
+      <em><h1 class="text-center">Users</h1></em>
+      <hr>
       <ul id="users-list">
       </ul>
     </div>
 
     <div id="welcome" class="tab">
-      <h1>Welcome</h1>
+      <em><h1 class="text-center">Welcome</h1></em>
+      <hr>
     </div>
 
-    <div id="sports" class="tab">
-      <h1>Sports</h1>
-      <ul id="sports-list">
-      </ul>
-    </div>
-
-    <div id="users" class="tab">
-      <h1>Users</h1>
-      <ul id="users-list">
-      </ul>
-    </div>
-
-    <div id="welcome" class="tab">
-      <h1>Welcome</h1>
-    </div>
-
-    <div id="signup" class="tab">
-      <h1>Sign Up</h1>
+    <div id="signup" class="tab" >
+      <em><h1 class='text-center'>Sign Up</h1></em>
       <form id="signup-form" method="post" action="/api/users">
 
         <div class="form-group">

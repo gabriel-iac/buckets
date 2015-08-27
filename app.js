@@ -9,7 +9,7 @@ var mongoose = require('mongoose');
 var router = express.Router();
 var userRouter = express.Router();
 var locationRouter = express.Router();
-var FacebookStrategy = require('passport-facebook').Strategy
+//var FacebookStrategy = require('passport-facebook').Strategy
 var passport = require('passport');
 var config = require('./config/config');
 var jwt = require('express-jwt');
@@ -18,7 +18,11 @@ var flash        = require('connect-flash');
 var session      = require('express-session');
 var Sport = require('./models/sport');
 
-mongoose.connect('mongodb://localhost/buckets');
+
+var databaseURL = process.env.MONGOLAB_URI || 'mongodb://localhost/buckets';
+mongoose.connect(databaseURL); 
+
+// mongoose.connect('mongodb://localhost/buckets');
 require('./config/passport')(passport);
 
 app.use(express.static(__dirname + '/public'));
