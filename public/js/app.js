@@ -344,7 +344,7 @@ Extreme.ui.displayLocations = function(data, tab){
     $("#" + tab + "-list").append(
       "<li class='col-md-4 locations-box '>"+
         "<ul class='location-wrapper effect1'>"+ 
-        "<div><img class='img-rounded' src='http://lorempixel.com/400/200/city'></div>"+
+        "<div><img class='img-rounded' src='" + data[i].image +"'></div>"+
         "<div class='text-container'>"+
           "<li class='title'>"+"<h4>" + data[i].location_name + "</h4>"+"</li>"+
           "<li class='creator'>" + " " +"<em>" + data[i].creator.first_name + "</em>"+"</li>"+
