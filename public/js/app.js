@@ -346,7 +346,7 @@ Extreme.ui.displayLocations = function(data, tab){
           "<li>"+ "Sport:" + " " + data[i].sport.name +"</li>"+
           "<li>"+ "Description:" + " " + data[i].description +"</li>"+
           "<li>"+ "Users:" + " " + data[i].users +"</li>"+
-          "<li><button class='add-to-list-btn btn btn-primary' id=" + data[i]._id + ">Add to list</button></li>"+
+          // "<li><button class='add-to-list-btn btn btn-primary' id=" + data[i]._id + ">Add to list</button></li>"+
         "</ul>"+
         "</div>"+
       "</li>"
