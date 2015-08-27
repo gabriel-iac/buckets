@@ -51,13 +51,13 @@ function User(){
     }).done(function(data){
       // console.log("The token that we're going to save to document.cookie or localStorage) is: ", data.token);
       console.log(data);
-           
+      
+      window.mainController.user.displayUser(data);     
       window.mainController.bake("access_token", data.token);
       window.mainController.init();
 
       $("#login-btn, #signup-btn").parent().hide();
-
-      toggleDisplays(sports-div);
+      toggleDisplays("welcome-div");
       $("#logout-btn").parent().show();
     });
   })
@@ -66,7 +66,8 @@ function User(){
     window.mainController.user.getUser(data.token, data.user.id, function(user){
       console.log(user.first_name);      
       localStorage.setItem("user", user);
-      // $("#logout-btn").parent().prepend("<li>"+user.first_name+"</li>");
+     $("#logout-btn").parent().parent().append("<li id='profile-btn'><a href='#'>"+user.first_name+"</a></li>");
+     $("#welcome-div h1").append(" " + user.first_name + "!");
     }); 
   }
 
@@ -88,7 +89,7 @@ function User(){
       window.mainController.init();
 
       $("#login-btn, #signup-btn").parent().hide();
-      toggleDisplays("sports-div");
+      toggleDisplays("welcome-div");
       $("#logout-btn").parent().show();
 
     });
@@ -130,6 +131,8 @@ function User(){
 
     $("#login-btn, #signup-btn").parent().show();
     $("#logout-btn").parent().hide();
+    $("#profile-btn").remove();
+    $("#welcome-div h1").text("Welcome");
     toggleDisplays("home");
     window.mainController.init();
     localStorage.removeItem("user");

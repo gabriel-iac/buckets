@@ -98,7 +98,7 @@ module.exports = function(passport){
           newUser.last_name = req.body.last_name;
           
           newUser.save(function(err){
-            console.log('hello guys')
+            console.log('user created')
             if(err) throw err;
             return callback(null, newUser);
           })
