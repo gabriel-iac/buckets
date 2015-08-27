@@ -322,20 +322,23 @@ Extreme.ui.displaySports = function(data, tab){
     $("#" + tab + "-list").append("<li>" + data[i].name + "</li>");
   } 
 }
-
+// " + data[i].image +"
 Extreme.ui.displayLocations = function(data, tab){
   for(var i=0; i < data.length; i++){
     console.log(data[i].image)
     $("#" + tab + "-list").append(
-      "<li>"+
-        "<ul>"+
-          "<li><img class='img-rounded' src='" + data[i].image +"'></li>"+
+      
+      "<li class='col-md-4 locations-box'>"+
+        "<ul class='location-wrapper'>"+ 
+          "<li><img class='img-rounded' src='http://lorempixel.com/400/200'></li>"+
+          "<div class='text-container>'"+
           "<li>" + data[i].location_name +"</li>"+
           "<li>" + data[i].sport.name +"</li>"+
           "<li>" + data[i].description +"</li>"+
           "<li>" + data[i].users +"</li>"+
           "<li>" + data[i].creator.first_name +"</li>"+
           "<li><button class='add-to-list-btn' id=" + data[i]._id + ">Add to list</button></li>"+
+          "</div>"+
         "</ul>"+
         "</div>"+
       "</li>"

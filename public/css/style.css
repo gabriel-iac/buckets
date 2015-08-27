@@ -144,8 +144,21 @@ footer {
   width: 100%;
   float: left;
 }
-
-
+.text-container{
+width: 100%;
+float: left;
+padding: 10px;
+}
+.location-wrapper{
+  border: 1px solid #ccc;
+  margin: 0;
+  padding: 0;
+  border-radius: 5px;
+}
+.locations-box img{
+  width:100%;
+  height: auto; 
+}
 .location-img{
 
   width: 100%;
