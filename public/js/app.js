@@ -146,6 +146,10 @@ Extreme.getLocationsBySport = function(){
 
 }
 
+Extreme.addToMyLocations = function(){
+  alert("hello")
+}
+
 Extreme.addLocation = function(){
   event.preventDefault();
 
@@ -201,6 +205,7 @@ Extreme.bindEvents = function(){
   $("#logout-btn").on("click", Extreme.logout);
   $(".nav li a").on("click", Extreme.ui.toggleTab);
   $("#submitLocation").on('click', Extreme.addLocation);
+  $("body").on('click', ".add-to-list-btn", Extreme.addToMyLocations);
 }
 
 Extreme.signup = function(){
@@ -305,14 +310,13 @@ Extreme.ui.displaySports = function(data, tab){
 }
 
 Extreme.ui.displayLocations = function(data, tab){
-  console.log(data)
   for(var i=0; i < data.length; i++){
     $("#" + tab + "-list").append(
       "<li>"+
         "<ul>"+
+          "<li><img class='img-rounded' src='" + data[i].image +"'></li>"+
           "<li>" + data[i].location_name +"</li>"+
           "<li>" + data[i].sport.name +"</li>"+
-          "<li><img src='" + data[i].image +"'></li>"+
           "<li>" + data[i].users +"</li>"+
           "<li>" + data[i].creator.first_name +"</li>"+
           "<li><button class='add-to-list-btn' id=" + data[i]._id + ">Add to list</button></li>"+
