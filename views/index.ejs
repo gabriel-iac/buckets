@@ -21,7 +21,9 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#"  >ExtremeAdvisor</a>
+        <img id="logo" src="../img/logo.png"><a class="navbar-brand" href="#" >ExtremeAdvisor</a>
+
+
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
             <li><a href="#" data-id="locations">Locations</a>
@@ -125,8 +127,10 @@
   </div>
   <main class="container">
     <div id="new-location" class="tab">
-      <div id="map"></div>
       <h1>Add a Location</h1>
+      <div id="location-image">
+        <image id="surfing-header" src="../img/bigsurfing.jpg" />
+      </div>
       <hr></hr>
       <form class="form-horizontal">
         <div class="form-group">
@@ -147,7 +151,7 @@
           <input class="form-control" type="text" name="image" id="image">
         </div>
         <div class="form-group">
-          <input type="submit" id="submitLocation" name="locationBtn" class="btn btn-primary" value="Search Location">
+          <input type="submit" id="submitLocation" name="locationBtn" class="btn btn-primary" value="Add Location">
         </div>
       </form>
     </div>
@@ -168,6 +172,7 @@
     <div id="locations" class="tab container">
       <div class="row">
         <em><h1 class="text-center">Locations</h1></em>
+        <div id="map"></div>
 
         <ul id="locations-list">
           <hr>
