@@ -1,5 +1,5 @@
 var User = require('../models/user');
-var FacebookStrategy = require('passport-facebook').Strategy;
+//var FacebookStrategy = require('passport-facebook').Strategy;
 var LocalStrategy = require('passport-local').Strategy;
 
 //FACEBOOK LOGIN
@@ -16,41 +16,41 @@ module.exports = function(passport){
    });
  });
 
- passport.use('facebook', new FacebookStrategy({
-  clientID        : process.env.FACEBOOK_KEY_API,
-  clientSecret    : process.env.FACEBOOK_SECRET_API,
-  callbackURL     : 'http://localhost:3000/auth/facebook/callback',
-  enableProof     : true,
-  profileFields   : ['name', 'emails']
-}, function(access_token, refresh_token, profile, done) {
-    // // Use this to see the information returned from Facebook
+//  passport.use('facebook', new FacebookStrategy({
+//   clientID        : process.env.FACEBOOK_KEY_API,
+//   clientSecret    : process.env.FACEBOOK_SECRET_API,
+//   callbackURL     : 'http://localhost:3000/auth/facebook/callback',
+//   enableProof     : true,
+//   profileFields   : ['name', 'emails']
+// }, function(access_token, refresh_token, profile, done) {
+//     // // Use this to see the information returned from Facebook
 
-    process.nextTick(function() {
+//     process.nextTick(function() {
 
-      User.findOne({ 'fb.id' : profile.id }, function(err, user) {
-        if (err) return done(err);
-        if (user) {
-          return done(null, user);
-        } else {
+//       User.findOne({ 'fb.id' : profile.id }, function(err, user) {
+//         if (err) return done(err);
+//         if (user) {
+//           return done(null, user);
+//         } else {
 
-          var newUser = new User();
+//           var newUser = new User();
 
-          newUser.fb.id           = profile.id;
-          newUser.fb.access_token = access_token;
-          newUser.fb.firstName    = profile.name.givenName;
-          newUser.fb.lastName     = profile.name.familyName;
-          newUser.fb.email        = profile.emails[0].value;
+//           newUser.fb.id           = profile.id;
+//           newUser.fb.access_token = access_token;
+//           newUser.fb.firstName    = profile.name.givenName;
+//           newUser.fb.lastName     = profile.name.familyName;
+//           newUser.fb.email        = profile.emails[0].value;
 
 
-          newUser.save(function(err) {
-            console.log(newUser);
-            if (err) throw err;
-            return done(null, newUser);
-          });
-        }
-      });
-    });
-  }));
+//           newUser.save(function(err) {
+//             console.log(newUser);
+//             if (err) throw err;
+//             return done(null, newUser);
+//           });
+//         }
+//       });
+//     });
+//   }));
 
   // USER SIMPLE LOGIN
   passport.use('local-login', new LocalStrategy({
