@@ -45,6 +45,12 @@ router.route('/users/:id')
 router.route('/users/:id')
   .get(usersController.showUser)
 
+router.route('/users/addlocation')
+  .post(usersController.addUserLocation)
+
+router.route('/users/mylocations')
+  .get(usersController.getMyLocations)
+
 // route to show a random message (GET http://localhost:8080/api/)
 router.get('/', function(req, res) {
   res.json({ message: 'Welcome to the coolest API on earth!' });
@@ -131,9 +137,6 @@ function authenticate(req, res) {
       res.json({ success: false, message: 'Authentication failed. User not found.' });
     } else if (user) {
 
-
-      //if (user.password != req.body.password) {
-        console.log("validating password " + user)
       if (!user.validPassword(req.body.password)) {
         res.json({ success: false, message: 'Authentication failed. Wrong password.' });
       } else {
