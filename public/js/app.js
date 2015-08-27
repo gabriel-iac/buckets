@@ -285,8 +285,8 @@ Extreme.ui = {};
 
 Extreme.ui.map = function() {
   var places;
-  var lat = 44.5403;
-  var long = -78.5463;
+  var lat = 40.3489;
+  var long = -105.5687;
   var mapCanvas = document.getElementById('map');
 
   Extreme.markers = [];
@@ -295,7 +295,7 @@ Extreme.ui.map = function() {
 
   var mapOptions = {
     center: new google.maps.LatLng(lat, long),
-    zoom: 8,
+    zoom: 6,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   }
 
@@ -344,7 +344,7 @@ Extreme.ui.displayLocations = function(data, tab){
     $("#" + tab + "-list").append(
       "<li class='col-md-4 locations-box '>"+
         "<ul class='location-wrapper effect1'>"+ 
-        "<div><img class='img-rounded' src='http://lorempixel.com/400/200/city'></div>"+
+        "<div><img class=img-rounded src="+ data[i].image +"></div>"+
         "<div class='text-container'>"+
           "<li class='title'>"+"<h4>" + data[i].location_name + "</h4>"+"</li>"+
           "<li class='creator'>" + " " +"<em>" + data[i].creator.first_name + "</em>"+"</li>"+
