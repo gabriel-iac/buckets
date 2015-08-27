@@ -63,6 +63,7 @@ function User(){
   })
 
   this.displayUser = function(data) {
+    console.log(data);
     window.mainController.user.getUser(data.token, data.user.id, function(user){
       console.log(user.first_name);      
       localStorage.setItem("user", user);
@@ -82,7 +83,7 @@ function User(){
         password: $("#login-password").val()
       },
     }).done(function(data){
-      // console.log("The token that we're going to save to document.cookie or localStorage) is: ", data.token);
+       console.log("The token that we're going to save to document.cookie or localStorage) is: ", data.token);
 
       window.mainController.user.displayUser(data);
       window.mainController.bake("access_token", data.token);

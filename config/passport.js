@@ -59,7 +59,7 @@ module.exports = function(passport){
     passReqToCallback : true
    }, function(req, email, password, callback){
     //search for a user with an email from the login form
-    User.findOne({'local.email': email}, function(err, user){
+    User.findOne({'email': email}, function(err, user){
       if(err) return callback(err);
       //if no user has been found
       if(!user) return callback(null, false, req.flash('loginMessage', 'oops user not found'));
@@ -67,7 +67,7 @@ module.exports = function(passport){
       //check password
       if(!user.validPassword(password)) return callback(null, false, req.flash('loginMessage', 'oops wrong password'));
 
-      //user has been authenticates, return user.
+      //user has been authenticated, return user.
       return callback(null, user);
     });
 
