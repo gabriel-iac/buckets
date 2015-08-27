@@ -25,8 +25,9 @@ var userSchema = new mongoose.Schema({
   }
 })
 
-
-
+userSchema.methods.addLocation = function(locationId){
+  this.locations.push(locationId);
+}
 
 userSchema.methods.encrypt = function(password){
   return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null)

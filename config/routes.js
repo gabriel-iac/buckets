@@ -45,6 +45,9 @@ router.route('/users/:id')
 router.route('/users/:id')
   .get(usersController.showUser)
 
+router.route('/users/addlocation')
+  .post(usersController.addUserLocation)
+
 // route to show a random message (GET http://localhost:8080/api/)
 router.get('/', function(req, res) {
   res.json({ message: 'Welcome to the coolest API on earth!' });

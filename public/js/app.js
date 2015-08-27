@@ -147,10 +147,6 @@ Extreme.getLocationsBySport = function(){
 
 }
 
-Extreme.addToMyLocations = function(){
-  
-}
-
 Extreme.addLocation = function(){
   event.preventDefault();
 
@@ -209,8 +205,19 @@ Extreme.addLocation = function(){
 
 
 Extreme.addToMyLocations = function(){
-  console.log(localStorage.getItem("user_first_name"));
-  console.log(localStorage.getItem("user_id"));
+  var currentUserId = localStorage.getItem("user_id");
+  
+  var type = "post";
+  var url  = "/api/users/addlocation";
+  var data = {
+    user_id   : currentUserId,
+    locationId: this.id
+  };
+
+  Extreme.ajaxRequest(type, url, data, function(user){
+    console.log(user);  
+    $('#add-location-flash').html("New location added to your bucket list!");
+  });
 }
 
 Extreme.bindEvents = function(){

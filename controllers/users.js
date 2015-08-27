@@ -31,6 +31,16 @@ function createUser(req, res){
   // })
 }
 
+function addUserLocation(req, res){
+  User.findById(req.body.user_id, function(err, user){
+    user.addLocation(req.body.locationId);
+    user.save(function(err){
+      if(err) console.log(err)
+      console.log("location added")
+    });
+  })
+}
+
 function updateUser(req, res){
   User.findByIdAndUpdate(req.params.id, req.body, function(err, users){
    if(err)
@@ -108,5 +118,6 @@ module.exports = {
   updateUser: updateUser,
   logout: logout,
   postSignup: postSignup,
-  postLogin: postLogin  
+  postLogin: postLogin,
+  addUserLocation: addUserLocation  
 }
