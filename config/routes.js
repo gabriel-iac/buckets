@@ -131,8 +131,10 @@ function authenticate(req, res) {
       res.json({ success: false, message: 'Authentication failed. User not found.' });
     } else if (user) {
 
-      // check if password matches
-      if (user.password != req.body.password) {
+
+      //if (user.password != req.body.password) {
+        console.log("validating password " + user)
+      if (!user.validPassword(req.body.password)) {
         res.json({ success: false, message: 'Authentication failed. Wrong password.' });
       } else {
 
@@ -153,9 +155,7 @@ function authenticate(req, res) {
           user: user
         });
       }   
-
     }
-
   });
 }
 

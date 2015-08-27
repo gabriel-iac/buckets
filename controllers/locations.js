@@ -3,9 +3,9 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
 function getAllLocations(req, res){
-  var locations = Location.find({} , function(err, locations){
+  var locations = Location.find({}).populate('creator sport').exec(function(err, locations){
     res.json(locations);
-  }).select('-_id -__v'); 
+  });
 };
 
 function getNewLocation(req,res){

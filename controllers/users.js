@@ -16,19 +16,19 @@ function getCurrentUser(req, res){
   if (req.query.id) {
     User.findById(req.query.id, function(err, user){
       res.json(user);
-    }).select('-password -_id -email -__v');
+    }).select('-password -email -__v');
   } else {
     res.status(404).send({ message: "There is no current user."})
   }
 }
 
 function createUser(req, res){
-  var user = new User(req.body);
-  user.save(function(err){
-    if(err) console.log(err);
-    console.log("User created")
-    res.redirect('/api/users')
-  })
+  // var user = new User(req.body);
+  // user.save(function(err){
+  //   if(err) console.log(err);
+  //   console.log("User created")
+  //   res.redirect('/api/users')
+  // })
 }
 
 function updateUser(req, res){
@@ -48,23 +48,23 @@ function showUser(req, res){
 
 // POST /login 
 function postLogin(req, res) {
-  var loginStrategy = passport.authenticate('local-login',function(err, user, info) {
-  if (err) return next(err)
+  // var loginStrategy = passport.authenticate('local-login',function(err, user, info) {
+  // if (err) return next(err)
      
-   if (!user) {
-     return res.status(401).send({ error: 'Something went wrong...' });
-   }
+  //  if (!user) {
+  //    return res.status(401).send({ error: 'Something went wrong...' });
+  //  }
 
-   //user has authenticated correctly thus we create a JWT token 
-   var tokenSecret = process.env.EXTREMEADVISOR_SECRET || "iloveextremesport";
-   var token = jwt.sign({ user: user._id }, tokenSecret);
+  //  //user has authenticated correctly thus we create a JWT token 
+  //  var tokenSecret = process.env.EXTREMEADVISOR_SECRET || "iloveextremesport";
+  //  var token = jwt.sign({ user: user._id }, tokenSecret);
 
-   //send back the token to the front-end to store in a cookie
-   res.status(200).send({ 
-     message: "Thank you for authenticating",
-     token: token
-   });
-  })(req, res, next);
+  //  //send back the token to the front-end to store in a cookie
+  //  res.status(200).send({ 
+  //    message: "Thank you for authenticating",
+  //    token: token
+  //  });
+  // })(req, res, next);
 }
 
 function postSignup(req, res, next) {
@@ -79,10 +79,15 @@ function postSignup(req, res, next) {
     var tokenSecret = process.env.EXTREMEADVISOR_SECRET || "iloveextremesport";
     var token = jwt.sign({ user: user._id }, tokenSecret);
 
+    var user = {
+      id: user._id,
+    }
+
     //send back the token to the front-end to store in a cookie
     res.status(200).send({ 
       message: "Thank you for authenticating",
-      token: token
+      token: token,
+      user: user
     });
 
   })(req, res, next);
