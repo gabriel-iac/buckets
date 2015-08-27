@@ -147,6 +147,10 @@ Extreme.getLocationsBySport = function(){
 
 }
 
+Extreme.addToMyLocations = function(){
+  
+}
+
 Extreme.addLocation = function(){
   event.preventDefault();
 
@@ -317,9 +321,9 @@ Extreme.ui.displayLocations = function(data, tab){
     $("#" + tab + "-list").append(
       "<li>"+
         "<ul>"+
+          "<li><img class='img-rounded' src='" + data[i].image +"'></li>"+
           "<li>" + data[i].location_name +"</li>"+
           "<li>" + data[i].sport.name +"</li>"+
-          "<li><img src='" + data[i].image +"'></li>"+
           "<li>" + data[i].users +"</li>"+
           "<li>" + data[i].creator.first_name +"</li>"+
           "<li><button class='add-to-list-btn' id=" + data[i]._id + ">Add to list</button></li>"+
