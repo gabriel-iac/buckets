@@ -144,17 +144,19 @@ footer {
   width: 100%;
   float: left;
 }
-.text-container{
-width: 100%;
-float: left;
-padding: 10px;
-}
+
 .location-wrapper{
+ 
+  margin: 15px 0;
+  padding: 0px;
   border: 1px solid #ccc;
-  margin: 0;
-  padding: 0;
   border-radius: 5px;
 }
+location-wrapper li{
+  width: auto;
+  float: left;
+}
+
 .locations-box img{
   width:100%;
   height: auto; 
@@ -165,4 +167,18 @@ padding: 10px;
   float: left;
   height: 200px;
   
+}
+.text-container{
+
+padding: 10px;
+}
+.text-container .title{
+margin-top: 10px;
+}
+.text-container .creator{
+  margin-top: -5px;
+  margin-bottom: 10px;
+}
+.text-container .btn{
+  margin:10px 0 0; 
 }
