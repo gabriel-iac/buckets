@@ -132,8 +132,6 @@ function authenticate(req, res) {
     } else if (user) {
 
       // check if password matches
-      console.log("Password 1:" + req.body.password);
-      console.log("Password 2:" + user.validPassword(req.body.password));
 
       //if (user.password != req.body.password) {
       if (!user.validPassword(req.body.password)) {

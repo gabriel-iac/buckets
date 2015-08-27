@@ -347,7 +347,7 @@ Extreme.ui.loggedOut = function(){
   $("[data-id='logout']").parent().hide();
   $("[data-id='profile']").remove();
   $("#welcome h1").text("Welcome");
-  Extreme.ui.toggleDisplays("home");
+  Extreme.ui.toggleDisplays("home").show();
 }
 
 $(function(){
