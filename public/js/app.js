@@ -307,15 +307,17 @@ Extreme.ui.displayLocations = function(data, tab){
   for(var i=0; i < data.length; i++){
     $("#" + tab + "-list").append(
       "<li>"+
-        "<ul>"+
+        "<div class='col-md-12 wrap'>"+ 
+        "<div class='location-img'>" +"<img src='"+ data[i].image + "' />" + "</div>"+
+        "<ul class='items-container'>"+
           "<li>" + data[i].location_name+"</li>"+
           "<li>" + data[i].country+"</li>"+
           "<li>" + data[i].sport +"</li>"+
-          "<li>" + data[i].image+"</li>"+
           "<li>" + data[i].users+"</li>"+
           "<li>" + data[i].creator+"</li>"+
-          "<li><button class='add-to-list-btn' id=" + data[i]._id + ">Add to list</button></li>"+
+          "<li><button class='add-to-list-btn btn btn-primary' id=" + data[i]._id + ">Add to list</button></li>"+
         "</ul>"+
+        "</div>"+
       "</li>"
     );
   }; 
@@ -347,7 +349,7 @@ Extreme.ui.loggedOut = function(){
   $("[data-id='logout']").parent().hide();
   $("[data-id='profile']").remove();
   $("#welcome h1").text("Welcome");
-  Extreme.ui.toggleDisplays("home").show();
+  Extreme.ui.toggleDisplays("home").show;
 }
 
 $(function(){

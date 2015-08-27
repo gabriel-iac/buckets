@@ -133,6 +133,7 @@ function authenticate(req, res) {
 
 
       //if (user.password != req.body.password) {
+        console.log("validating password " + user)
       if (!user.validPassword(req.body.password)) {
         res.json({ success: false, message: 'Authentication failed. Wrong password.' });
       } else {
