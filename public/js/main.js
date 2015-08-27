@@ -8,14 +8,13 @@ function MainController(){
 MainController.prototype.init = function(){
   var access_token = this.eat("access_token");
   if (access_token) {
-    // window.mainController.getUsers();
-    // window.mainController.getLocations();
-
-    // var sports = window.mainController.sport.getSports();
-    // for (var i = 0; i < sports.length; i++) {
-    //   $("#sports-listing").append("<li>" + sports[i].name + "</li>");
-    // };
-
+    // this.users.getUsers();
+    // this.locations.getLocations();
+    
+    var sports = this.sport.getSports(access_token);
+    // store sports in localStorage
+    localStorage.setItem("sports", sports);
+    $('#sports-listing ul').append(sports)
 
   } else {
     console.log("clear pages...")
@@ -75,6 +74,5 @@ MainController.prototype.createLocation = function(){
 
 $(function(){
   window.mainController = window.mainController || new MainController();
-  window.mainController.init();
   window.mainController.user.bindEvents();
 });
