@@ -209,7 +209,12 @@ Extreme.addLocation = function(){
 
 Extreme.addToMyLocations = function(){
   var currentUserId = localStorage.getItem("user_id");
-  $(this).css('background-color', 'red');
+  
+  if(this.style.backgroundColor == 'red'){
+    $(this).css('background-color', '#337AB7')
+  }else{
+    $(this).css('background-color', 'red');
+  }
 
   var type = "post";
   var url  = "/api/users/addlocation";
@@ -380,7 +385,7 @@ Extreme.ui.loggedOut = function(){
   $("[data-id='login'], [data-id='signup']").parent().show();
   $("[data-id='logout']").parent().hide();
   $("#profile-btn").remove();
-  $("#welcome h1").text("Welcome");
+  //$("#welcome h1").text("Welcome");
   Extreme.ui.toggleDisplays("home").show();
 
 }
