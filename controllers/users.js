@@ -16,7 +16,7 @@ function getCurrentUser(req, res){
   if (req.query.id) {
     User.findById(req.query.id, function(err, user){
       res.json(user);
-    }).select('-password -_id -email -__v');
+    }).select('-password -email -__v');
   } else {
     res.status(404).send({ message: "There is no current user."})
   }

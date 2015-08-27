@@ -38,7 +38,7 @@
 
   <div id="home" class="tab">
    <section class="image-bg-fixed-height">
-   <div class="container home-img-txt">
+     <div class="container home-img-txt">
        <div class="row">
          <h1>Add the world’s most extreme locations to your bucket list.</h1>
          <a href="#" class="btn btn-lg btn-success" data-id="login" ><span class="glyphicon glyphicon-share-alt"></span> Log in</a>
@@ -48,7 +48,7 @@
      </div>
    </section>
    <div class="row featured-container">
-     <main class="container">
+     <div class="container">
        <section class="featured">
          <div class="col-md-4">
            <div class="circle">
@@ -71,26 +71,27 @@
          </div>
        </section>
      </div>
-     <div class="container">
-       <div class="col-xs-12 location-list">
-         <div class="row">
-           <div class="col-xs-6 sports-home"><div class="mini-box"><h2 class="text-left">Diving</h2></div>
-           <image class="img-responsive img-center img-rounded" src="../img/sky-diving.jpg" />
-         </div>
-         <div class="col-xs-6 sports-home"><div class="mini-box"><h2 class="text-left">Paragliding</h2></div>
-         <image class="img-responsive img-center img-rounded" src="../img/paragliding.jpg" />
-       </div>
-       <div class="col-xs-6 sports-home" ><div class="mini-box"><h2 class="text-left">Skiing</h2></div>
-       <image class="img-responsive img-center img-rounded" src="../img/skiing.jpg" />
-     </div>
-     <div class="col-xs-6 sports-home"><div class="mini-box"><h2 class="text-left">Free Climbing</h2></div>
-     <image class="img-responsive img-center " src="../img/free-cli.jpg" />
    </div>
-   <div class="col-xs-6 sports-home"><div class="mini-box"><h2 class="text-left">Surfing</h2></div>
-   <image class="img-responsive img-center img-rounded " src="../img/surfing.jpg" />
+   <div class="container">
+     <div class="col-xs-12 location-list">
+       <div class="row">
+         <div class="col-xs-6 sports-home"><div class="mini-box"><h2 class="text-left">Diving</h2></div>
+         <image class="img-responsive img-center img-rounded" src="../img/sky-diving.jpg" />
+       </div>
+       <div class="col-xs-6 sports-home"><div class="mini-box"><h2 class="text-left">Paragliding</h2></div>
+       <image class="img-responsive img-center img-rounded" src="../img/paragliding.jpg" />
+     </div>
+     <div class="col-xs-6 sports-home" ><div class="mini-box"><h2 class="text-left">Skiing</h2></div>
+     <image class="img-responsive img-center img-rounded" src="../img/skiing.jpg" />
+   </div>
+   <div class="col-xs-6 sports-home"><div class="mini-box"><h2 class="text-left">Free Climbing</h2></div>
+   <image class="img-responsive img-center " src="../img/free-cli.jpg" />
  </div>
- <div class="col-xs-6 sports-home"><div class="mini-box"><h2 class="text-left">Kite Surfing</h2></div>
- <image class="img-responsive img-center img-rounded" src="../img/kitesurf.jpg" />
+ <div class="col-xs-6 sports-home"><div class="mini-box"><h2 class="text-left">Surfing</h2></div>
+ <image class="img-responsive img-center img-rounded " src="../img/surfing.jpg" />
+</div>
+<div class="col-xs-6 sports-home"><div class="mini-box"><h2 class="text-left">Kite Surfing</h2></div>
+<image class="img-responsive img-center img-rounded" src="../img/kitesurf.jpg" />
 </div>
 </div>
 </div>
@@ -140,6 +141,7 @@
       <input class="btn btn-default" type="submit">
     </form>
   </div>
+
   <div id="locations" class="tab">
     <h1>Locations</h1>
     <ul id="locations-list">
@@ -159,13 +161,42 @@
   <div id="welcome" class="tab">
     <h1>Welcome</h1>
   </div>
+
+  <div id="locations" class="tab">
+    <h1>Locations</h1>
+    <ul id="locations-list" class="list-inline">
+    </ul>
+  </div>
+
+  <div id="sports" class="tab">
+    <h1>Sports</h1>
+    <ul id="sports-list">
+    </ul>
+  </div>
+
+  <div id="users" class="tab">
+    <h1>Users</h1>
+    <ul id="users-list">
+    </ul>
+  </div>
+
+  <div id="home" class="tab">
+    <h1>Homepage</h1>
+  </div>
+
+  <div id="welcome" class="tab">
+    <h1>Welcome</h1>
+  </div>
+
   <div id="signup" class="tab">
     <h1>Sign Up</h1>
     <form id="signup-form" method="post" action="/api/users">
+
       <div class="form-group">
         <label for="login-email">First Name</label>
         <input class="form-control" type="text" name="first_name" id="first_name">
       </div>
+
       <div class="form-group">
         <label for="last_name">Last Name</label>
         <input class="form-control" type="text" name="last_name" id="last_name">
@@ -175,14 +206,18 @@
         <label for="signup-email">Email</label>
         <input class="form-control" type="text" name="signup-email" id="signup-email">
       </div>
+
       <div class="form-group">
         <label for="signup-password">Password</label>
         <input class="form-control" type="password" name="signup-password" id="signup-password">
       </div>
+
       <input class="btn btn-default" type="submit">
     </form>
   </div>
 </main>
+
+
 <footer class="footer">
   <div class="container">
     <p class="text-muted">Copyright.</p>

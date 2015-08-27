@@ -95,7 +95,8 @@ Extreme.getCurrentUser = function(user){
   var user = null;
 
   Extreme.ajaxRequest(type, url, user, function(user){
-    localStorage.setItem("user", user);
+    localStorage.setItem("user_first_name", user.first_name);
+    localStorage.setItem("user_id", user._id);
     Extreme.ui.displayUser(user);
   }); 
 }
@@ -113,6 +114,7 @@ Extreme.getLocations = function(){
   Extreme.ajaxRequest(type, url, data, function(data){
     Extreme.ui.displayLocations(data, id);
   });
+
 }
 
 Extreme.getUsers = function(){
@@ -143,6 +145,10 @@ Extreme.getMyLocations = function(){
 
 Extreme.getLocationsBySport = function(){
 
+}
+
+Extreme.addToMyLocations = function(){
+  
 }
 
 Extreme.addLocation = function(){
@@ -194,12 +200,19 @@ Extreme.addLocation = function(){
   }
 }
 
+
+Extreme.addToMyLocations = function(){
+  console.log(localStorage.getItem("user_first_name"));
+  console.log(localStorage.getItem("user_id"));
+}
+
 Extreme.bindEvents = function(){
   $("#signup-form").on("submit", Extreme.signup);
   $("#login-form").on("submit", Extreme.login);
   $("#logout-btn").on("click", Extreme.logout);
   $(".nav li a").on("click", Extreme.ui.toggleTab);
   $("#submitLocation").on('click', Extreme.addLocation);
+  $("body").on('click', ".add-to-list-btn", Extreme.addToMyLocations);
 }
 
 Extreme.signup = function(){
@@ -307,15 +320,13 @@ Extreme.ui.displayLocations = function(data, tab){
   for(var i=0; i < data.length; i++){
     $("#" + tab + "-list").append(
       "<li>"+
-        "<div class='col-md-12 wrap'>"+ 
-        "<div class='location-img'>" +"<img src='"+ data[i].image + "' />" + "</div>"+
-        "<ul class='items-container'>"+
-          "<li>" + data[i].location_name+"</li>"+
-          "<li>" + data[i].country+"</li>"+
-          "<li>" + data[i].sport +"</li>"+
-          "<li>" + data[i].users+"</li>"+
-          "<li>" + data[i].creator+"</li>"+
-          "<li><button class='add-to-list-btn btn btn-primary' id=" + data[i]._id + ">Add to list</button></li>"+
+        "<ul>"+
+          "<li><img class='img-rounded' src='" + data[i].image +"'></li>"+
+          "<li>" + data[i].location_name +"</li>"+
+          "<li>" + data[i].sport.name +"</li>"+
+          "<li>" + data[i].users +"</li>"+
+          "<li>" + data[i].creator.first_name +"</li>"+
+          "<li><button class='add-to-list-btn' id=" + data[i]._id + ">Add to list</button></li>"+
         "</ul>"+
         "</div>"+
       "</li>"
