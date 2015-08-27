@@ -16,6 +16,11 @@ MainController.prototype.init = function(){
     localStorage.setItem("sports", sports);
     $('#sports-listing ul').append(sports)
 
+    $('.add-to-list-btn').on('click', function(){
+      addToMyList(this.id);
+    })
+
+
   } else {
     console.log("clear pages...")
   }

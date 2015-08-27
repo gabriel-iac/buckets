@@ -28,20 +28,22 @@ $.ajax({
 }
 
 LocationAjax.getLocations = function(){
-  $("#all_locations table tbody").html("");
+  $("#location-listing").html("");
   $.get('/api/locations')
   .done(function(data){
     $.each(data, function(index, item){
-     var row = $("<tr>"+
-      "<td>" + item.location_name+"</td>"+
-      "<td>" + item.country+"</td>"+
-      "<td>" + item.sport +"</td>"+
-      "<td>" + item.image+"</td>"+
-      "<td>" + item.users+"</td>"+
-      "<td>" + item.creator+"</td>"+
-      "</tr>");
+      console.log(item);
+     var list = $("<ul>"+
+      "<li>" + item.location_name+"</li>"+
+      "<li>" + item.country+"</li>"+
+      "<li>" + item.sport +"</li>"+
+      "<li>" + item.image+"</li>"+
+      "<li>" + item.users+"</li>"+
+      "<li>" + item.creator+"</li>"+
+      "<li><button class='add-to-list-btn' id="+item._id +">Add to list</button></li>"+
+      "</ul>");
 
-     row.appendTo("#all_locations table tbody")
+     list.appendTo("#location-listing")
    })
   })
 }
@@ -57,6 +59,10 @@ LocationAjax.initialize = function(){
   LocationAjax.getLocations();
 
   $('#post_form').on("submit", LocationAjax.locationForm);
+}
+
+function addToMyList(location_id){
+  alert(location_id);
 }
 
 

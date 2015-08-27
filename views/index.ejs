@@ -39,8 +39,8 @@
   </header>
 
   <header class="image-bg-fluid-height">
-        <img class="img-responsive img-center" src="http://placehold.it/200x200&text=Logo" alt="">
-    </header>
+    <img class="img-responsive img-center" src="http://placehold.it/200x200&text=Logo" alt="">
+  </header>
   <main class="container">
     <div id="new_location" class="tab" style="display: none">
       <div id="map" ></div>
@@ -63,71 +63,60 @@
 
           <div class="form-group">
             <label for="sport">Sport</label>
-          <select class="form-control" data-style="btn-info" name="selectpicker" id="select_sport">
-            <optgroup label="Select Table">
-              <% sports.forEach(function(sport){ %>
-              
-              <option value="<%=sport.id %>" ><%= sport.name %></option>
+            <select class="form-control" data-style="btn-info" name="selectpicker" id="select_sport">
+              <optgroup label="Select Table">
+                <% sports.forEach(function(sport){ %>
 
-              
-
-              <% }) %> 
-              
-            </optgroup>
-          </select>
+                <option value="<%=sport.id %>" ><%= sport.name %></option>
 
 
+
+                <% }) %> 
+
+              </optgroup>
+            </select>
+
+
+            <div class="form-group">
+              <label for="image">Image</label>
+              <input class="form-control" type="text" name="image" id="image">
+            </div>
+
+            <div class="form-group">
+              <input type="submit" id="submitLocation" name="locationBtn" class="btn btn-primary" value="Search Location">
+            </div>
+          </fieldset>
+        </form>
+      </div>
+      <div id="login-div" class="tab" style="display: none">
+        <h1>Login</h1>
+        <form id="login" method="post" action="/api/authenticate">
           <div class="form-group">
-            <label for="image">Image</label>
-            <input class="form-control" type="text" name="image" id="image">
+            <label for="login-email">Email</label>
+            <input class="form-control" type="text" name="login-email" id="login-email">
           </div>
 
           <div class="form-group">
-            <input type="submit" id="submitLocation" name="locationBtn" class="btn btn-primary" value="Search Location">
+            <label for="login-password">Password</label>
+            <input class="form-control" type="password" name="login-password" id="login-password">
           </div>
-        </fieldset>
-      </form>
-    </div>
-    <div id="login-div" class="tab" style="display: none">
-      <h1>Login</h1>
-      <form id="login" method="post" action="/api/authenticate">
-        <div class="form-group">
-          <label for="login-email">Email</label>
-          <input class="form-control" type="text" name="login-email" id="login-email">
-        </div>
 
-        <div class="form-group">
-          <label for="login-password">Password</label>
-          <input class="form-control" type="password" name="login-password" id="login-password">
-        </div>
-
-        <input class="btn btn-default" type="submit">
-      </form>
-    </div>
+          <input class="btn btn-default" type="submit">
+        </form>
+      </div>
 
 
       <div id="all_locations" class="tab" style="display: none">
-        <table class="table table-stripped table-bordered">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Sport</th>
-              <th>Image</th>
-              <th>Creator</th>
-            </tr>
-          </thead>
-          <tbody>
+       <ul id="location-listing">
+      </ul>
+    </div>
 
-          </tbody>
-        </table>
-      </div>
-     
 
     <div id="sports-div" class="tab" style="display: none">
       <h1>Sports</h1>
       <div id="sports-listing">
         <ul>
-         
+
         </ul>
       </div>
     </div>
