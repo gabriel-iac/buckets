@@ -147,7 +147,7 @@ Extreme.getLocationsBySport = function(){
 }
 
 Extreme.addToMyLocations = function(){
-  alert("hello")
+  
 }
 
 Extreme.addLocation = function(){
@@ -310,6 +310,7 @@ Extreme.ui.displaySports = function(data, tab){
 }
 
 Extreme.ui.displayLocations = function(data, tab){
+  console.log(localStorage.getItem('user'))
   for(var i=0; i < data.length; i++){
     $("#" + tab + "-list").append(
       "<li>"+
