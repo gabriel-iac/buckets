@@ -16,7 +16,7 @@ var jwt = require('express-jwt');
 var cookieParser = require('cookie-parser');
 var flash        = require('connect-flash');
 var session      = require('express-session');
-var Sport        = require('./models/sport')
+var Sport = require('./models/sport');
 
 mongoose.connect('mongodb://localhost/buckets');
 require('./config/passport')(passport);
@@ -49,7 +49,7 @@ app.set("view engine", "ejs");
 app.get('/', function(req, res){
   Sport.find({}, function(err, sports){
     if(err) console.log(err);
-    res.render('index', {sports: sports});
+    res.render('index', {sports:sports})
   })
 
 })

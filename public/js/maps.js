@@ -28,6 +28,7 @@ Map.initialize = function() {
   var mapCanvas = document.getElementById('map');
   var map = new google.maps.Map(mapCanvas, mapOptions);
 
+
   $("#submitLocation").on('click',function(){
     event.preventDefault()
     var loc = $("#location").val();
@@ -48,6 +49,9 @@ Map.initialize = function() {
       // .lat and lng return degrees from the google api
       var lat = results[0].geometry.location.lat();
       var lng = results[0].geometry.location.lng();
+      var sport = $('#select_sport option:selected').val();
+      alert(sport);
+      console.log(sport)
       console.log(lat);
       console.log(lng);
       var location_name = results[0].formatted_address
@@ -64,7 +68,9 @@ Map.initialize = function() {
           name: name,
           lat: lat,
           lng: lng,
-          location_name: location_name
+          location_name: location_name,
+          sport: sport
+          
         },
         beforeSend: function(xhr){
           xhr.setRequestHeader("x-access-token", access_token);
