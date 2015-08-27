@@ -18,7 +18,11 @@ var flash        = require('connect-flash');
 var session      = require('express-session');
 var Sport = require('./models/sport');
 
-mongoose.connect('mongodb://localhost/buckets');
+
+var databaseURL = process.env.MONGOLAB_URI || 'mongodb://localhost/buckets';
+mongoose.connect(databaseURL);
+
+// mongoose.connect('mongodb://localhost/buckets');
 require('./config/passport')(passport);
 
 app.use(express.static(__dirname + '/public'));
@@ -64,6 +68,8 @@ var routes = require('./config/routes');
 
 app.use("/api", routes);
 
-app.listen(port, function(){
-  console.log('listening on port 3000')
-});
+app.listen(process.env.PORT || 3000 )
+
+// app.listen(port, function(){
+//   console.log('listening on port 3000')
+// });
