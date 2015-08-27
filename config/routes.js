@@ -131,7 +131,6 @@ function authenticate(req, res) {
       res.json({ success: false, message: 'Authentication failed. User not found.' });
     } else if (user) {
 
-      // check if password matches
 
       //if (user.password != req.body.password) {
       if (!user.validPassword(req.body.password)) {
