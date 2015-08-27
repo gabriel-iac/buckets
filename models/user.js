@@ -26,6 +26,8 @@ var userSchema = new mongoose.Schema({
 })
 
 
+
+
 userSchema.methods.encrypt = function(password){
   return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null)
 }

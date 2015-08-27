@@ -330,10 +330,10 @@ Extreme.ui.displayLocations = function(data, tab){
         "<ul>"+
           "<li><img class='img-rounded' src='" + data[i].image +"'></li>"+
           "<li>" + data[i].location_name +"</li>"+
-          "<li>" + data[i].sport.name +"</li>"+
+          "<li>" + data[i].sport +"</li>"+
           "<img src=" + data[i].image + "> "+
           "<li>" + data[i].users +"</li>"+
-          "<li>" + data[i].creator.first_name +"</li>"+
+          "<li>" + data[i].creator +"</li>"+
           "<li><button class='add-to-list-btn' id=" + data[i]._id + ">Add to list</button></li>"+
         "</ul>"+
       "</li>"
@@ -351,7 +351,7 @@ Extreme.ui.populateSelect = function(id){
 
   Extreme.ajaxRequest(type, url, data, function(data){
     $.each(data, function(index, sport){
-      $("#sport-select").append("<option value=' + sport.id +'>"+ sport.name +"</option>");
+      $("#sport-select").append("<option value='" + sport._id + "'>"+ sport.name +"</option>");
     })
   });
 };
