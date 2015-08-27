@@ -1,3 +1,6 @@
+body{
+  font-family: 'Oswald', sans-serif;
+}
 .tab {
   display: none;
 }
@@ -7,13 +10,21 @@
 ol, ul {
   list-style: none;
 }
-
+.navbar{
+  margin-bottom: 0px;
+}
 #map {
   width: 100%;
   height: 400px;
   background-color: #CCC;
 }
-
+.home-img-txt{
+  color: #f2f2f2;
+  margin-top:200px; 
+}
+.home-img-txt a{
+  margin: 20px;
+}
 .image-bg-fluid-height,
 .image-bg-fixed-height {
   text-align: center;
@@ -29,8 +40,8 @@ ol, ul {
 }
 
 .image-bg-fixed-height {
-  background: url('http://lorempixel.com/g/1920/500/') no-repeat center center scroll;
-  height: 450px;
+  background: url('../img/home-bg.jpg') no-repeat center center scroll;
+  height: 100vh;
 }
 
 .img-center {
@@ -73,12 +84,13 @@ footer {
   margin-top: 30px;
   width: 100%;
   float: left;
-
+  
 
 }
 
 .featured-container{
   background-color:#f2f2f2;
+  border-bottom:1px solid #ccc;
 }
 .circle {
  width: 50%;
@@ -86,11 +98,15 @@ footer {
  margin-left: 25%;
  text-align: center;
  font-size: 12px;
- padding: 25% 0;
+ /* padding: 25% 0;*/
  line-height: 0;
- position: relative;
- background: url('http://lorempixel.com/g/1920/500/') no-repeat center center scroll;
+ border: 1px solid #ccc;
  color: white;
+ background-color: #fff;
+}
+.circle img{
+  width: 173px;
+  height: 173px;
 }
 
 #footer {
@@ -103,7 +119,7 @@ footer {
 
 
 .mini-box {
- background-color: #10BCFF;
+ position: absolute;
  color: white;
  text-align: center;
  margin: 2px;
@@ -113,6 +129,15 @@ footer {
 .mini-box {
  height: 30px
 }
+.sports-home{
+  width: 380px;
+  height: 250px;
+  overflow: hidden !important;
+}
+.sports-home h2{
+  margin-left: 10px;
+}
+
 
 .location-list{
   margin-top: 20px;
@@ -123,8 +148,8 @@ footer {
 
 .location-img{
 
-      width: 100%;
-      float: left;
-      height: 200px;
+  width: 100%;
+  float: left;
+  height: 200px;
   
 }
