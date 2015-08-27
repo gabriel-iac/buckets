@@ -20,9 +20,9 @@ var Sport = require('./models/sport');
 
 
 var databaseURL = process.env.MONGOLAB_URI || 'mongodb://localhost/buckets';
-// mongoose.connect(databaseURL);
+mongoose.connect(databaseURL); 
 
-mongoose.connect('mongodb://localhost/buckets');
+// mongoose.connect('mongodb://localhost/buckets');
 require('./config/passport')(passport);
 
 app.use(express.static(__dirname + '/public'));
