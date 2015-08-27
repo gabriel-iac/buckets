@@ -5,16 +5,10 @@
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="/css/style.css">
   <link rel="stylesheet" type="text/css" href="/css/reset.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script type="text/javascript"
   src="//maps.googleapis.com/maps/api/js?sensor=false&key=<%= process.env.GOOGLE_API_KEY %>"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  <script src="./js/models/user.js"></script>
-  <script src="./js/models/location.js"></script>
-  <script src="./js/models/sport.js"></script>
-  <script src="./js/models/country.js"></script>
-  <script src="./js/main.js"></script>
-  <script src="./js/location-ajax.js"></script>
-  <script type="text/javascript" src="/js/maps.js"></script>
+  <script type="text/javascript" src="./js/app.js"></script>
 </head>
 <body>
   <header>
@@ -25,76 +19,70 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#" id="home-btn">ExtremeAdvisor</a>
+        <a class="navbar-brand" href="#" data-id="home">ExtremeAdvisor</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="#" id="locations-btn">Locations</a></li>
-            <li><a href="#" id="new-btn">New</a></li>
-            <li><a href="#" id="login-btn">Login</a></li>
-            <li><a href="#" id="signup-btn">Sign Up</a></li>
-            <li><a href="#" id="logout-btn">Logout</a></li>
+            <li><a href="#" data-id="locations">Locations</a></li>
+            <li><a href="#" data-id="new-location">New Location</a></li>
+            <li><a href="#" data-id="sports">Sports</a></li>
+            <li><a href="#" data-id="users">Users</a></li>
+            <li><a href="#" data-id="login">Login</a></li>
+            <li><a href="#" data-id="signup">Sign Up</a></li>
+            <li><a href="#" id="logout-btn" data-id="logout">Logout</a></li>
           </ul>
         </div>
       </div>
     </div>
   </header>
 
-  
 
-    <div id="new_location" class="tab" style="display: none">
-      <div id="map" ></div>
+  <main class="container">
+    <div id="new-location" class="tab">
+      <div id="map"></div>
+
       
       <hr></hr>
       <h1>Add a Location</h1>
       <form class="form-horizontal">
-        <fieldset>
-          <legend>Add  Your Location</legend>
 
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input class="form-control" id="location" name="location" type="text" placeholder="Enter location">
-          </div>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input class="form-control" id="location" name="location" type="text" placeholder="Enter location">
+        </div>
 
-          <div class="form-group">
-            <label for="country">Country</label>
-            <input class="form-control" type="text" name="country" id="country">
-          </div>
 
-          <div class="form-group">
-            <label for="sport">Sport</label>
-          <select class="form-control" data-style="btn-info" name="selectpicker" id="select_sport">
-            <optgroup label="Select Table">
-              <% sports.forEach(function(sport){ %>
-              
-              <option value="<%=sport.id %>" ><%= sport.name %></option>
+        <div class="form-group">
+          <label for="country">Country</label>
+          <input class="form-control" type="text" name="country" id="country">
+        </div>
 
-              <% }) %> 
-              
-            </optgroup>
+        <div class="form-group">
+          <label for="sport">Sport</label>
+          <select class="form-control" name="selectpicker" id="sport-select">
           </select>
+        </div>
 
+        <div class="form-group">
+          <label for="image">Image</label>
+          <input class="form-control" type="text" name="image" id="image">
+        </div>
 
-          <div class="form-group">
-            <label for="image">Image</label>
-            <input class="form-control" type="text" name="image" id="image">
-          </div>
-
-          <div class="form-group">
-            <input type="submit" id="submitLocation" name="locationBtn" class="btn btn-primary" value="Search Location">
-          </div>
-        </fieldset>
+        <div class="form-group">
+          <input type="submit" id="submitLocation" name="locationBtn" class="btn btn-primary" value="Search Location">
+        </div>
       </form>
     </div>
-    <div id="login-div" class="tab" style="display: none">
+
+    <div id="login" class="tab">
       <h1>Login</h1>
-      <form id="login" method="post" action="/api/authenticate">
+      <form id="login-form" method="post" action="/api/authenticate">
         <div class="form-group">
-          <label for="email">Email</label>
+          <label for="login-email">Email</label>
           <input class="form-control" type="text" name="login-email" id="login-email">
         </div>
 
         <div class="form-group">
-          <label for="email">Password</label>
+          <label for="login-password">Password</label>
           <input class="form-control" type="password" name="login-password" id="login-password">
         </div>
 
@@ -102,31 +90,22 @@
       </form>
     </div>
 
+    <div id="locations" class="tab">
+      <h1>Locations</h1>
+      <ul id="locations-list">
+      </ul>
+    </div>
 
-      <div id="all_locations" class="tab" style="display: none">
-        <table class="table table-stripped table-bordered">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Sport</th>
-              <th>Image</th>
-              <th>Creator</th>
-            </tr>
-          </thead>
-          <tbody>
-
-          </tbody>
-        </table>
-      </div>
-     
-
-    <div id="sports-div" class="tab" style="display: none">
+    <div id="sports" class="tab">
       <h1>Sports</h1>
-      <div id="sports-listing">
-        <ul>
-         
-        </ul>
-      </div>
+      <ul id="sports-list">
+      </ul>
+    </div>
+
+    <div id="users" class="tab">
+      <h1>Users</h1>
+      <ul id="users-list">
+      </ul>
     </div>
 
     <div id="home" class="tab">
@@ -166,37 +145,37 @@
         </div>
     </div>
 
-    <div id="welcome-div" class="tab" style="display: none">
+    <div id="welcome" class="tab">
       <h1>Welcome</h1>
     </div>
 
-    <div id="signup-div" class="tab" style="display: none">
+    <div id="signup" class="tab">
       <h1>Sign Up</h1>
-      <form id="signup" method="post" action="/api/users">
+      <form id="signup-form" method="post" action="/api/users">
 
-       <div class="form-group">
-         <label for="login-email">First Name</label>
-         <input class="form-control" type="text" name="first_name" id="first_name">
-       </div>
+        <div class="form-group">
+          <label for="login-email">First Name</label>
+          <input class="form-control" type="text" name="first_name" id="first_name">
+        </div>
 
-       <div class="form-group">
-         <label for="last_name">Last Name</label>
-         <input class="form-control" type="text" name="last_name" id="last_name">
-       </div>
-       <div class="form-group">
-         <label for="signup-email">Email</label>
-         <input class="form-control" type="text" name="signup-email" id="signup-email">
-       </div>
+        <div class="form-group">
+          <label for="last_name">Last Name</label>
+          <input class="form-control" type="text" name="last_name" id="last_name">
+        </div>
+        
+        <div class="form-group">
+          <label for="signup-email">Email</label>
+          <input class="form-control" type="text" name="signup-email" id="signup-email">
+        </div>
 
-       <div class="form-group">
-         <label for="signup-password">Password</label>
-         <input class="form-control" type="password" name="signup-password" id="signup-password">
-       </div>
+        <div class="form-group">
+          <label for="signup-password">Password</label>
+          <input class="form-control" type="password" name="signup-password" id="signup-password">
+        </div>
 
-       <input class="btn btn-default" type="submit">
-     </form>
-   </div>
-
+        <input class="btn btn-default" type="submit">
+      </form>
+    </div>
  </main>
 <footer id="footer">
   <div class="container">
