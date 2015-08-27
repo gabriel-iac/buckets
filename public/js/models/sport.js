@@ -1,5 +1,5 @@
 function Sport(){
-  
+
   this.getSports = function(userToken){
     console.log("Getting sports");
 

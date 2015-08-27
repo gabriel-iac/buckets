@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Main page</title>
+  <title>Extreme Advisor</title>
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="/css/style.css">
   <script type="text/javascript"
@@ -24,7 +24,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">ExtremeAdvisor</a>
+        <a class="navbar-brand" href="#" id="home-btn">ExtremeAdvisor</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
             <li><a href="#" id="locations-btn">Locations</a></li>
@@ -63,14 +63,18 @@
 
           <div class="form-group">
             <label for="sport">Sport</label>
-            <select class="form-control" id="select1">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-          </div>
+          <select class="form-control" data-style="btn-info" name="selectpicker" id="select_sport">
+            <optgroup label="Select Table">
+              <% sports.forEach(function(sport){ %>
+              
+              <option value="<%=sport.id %>" ><%= sport.name %></option>
+
+              
+
+              <% }) %> 
+              
+            </optgroup>
+          </select>
 
 
           <div class="form-group">
@@ -121,11 +125,19 @@
 
     <div id="sports-div" class="tab" style="display: none">
       <h1>Sports</h1>
+      <div id="sports-listing">
+        <ul>
+         
+        </ul>
+      </div>
     </div>
-
 
     <div id="home" class="tab">
       <h1>Homepage</h1>
+    </div>
+
+    <div id="welcome-div" class="tab" style="display: none">
+      <h1>Welcome</h1>
     </div>
 
     <div id="signup-div" class="tab" style="display: none">
@@ -138,16 +150,16 @@
        </div>
 
        <div class="form-group">
-         <label for="login-email">Last Name</label>
+         <label for="last_name">Last Name</label>
          <input class="form-control" type="text" name="last_name" id="last_name">
        </div>
        <div class="form-group">
-         <label for="login-email">Email</label>
+         <label for="signup-email">Email</label>
          <input class="form-control" type="text" name="signup-email" id="signup-email">
        </div>
 
        <div class="form-group">
-         <label for="password">Password</label>
+         <label for="signup-password">Password</label>
          <input class="form-control" type="password" name="signup-password" id="signup-password">
        </div>
 

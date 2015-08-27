@@ -8,9 +8,14 @@ function MainController(){
 MainController.prototype.init = function(){
   var access_token = this.eat("access_token");
   if (access_token) {
-    // window.mainController.getUsers();
-    // window.mainController.getLocations();
-    // window.mainController.getSports();
+    // this.users.getUsers();
+    // this.locations.getLocations();
+    
+    var sports = this.sport.getSports(access_token);
+    // store sports in localStorage
+    localStorage.setItem("sports", sports);
+    $('#sports-listing ul').append(sports)
+
   } else {
     console.log("clear pages...")
   }
@@ -69,6 +74,5 @@ MainController.prototype.createLocation = function(){
 
 $(function(){
   window.mainController = window.mainController || new MainController();
-  window.mainController.init();
   window.mainController.user.bindEvents();
 });
