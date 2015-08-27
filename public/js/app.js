@@ -21,7 +21,7 @@ Extreme.init = function(){
     // Decide which content to populate
     Extreme.ui.populateSelect();
     Extreme.getLocations();
-    Extreme.getMyLocations();
+    //Extreme.getMyLocations();
     Extreme.getSports();
     Extreme.getUsers();
 
