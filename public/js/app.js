@@ -113,6 +113,7 @@ Extreme.getLocations = function(){
   Extreme.ajaxRequest(type, url, data, function(data){
     Extreme.ui.displayLocations(data, id);
   });
+
 }
 
 Extreme.getUsers = function(){
@@ -304,16 +305,16 @@ Extreme.ui.displaySports = function(data, tab){
 }
 
 Extreme.ui.displayLocations = function(data, tab){
+  console.log(data)
   for(var i=0; i < data.length; i++){
     $("#" + tab + "-list").append(
       "<li>"+
         "<ul>"+
-          "<li>" + data[i].location_name+"</li>"+
-          "<li>" + data[i].country+"</li>"+
-          "<li>" + data[i].sport +"</li>"+
-          "<li>" + data[i].image+"</li>"+
-          "<li>" + data[i].users+"</li>"+
-          "<li>" + data[i].creator+"</li>"+
+          "<li>" + data[i].location_name +"</li>"+
+          "<li>" + data[i].sport.name +"</li>"+
+          "<li><img src='" + data[i].image +"'></li>"+
+          "<li>" + data[i].users +"</li>"+
+          "<li>" + data[i].creator.first_name +"</li>"+
           "<li><button class='add-to-list-btn' id=" + data[i]._id + ">Add to list</button></li>"+
         "</ul>"+
       "</li>"
