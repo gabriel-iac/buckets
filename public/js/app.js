@@ -172,6 +172,8 @@ Extreme.addLocation = function(){
         var lat = results[0].geometry.location.lat();
         var lng = results[0].geometry.location.lng();
         var sport = $('#select_sport option:selected').val();
+        var sport = $('#select_sport option:selected').val();
+        var image = $('#image').val();
       
         console.log(sport)
         console.log(lat);
@@ -188,7 +190,11 @@ Extreme.addLocation = function(){
           lat: lat,
           lng: lng,
           location_name: location_name,
-          sport: sport
+          sport: sport,
+          image:image,
+          user: '55deca9c9098fcf7c0eb557d'
+
+
         };
 
         Extreme.ajaxRequest(type, url, data, function(data){
@@ -317,6 +323,7 @@ Extreme.ui.displayLocations = function(data, tab){
           "<li><img class='img-rounded' src='" + data[i].image +"'></li>"+
           "<li>" + data[i].location_name +"</li>"+
           "<li>" + data[i].sport.name +"</li>"+
+          "<li>" + data[i].image + "</li>"+
           "<li>" + data[i].users +"</li>"+
           "<li>" + data[i].creator.first_name +"</li>"+
           "<li><button class='add-to-list-btn' id=" + data[i]._id + ">Add to list</button></li>"+
@@ -336,7 +343,7 @@ Extreme.ui.populateSelect = function(id){
 
   Extreme.ajaxRequest(type, url, data, function(data){
     $.each(data, function(index, sport){
-      select.append("<option value=' + sport.id +'>"+ sport.name +"</option>");
+      $("#sport-select").append("<option value=' + sport.id +'>"+ sport.name +"</option>");
     })
   });
 };
