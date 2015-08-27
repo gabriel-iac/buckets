@@ -301,7 +301,7 @@ Extreme.ui.toggleDisplays = function(id){
 
   $('.tab').slideUp(1000);
   $("#" + id).toggle(1000);
-
+  google.maps.event.trigger(map, "resize");
 }
 
 Extreme.ui.toggleTab = function(){
