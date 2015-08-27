@@ -1,4 +1,5 @@
 var User = require('../models/user');
+var Location = require('../models/location');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var passport = require('passport');
@@ -29,6 +30,15 @@ function createUser(req, res){
   //   console.log("User created")
   //   res.redirect('/api/users')
   // })
+}
+
+function getMyLocations(req, res){
+  // console.log(req.user.id);
+  console.log("getting my locations");
+  var user = User.findById(req.user.id).populate('locations').exec(function(err, user){
+    console.log(req.user.id)
+    res.json(user.locations);
+  });
 }
 
 function addUserLocation(req, res){
@@ -119,5 +129,6 @@ module.exports = {
   logout: logout,
   postSignup: postSignup,
   postLogin: postLogin,
-  addUserLocation: addUserLocation  
+  addUserLocation: addUserLocation, 
+  getMyLocations: getMyLocations 
 }
