@@ -171,6 +171,7 @@ footer {
   margin-top: 20px;
   width: 100%;
   float: left;
+
 }
 
 .location-wrapper{
@@ -180,6 +181,7 @@ footer {
   border: 1px solid #ccc;
   border-radius: 5px;
   height: 430px;
+  background-color: #fff;
   
 }
 location-wrapper li{
@@ -188,6 +190,7 @@ location-wrapper li{
 }
 .locations-box{
   padding: 9px;
+
 }
 .locations-box img{
   width:100%;
@@ -201,9 +204,10 @@ location-wrapper li{
   
 }
 .text-container{
-  max-height: 400px;
+  
   overflow: hidden;
 padding: 10px;
+
 }
 .text-container .title{
 margin-top: 10px;
