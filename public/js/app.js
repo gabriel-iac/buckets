@@ -307,7 +307,7 @@ Extreme.ui.toggleDisplays = function(id){
 Extreme.ui.toggleTab = function(){
   var tab = $(this).data("id");  
   Extreme.ui.toggleDisplays(tab);
-  google.maps.event.trigger(map, "resize");
+  Extreme.map.checkResize();
 }
 
 Extreme.ui.capitalize = function(string) {
