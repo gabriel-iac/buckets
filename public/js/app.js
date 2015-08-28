@@ -2,15 +2,6 @@ var Extreme = Extreme || {};
 
 Extreme.access_token = "access_token";
 
-// var type = ;
-// var url  = ;
-// var data = ;
-
-// Extreme.ajaxRequest(type, url, data, function(data){
-
-// });
-
-// QUESTION: Do you move this logic inside ui.loggedIn / ui.loggedOut
 Extreme.init = function(){
   google.maps.event.addDomListener(window, 'load', Extreme.ui.map);
 
@@ -21,14 +12,11 @@ Extreme.init = function(){
     // Decide which content to populate
     Extreme.ui.populateSelect();
     Extreme.getLocations();
-    //Extreme.getMyLocations();
     Extreme.getSports();
     Extreme.getUsers();
 
   } else {
     Extreme.ui.loggedOut();
-
-    // Must ensure content is removed
   }
 }
 
@@ -347,7 +335,6 @@ Extreme.ui.displaySports = function(data, tab){
     $("#" + tab + "-list").append("<li>" + data[i].name + "</li>");
   } 
 }
-// " + data[i].image +"
 Extreme.ui.displayLocations = function(data, tab){
   for(var i=0; i < data.length; i++){
     console.log(data[i].image)

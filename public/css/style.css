@@ -23,9 +23,9 @@ ol, ul {
 }
 
 #logo {
-height:40px;
-width:40px;
-float:left;
+  height:40px;
+  width:40px;
+  float:left;
 
 
 }
@@ -206,11 +206,11 @@ location-wrapper li{
 .text-container{
   
   overflow: hidden;
-padding: 10px;
+  padding: 10px;
 
 }
 .text-container .title{
-margin-top: 10px;
+  margin-top: 10px;
 }
 .text-container .creator{
   margin-top: -5px;
@@ -221,8 +221,8 @@ margin-top: 10px;
 }
 .effect1{
   -webkit-box-shadow: 0 10px 6px -6px #777;
-     -moz-box-shadow: 0 10px 6px -6px #777;
-          box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 10px 6px -6px #777;
 }
 
 .user-wrapper{
