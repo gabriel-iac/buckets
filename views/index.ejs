@@ -128,14 +128,16 @@
       </div>
     </div>
   </div>
+
   <main class="container">
+  <div class="row">
     <div id="new-location" class="tab">
       <h1>Add a Location</h1>
       <div id="location-image">
         <image id="surfing-header" src="../img/bigsurfing.jpg" />
       </div>
       <hr></hr>
-      <form class="form-horizontal">
+      <form class="form-horizontal container">
         <div class="form-group">
           <label for="name">Name</label>
           <input class="form-control" id="location" name="location" type="text" placeholder="Enter location">
@@ -195,8 +197,50 @@
     <div id="sports" class="tab">
       <em><h1 class="text-center">Sports</h1></em>
       <hr>
-      <ul id="sports-list">
-      </ul>
+     <!--  <ul id="sports-list">
+      </ul> -->
+      <div class="container">
+        <div class="col-xs-12 location-list">
+          <div class="row">
+            <div class="col-xs-6 sports-home">
+              <div class="mini-box">
+                <h2 class="text-left">Diving</h2>
+              </div>
+              <image class="img-responsive img-center img-rounded" src="../img/sky-diving.jpg" />
+            </div>
+            <div class="col-xs-6 sports-home">
+              <div class="mini-box">
+                <h2 class="text-left">Paragliding</h2>
+              </div>
+              <image class="img-responsive img-center img-rounded" src="../img/paragliding.jpg" />
+            </div>
+            <div class="col-xs-6 sports-home">
+              <div class="mini-box">
+                <h2 class="text-left">Skiing</h2>
+              </div>
+              <image class="img-responsive img-center img-rounded" src="../img/skiing.jpg" />
+            </div>
+            <div class="col-xs-6 sports-home">
+              <div class="mini-box">
+                <h2 class="text-left">Free Climbing</h2>
+              </div>
+              <image class="img-responsive img-center img-rounded " src="../img/free-cli.jpg" />
+            </div>
+            <div class="col-xs-6 sports-home">
+              <div class="mini-box">
+                <h2 class="text-left">Surfing</h2>
+              </div>
+              <image class="img-responsive img-center img-rounded " src="../img/surfing.jpg" />
+            </div>
+            <div class="col-xs-6 sports-home">
+              <div class="mini-box">
+                <h2 class="text-left">Kite Surfing</h2>
+              </div>
+              <image class="img-responsive img-center img-rounded" src="../img/kitesurf.jpg" />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div id="users" class="tab">
@@ -237,6 +281,7 @@
 
         <input class="btn btn-default" type="submit">
       </form>
+    </div>
     </div>
   </main>
   <footer class="footer">

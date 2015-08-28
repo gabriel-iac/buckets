@@ -306,7 +306,7 @@ Extreme.ui.toggleDisplays = function(id){
 
   $('.tab').slideUp(1000);
   $("#" + id).toggle(1000);
-  google.maps.event.trigger(map, "resize");
+  
 }
 
 Extreme.ui.toggleTab = function(){
@@ -328,7 +328,17 @@ Extreme.ui.displayUser = function(user){
 
 Extreme.ui.displayUsers = function(data, tab){
   for(var i=0; i < data.length; i++){
-    $("#" + tab + "-list").append("<li>" + data[i].first_name + "</li>");
+    $("#" + tab + "-list").append(
+        "<li class='col-md-4 users-box '>"+
+          "<ul class='user-wrapper effect1'>"+ 
+          "<div><img class='img-rounded' src='" + data[i].image +"'></div>"+
+          "<div class='text-container'>"+
+            "<li class='title'>"+"<h4>" + data[i].first_name + "</h4>"+"</li>"+
+            "<li class='creator'>" + " " +"<em>" + data[i].last_name + "</em>"+"</li>"+
+          "</ul>"+
+          "</div>"+
+        "</li>"
+      );
   } 
 }
 
