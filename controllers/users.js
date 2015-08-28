@@ -101,7 +101,6 @@ module.exports = {
   getAllUsers: getAllUsers,
   getCurrentUser: getCurrentUser,
   showUser: showUser,
-  createUser: createUser,
   updateUser: updateUser,
   logout: logout,
   postSignup: postSignup,
